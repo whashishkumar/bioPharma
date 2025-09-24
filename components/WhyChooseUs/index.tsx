@@ -31,23 +31,26 @@ export default function WhyChooseUs() {
     <div className="choose-usWrapper">
       <div className="hero-sub-container">
         <div className="sub-container">
-          <div className="py-16 grid grid-cols-1 lg:grid-cols-[40%_60%]  gap-15">
-            <div className="flex  items-center relative w-full h-[560px]">
+          <div className="py-16 grid grid-cols-1 lg:grid-cols-2 gap-20">
+            <div className="flex justify-center items-center">
               <Image
-                src="/images/vision.png"
-                alt="bg"
-                fill
-                className="rounded-lg w-full object-fill"
+                src="/images/bannerH.jpg"
+                alt={"bg"}
+                height={576}
+                width={563}
+                className="objec-contain rounded md:w-full"
               />
             </div>
+
             <div>
               <PageTitle
                 tag="Why choose us"
                 tagClass="border rounded-full w-[160px] p-2 text-sm capitalize text-[#172C45] leading-[16px]"
                 subHeading="Choose BioBox Pharma for high-quality, affordable, and innovative pharmaceutical products manufactured in WHO-GMP-certified facilities. We offer monopoly-based PCD franchise opportunities."
-                subHeadingClass="text-[1.75rem] font-normal mt-2 text-[ #45566A] leading-[25px]"
+                subHeadingClass="text-[1.75rem] font-normal mt-2 text-[#45566A] leading-[25px] mt-8"
               />
-              <div className="grid grid grid-cols-1 gap-6 mt-8 ">
+
+              <div className="grid grid-cols-1 gap-6 mt-8">
                 {missionItems.map((item) => (
                   <div key={item.id} className="flex gap-6 items-start">
                     <Image
@@ -55,12 +58,10 @@ export default function WhyChooseUs() {
                       alt={item.title}
                       height={50}
                       width={50}
-                      className="object-contain"
+                      className="object-contain shrink-0"
                     />
-                    <div className="w-[630px]">
-                      <p
-                        className={`bg-[#00A859] w-[86px] h-[33px] rounded-lg flex justify-center items-center text-base font-semibold text-white mb-2`}
-                      >
+                    <div className="flex-1">
+                      <p className="bg-[#00A859] w-[86px] h-[33px] rounded-lg flex justify-center items-center text-base font-semibold text-white mb-2">
                         {item.title}
                       </p>
                       <span className="text-base font-normal primary-font text-[#45566A]">

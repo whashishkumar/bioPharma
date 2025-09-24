@@ -1,7 +1,9 @@
+import Footer from "@/components/Footer";
 import HeroBanner from "@/components/HeroBanner";
 import InnovatingHealthcare from "@/components/InnovatingHealthcare";
 import Marquee from "@/components/Marquee";
 import OurCertifacation from "@/components/OurCertifacation";
+import OutProducts from "@/components/OurProducts";
 import PharmaCategories from "@/components/PharmaCategories";
 import ProductCategories from "@/components/ProductCategories";
 import WhyChooseUs from "@/components/WhyChooseUs";
@@ -28,6 +30,8 @@ export default function Home() {
       <WhyChooseUs />
       <PharmaCategories />
       <OurCertifacation />
+      <OutProducts />
+      <Footer />
     </div>
   );
 }

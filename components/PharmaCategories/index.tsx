@@ -57,7 +57,7 @@ export default function PharmaCategories() {
               heading="Trusted Pharma Categories with Innovation, Quality, and Care"
               headingClass="text-[2.875rem] mt-2 font-normal  text-[#172C45] leading-[3.438rem]"
               subHeading="From everyday health concerns to complex therapeutic needs, our product categories are designed to deliver trust and results.Covering General, Cardiac, Diabetic, Gynae, Ortho & more – we ensure complete care under one trusted name."
-              subHeadingClass="text-base font-normal mt-2 text-[#45566A] leading-[25px]"
+              subHeadingClass="text-base font-normal mt-2 text-[#45566A] leading-[25px] lg:mt-15"
               wrapperClass="grid lg:grid-cols-2 gap-10"
             />
 

@@ -99,15 +99,16 @@ export default function ProductCategories() {
               tag="Products Categories"
               tagClass="border border-[#00A859] rounded-full w-[160px] p-2 text-sm capitalize text-[#172C45] leading-[16px]"
               heading="Trusted Pharma Categories with Innovation, Quality, and Care"
-              headingClass="text-[2.875rem] mt-2 font-normal  text-[#172C45] leading-[3.438rem]"
-              subHeading="From everyday health concerns to complex therapeutic needs, our product categories are designed to deliver trust and results.Covering General, Cardiac, Diabetic, Gynae, Ortho & more – we ensure complete care under one trusted name."
-              subHeadingClass="text-base font-normal mt-2 text-[#45566A] leading-[25px]"
+              headingClass="text-[2.875rem] mt-2 font-normal text-[#172C45] leading-[3.438rem]"
+              subHeading="From everyday health concerns to complex therapeutic needs, our product categories are designed to deliver trust and results. Covering General, Cardiac, Diabetic, Gynae, Ortho & more – we ensure complete care under one trusted name."
+              subHeadingClass="text-base font-normal mt-2 text-[#45566A] leading-[25px] lg:mt-14"
               wrapperClass="grid lg:grid-cols-2 gap-10"
             />
-            <div className="flex flex-wrap sm:gap-1 gap-4 lg:gap-5 justify-start py-14">
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 lg:gap-5 py-14">
               {cards.map((card) => (
-                <div key={card.id}>
-                  <div className="relative h-[261px] lg:w-[200px]  w-full md:w-[200px]  overflow-hidden rounded-xl bg-white group cursor-pointer">
+                <div key={card.id} className="group cursor-pointer w-full">
+                  <div className="relative h-[261px] w-full overflow-hidden rounded-xl bg-white">
                     {card.bgImage && (
                       <Image
                         src={card.bgImage}
@@ -117,8 +118,9 @@ export default function ProductCategories() {
                         className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       />
                     )}
+
                     <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#172C45]/0 via-[#172C45]/40 to-[#172C45] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="relative z-20 flex h-full flex-col justify-between p-6">
+                    <div className="relative z-20 flex h-full flex-col justify-between p-4 md:p-6">
                       <div>
                         <Image
                           src={card.icon}
