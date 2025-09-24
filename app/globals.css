@@ -5,22 +5,110 @@
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+  font-size: 14px;
+}
+
+.primary-font {
+  font-family: var(--font-sora);
+}
+
+.red-hat {
+  font-family: var(--font-red-hat-display);
+}
+
+.container {
+  max-width: 1921px;
+  margin: 0 auto;
+}
+
+.hero-sub-container {
+  max-width: 1820px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.sub-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.bg-product-category {
+  background-color: #E0FFF1;
+  ;
+}
+
+.bg-pharma-category {
+  background-color: #E3F7FF;
+}
+
+
+@media (min-width: 768px) and (max-width: 1300px) {
+  html {
+    font-size: 12px;
+  }
+
+}
+
+@media (min-width: 1301px) and (max-width: 1500px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1550px) and (max-width: 1800px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1901px) and (max-width: 2100px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 2101px) and (max-width: 2500px) {
+  html {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 2501px) and (max-width: 3000px) {
+  html {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sub-container {
+    padding: 0 20px;
+  }
+
+  .hero-sub-container {
+    padding: 0 10px;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .sub-container {
+    padding: 0 20px;
+  }
+
+  .hero-sub-container {
+    padding: 0 10px;
+  }
 }

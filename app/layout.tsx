@@ -1,15 +1,37 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import localFont from "next/font/local";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const sora = localFont({
+  src: "../public/fonts/Sora-Regular.ttf",
+  weight: "400",
+  variable: "--font-sora",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const redHatDisplay = localFont({
+  src: [
+    {
+      path: "../public/fonts/RedHatDisplay-SemiBold.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/RedHatDisplay-SemiBold.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/RedHatDisplay-SemiBold.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/RedHatDisplay-SemiBold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-red-hat-display",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${sora.variable} ${redHatDisplay.variable} antialiased`}
       >
         {children}
       </body>
