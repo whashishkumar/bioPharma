@@ -8,7 +8,7 @@ const certifications = [
   { id: 3, src: "/images/c2.png", alt: "Certification 3" },
   { id: 4, src: "/images/c3.png", alt: "Certification 4" },
   { id: 5, src: "/images/c4.png", alt: "Certification 5" },
-  { id: 3, src: "/images/c2.png", alt: "Certification 3" },
+  { id: 6, src: "/images/c2.png", alt: "Certification 3" },
 ];
 
 export default function OurCertification() {
@@ -18,7 +18,7 @@ export default function OurCertification() {
         <div className="py-16">
           <PageTitle
             tag="Our Certification"
-            tagClass="border border-[#00A859] rounded-full w-[160px] p-2 text-sm capitalize text-[#172C45] leading-[16px] mb-4"
+            tagClass="border border-[#172C451A] rounded-full w-[160px] p-2 text-sm capitalize text-[#172C45] leading-[16px] mb-4"
             heading="Trusted Certifications Ensuring Quality and Excellence"
             headingClass="text-[2.875rem] mt-2 font-normal text-[#172C45] leading-[3.438rem]"
             subHeading="At Biobox Pharma, we are committed to delivering high-quality, affordable pharmaceutical solutions. Our focus on innovation, patient safety, and regulatory excellence ensures better healthcare outcomes. With a strong distribution network, we aim to make trusted medicines accessible worldwide."

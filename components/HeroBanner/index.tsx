@@ -40,7 +40,7 @@ const avatars = [
 
 export default function HeroBanner() {
   return (
-    <section className="relative lg:h-[720px] ">
+    <section className="relative">
       <div
         className="absolute inset-0 bg-cover bg-center z-[-1] "
         style={{
@@ -51,8 +51,8 @@ export default function HeroBanner() {
       <div className="hero-sub-container">
         <Header navBarLinks={navBarLinks} />
         <div className="text-white  sub-container">
-          <div className="  lg:mt-25 grid grid-cols  md:grid-cols-2 lg:grid-cols-2 lg:gap-20 lg:gap-45 gap-10 py-12">
-            <div className="">
+          <div className="lg:mt-25 grid grid-cols  md:grid-cols-2 lg:grid-cols-2 lg:gap-20 lg:gap-45 gap-10 py-12">
+            <div className="mb-30">
               <PageTitle
                 tag="Your partner in Health"
                 tagClass="text-white border  rounded-full w-[180px] p-2 text-sm capitalize "
@@ -65,14 +65,13 @@ export default function HeroBanner() {
                 <Button children={"Contact Us"} />
                 <Button children={"Explore Our Services"} variant="secondary" />
               </div>
-              <div className="flex sm:flex-col md:flex-row  lg:flex md:flex gap-8 mt-10">
-                <div className="primary-font font-bold text-3xl flex gap-4">
-                  <h4>15+</h4>
-                  <p className="primary-font font-normal text-sm w-[85px]">
+              <div className="flex flex-col sm:flex-col md:flex-row items-center  gap-8 mt-10 text-center md:text-left">
+                <div className="primary-font font-bold text-3xl flex flex-col md:flex-row items-center gap-2">
+                  <h4>25+</h4>
+                  <p className="primary-font font-normal text-sm max-w-[120px]">
                     Years Of Experience
                   </p>
                 </div>
-
                 <div className="flex -space-x-2">
                   {avatars.map((avatar) => (
                     <img
@@ -83,16 +82,16 @@ export default function HeroBanner() {
                     />
                   ))}
                 </div>
-                <div className="primary-font text-sm  gap-4">
-                  <p>Trusted By </p>
+                <div className="primary-font text-sm flex flex-col items-center md:items-start">
+                  <p>Trusted By</p>
                   <p className="primary-font font-bold text-sm">
-                    5K Satisfied clients
+                    5K Satisfied Clients
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="flex justify-center ">
+            <div className="flex justify-center  md:jusstify-center lg:justify-end lg:items-start lg:pr-40 lg:mt-20">
               <Image
                 src={"/images/Link.png"}
                 height={120}

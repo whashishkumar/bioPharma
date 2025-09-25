@@ -15,14 +15,15 @@ export default function InnovatingHealthcare() {
         <div className="sub-container ">
           <div className=" py-16 relative grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-[40%_60%] gap-10 py-14">
             <div className="relative">
-              <div className="flex justify-center items-center">
+              <div className="relative w-full h-64 sm:h-[320px] md:h-[350px] lg:w-[500px] lg:h-[500px]">
                 <Image
                   src="/images/bannerH.jpg"
-                  alt={"bg"}
-                  height={576}
-                  width={563}
-                  className="objec-contain rounded md:w-full"
+                  alt="bg"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-3xl"
                 />
+                <div className="absolute top-0 left-0 w-full h-full bg-black/10 rounded-3xl"></div>
               </div>
               <div className="absolute bottom-[60px] left-[80px]  bg-white/40  backdrop-blur-[25px] p-4 w-[240px] rounded-lg border border-[#FFFFFF1A]">
                 <div className="flex -space-x-2 mt-2 justify-center">

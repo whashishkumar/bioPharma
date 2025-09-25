@@ -92,12 +92,12 @@ const cards = [
 export default function ProductCategories() {
   return (
     <div className="hero-sub-container">
-      <div className="bg-product-category">
+      <div className="bg-product-category rounded-[20px]">
         <div className="sub-container">
           <div className="py-16">
             <PageTitle
               tag="Products Categories"
-              tagClass="border border-[#00A859] rounded-full w-[160px] p-2 text-sm capitalize text-[#172C45] leading-[16px]"
+              tagClass="border border-[#00A859] rounded-full w-[180px] p-2 text-sm capitalize text-[#172C45] leading-[16px]"
               heading="Trusted Pharma Categories with Innovation, Quality, and Care"
               headingClass="text-[2.875rem] mt-2 font-normal text-[#172C45] leading-[3.438rem]"
               subHeading="From everyday health concerns to complex therapeutic needs, our product categories are designed to deliver trust and results. Covering General, Cardiac, Diabetic, Gynae, Ortho & more – we ensure complete care under one trusted name."

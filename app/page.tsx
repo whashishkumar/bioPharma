@@ -1,9 +1,13 @@
+import FaqSection from "@/components/Faq";
 import Footer from "@/components/Footer";
 import HeroBanner from "@/components/HeroBanner";
 import InnovatingHealthcare from "@/components/InnovatingHealthcare";
 import Marquee from "@/components/Marquee";
+import OurBlogs from "@/components/OurBlog";
 import OurCertifacation from "@/components/OurCertifacation";
 import OutProducts from "@/components/OurProducts";
+import OurTestimonials from "@/components/OurTestimonials";
+import PcdOppurnity from "@/components/PCDOpportunity";
 import PharmaCategories from "@/components/PharmaCategories";
 import ProductCategories from "@/components/ProductCategories";
 import WhyChooseUs from "@/components/WhyChooseUs";
@@ -31,6 +35,10 @@ export default function Home() {
       <PharmaCategories />
       <OurCertifacation />
       <OutProducts />
+      <PcdOppurnity />
+      <FaqSection />
+      <OurTestimonials />
+      <OurBlogs />
       <Footer />
     </div>
   );

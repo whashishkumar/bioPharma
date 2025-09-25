@@ -28,6 +28,14 @@ html {
   font-family: var(--font-red-hat-display);
 }
 
+.sanchez {
+  font-family: var(--font-sanchez);
+}
+
+.marope {
+  font-family: var(--font-marope);
+}
+
 .container {
   max-width: 1921px;
   margin: 0 auto;
@@ -39,6 +47,12 @@ html {
   padding: 0 30px;
 }
 
+.hero-child-container {
+  max-width: 1270px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
 .sub-container {
   max-width: 1440px;
   margin: 0 auto;
@@ -47,7 +61,6 @@ html {
 
 .bg-product-category {
   background-color: #E0FFF1;
-  ;
 }
 
 .bg-pharma-category {
@@ -100,6 +113,10 @@ html {
   .hero-sub-container {
     padding: 0 10px;
   }
+
+  .hero-child-container {
+    padding: 0 10px;
+  }
 }
 
 
@@ -109,6 +126,10 @@ html {
   }
 
   .hero-sub-container {
+    padding: 0 10px;
+  }
+
+  .hero-child-container {
     padding: 0 10px;
   }
 }

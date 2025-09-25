@@ -8,6 +8,7 @@ interface PageTitleProps {
   headingClass?: string;
   subHeadingClass?: string;
   wrapperClass?: string;
+  tagWrapper?: string;
 }
 
 const PageTitle: React.FC<PageTitleProps> = ({
@@ -18,18 +19,19 @@ const PageTitle: React.FC<PageTitleProps> = ({
   headingClass = "",
   subHeadingClass = "",
   wrapperClass = "",
+  tagWrapper = "",
 }) => {
   return (
     <div
       className={`text-lg font-normal text-gray-500 primary-font ${wrapperClass}`}
     >
-      <div>
+      <div className={`${tagWrapper}`}>
         {tag && (
-          <ol
-            className={`list-decimal list-inside text-sm font-medium text-gray-600 primary-font ${tagClass}`}
+          <ul
+            className={`list-disc list-inside marker:text-[#00A859] text-sm font-medium text-gray-600 primary-font ${tagClass}`}
           >
-            <li className="flex justify-center items-center">{tag}</li>
-          </ol>
+            <li className="text-center">{tag}</li>
+          </ul>
         )}
         {heading && (
           <p

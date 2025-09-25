@@ -17,7 +17,7 @@ export default function Button({
   ...rest
 }: ButtonProps) {
   const baseStyles =
-    "mt-6 flex items-center gap-2 font-bold px-6 py-3 rounded-lg shadow transition primary-font text-[14px] cursor-pointer";
+    "mt-6 flex items-center gap-2 font-bold px-6 py-3 rounded-lg shadow transition primary-font text-[14px] cursor-pointer capitalize";
 
   const variants = {
     primary: "bg-[#00A859] hover:bg-green-600 text-white",
