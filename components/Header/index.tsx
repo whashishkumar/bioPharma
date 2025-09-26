@@ -6,11 +6,41 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 
+const navBarLinksList = [
+  {
+    id: "home",
+    title: "Home",
+    url: "/",
+  },
+  {
+    id: "about",
+    title: "About Us",
+    url: "/about-us",
+  },
+  {
+    id: "patient",
+    title: "Our Services",
+    url: "/our-services",
+  },
+  {
+    id: "OurProducts",
+    title: "Our Products",
+    url: "/our-products",
+  },
+
+  {
+    id: "contact",
+    title: "Contact Us",
+    url: "/contact-us",
+  },
+];
+
 interface MenuItem {
   id: string;
   title: string;
   url: string;
-  submenu?: MenuItem[]; // Optional for dropdown
+  submenu?: MenuItem[];
+  innerHeader?: boolean;
 }
 
 interface Contact {
@@ -19,14 +49,16 @@ interface Contact {
 
 interface HeaderProps {
   logo?: string;
-  navBarLinks: MenuItem[];
+  navBarLinks?: MenuItem[];
   contact?: Contact;
+  innerHeader?: boolean;
 }
 
 export default function Header({
   logo = "/images/bioLogo.png",
-  navBarLinks = [],
+  navBarLinks = navBarLinksList,
   contact,
+  innerHeader = false,
 }: HeaderProps) {
   const pathname = usePathname();
   const router = useRouter();
@@ -38,6 +70,8 @@ export default function Header({
     setMenuOpen(false);
     router.push(url);
   };
+
+  const inactiveColor = innerHeader ? "text-gray-600" : "text-white";
 
   return (
     <nav className="sub-container">
@@ -69,8 +103,8 @@ export default function Header({
               >
                 <Link
                   href={link.url}
-                  className={` ${
-                    isActive ? "text-[#01A859]" : "text-white"
+                  className={`${
+                    isActive ? "text-[#01A859]" : inactiveColor
                   } hover:text-[#01A859]`}
                 >
                   {link.title}
@@ -79,8 +113,6 @@ export default function Header({
             );
           })}
 
-          {/* Call Button */}
-          {/* {contact?.phone && ( */}
           <li>
             <Link href={`tel:${1234567890}`}>
               <div className="flex items-center gap-2 bg-[#01A859] text-white px-6 py-2 rounded-full primary-font  text-base">

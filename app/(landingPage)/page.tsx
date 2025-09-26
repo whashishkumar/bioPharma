@@ -1,6 +1,4 @@
 import FaqSection from "@/components/Faq";
-import Footer from "@/components/Footer";
-import HeroBanner from "@/components/HeroBanner";
 import InnovatingHealthcare from "@/components/InnovatingHealthcare";
 import Marquee from "@/components/Marquee";
 import OurBlogs from "@/components/OurBlog";
@@ -24,10 +22,10 @@ const services = [
   { text: "Pediatrics", imageSrc: "/images/star.png" },
   { text: "Ophthalmology", imageSrc: "/images/star.png" },
 ];
+
 export default function Home() {
   return (
-    <div className="">
-      <HeroBanner />
+    <>
       <Marquee items={services} speed={30} />
       <InnovatingHealthcare />
       <ProductCategories />
@@ -39,7 +37,6 @@ export default function Home() {
       <FaqSection />
       <OurTestimonials />
       <OurBlogs />
-      <Footer />
-    </div>
+    </>
   );
 }

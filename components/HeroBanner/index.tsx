@@ -4,34 +4,6 @@ import PageTitle from "@/ui/PageTitle";
 import Image from "next/image";
 import Button from "@/ui/Button";
 
-export const navBarLinks = [
-  {
-    id: "home",
-    title: "Home",
-    url: "/",
-  },
-  {
-    id: "about",
-    title: "About Us",
-    url: "/about",
-  },
-  {
-    id: "OurProducts",
-    title: "Our Services",
-    url: "/our-products",
-  },
-  {
-    id: "patient",
-    title: "Our Services",
-    url: "/our-services",
-  },
-  {
-    id: "contact",
-    title: "Contact Us",
-    url: "/contact",
-  },
-];
-
 const avatars = [
   { id: 1, src: "/icons/Figure.png", alt: "Avatar 1" },
   { id: 2, src: "/icons/Figure.png", alt: "Avatar 2" },
@@ -49,7 +21,7 @@ export default function HeroBanner() {
       />
       <div className="absolute inset-0 bg-black/20  z-[-1]" />
       <div className="hero-sub-container">
-        <Header navBarLinks={navBarLinks} />
+        <Header />
         <div className="text-white  sub-container">
           <div className="lg:mt-25 grid grid-cols  md:grid-cols-2 lg:grid-cols-2 lg:gap-20 lg:gap-45 gap-10 py-12">
             <div className="mb-30">
@@ -90,7 +62,6 @@ export default function HeroBanner() {
                 </div>
               </div>
             </div>
-
             <div className="flex justify-center  md:jusstify-center lg:justify-end lg:items-start lg:pr-40 lg:mt-20">
               <Image
                 src={"/images/Link.png"}

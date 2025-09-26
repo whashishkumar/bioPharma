@@ -15,7 +15,8 @@ export default function InnovatingHealthcare() {
         <div className="sub-container ">
           <div className=" py-16 relative grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-[40%_60%] gap-10 py-14">
             <div className="relative">
-              <div className="relative w-full h-64 sm:h-[320px] md:h-[350px] lg:w-[500px] lg:h-[500px]">
+              {/* sm:h-[320px] md:h-[350px] lg:w-[500px]  */}
+              <div className="relative w-full h-64 lg:h-[500px]">
                 <Image
                   src="/images/bannerH.jpg"
                   alt="bg"
@@ -115,7 +116,7 @@ export default function InnovatingHealthcare() {
                   <Image
                     src="/images/inovbg.jpg"
                     alt="Laboratory"
-                    width={307}
+                    width={300}
                     height={274}
                     className="rounded-xl object-cover"
                   />

@@ -10,12 +10,34 @@ const dummyFooterData = {
     "BioBox Pharma for high-quality, affordable, and innovative pharmaceutical products manufactured in WHO-GMP-certified facilities. We offer monopoly-based PCD franchise opportunities.",
 
   quick_links: [
-    { id: 1, title: "Home", url: "/" },
-    { id: 2, title: "About", url: "/about" },
-    { id: 3, title: "Our Products", url: "/products" },
-    { id: 4, title: "Our services", url: "/services" },
-    { id: 5, title: "Contact Us", url: "/contact" },
+    {
+      id: "home",
+      title: "Home",
+      url: "/",
+    },
+    {
+      id: "about",
+      title: "About Us",
+      url: "/about-us",
+    },
+    {
+      id: "patient",
+      title: "Our Services",
+      url: "/our-services",
+    },
+    {
+      id: "OurProducts",
+      title: "Our Products",
+      url: "/our-products",
+    },
+
+    {
+      id: "contact",
+      title: "Contact Us",
+      url: "/contact-us",
+    },
   ],
+
   categories: [
     { id: 1, title: "Cardiology", slug: "cardiology" },
     { id: 2, title: "Neurology", slug: "neurology" },
@@ -54,7 +76,7 @@ export default function Footer() {
 
   return (
     <div className="hero-sub-container">
-      <div className="bg-[#172C45] rounded-2xl mb-8">
+      <div className="bg-[#172C45] rounded-2xl mb-4">
         <div className="sub-container">
           <footer className="text-white rounded-lg relative overflow-hidden grid md:grid-cols-[60%_40%] lg:grid-cols-[75%_25%] py-5 ">
             <div className="flex flex-col justify-center">
@@ -71,7 +93,7 @@ export default function Footer() {
                       />
                     </div>
                   )}
-                  <p className="text-sm mt-2 sanchez font-normal leading-[27px] text-white">
+                  <p className="text-sm mt-2 marope font-normal leading-[27px] text-white">
                     {site_description}
                   </p>
                   <h4 className="font-bold text-lg primary-font font-semibold text-xl">

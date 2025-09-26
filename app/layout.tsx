@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
+import { Providers } from "@/context/Provider";
 
 const sora = localFont({
   src: "../public/fonts/Sora-Regular.ttf",
@@ -61,7 +62,7 @@ export default function RootLayout({
       <body
         className={`${sora.variable} ${marope.variable} ${redHatDisplay.variable} ${sanchez.variable} antialiased`}
       >
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

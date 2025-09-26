@@ -27,7 +27,7 @@ const products = [
   },
 ];
 
-export default function ProductGrid() {
+export default function ProductCard() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 py-10">
       {products.map((product) => (
