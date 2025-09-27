@@ -1,28 +1,10 @@
 import Image from "next/image";
 
-const testimonials = [
-  {
-    id: 1,
-    name: "Grace Martin",
-    text: "You'll meet with our scientific advisor to define your research goals, scope, and budget. You'll meet with our scientific advisors to define your research.",
-    image: "/images/Figure.png",
-  },
-  {
-    id: 2,
-    name: "John Doe",
-    text: "Our team will work closely with you to understand your project requirements, ensuring a clear plan and achievable milestones for success.",
-    image: "/images/Figure.png",
-  },
-];
-
-export default function TestimonialCard() {
+export default function TestimonialCard({ testimonials }: any) {
   return (
     <>
-      {testimonials.map((item) => (
-        <div
-          key={item.id}
-          className="bg-[#fff] rounded-2xl shadow-xl overflow-hidden"
-        >
+      {testimonials?.map((item: any) => (
+        <div key={item.id} className="bg-[#fff] rounded-2xl  overflow-hidden">
           <div className="flex flex-col md:flex-row h-full">
             <div className="relative bg-[#183B56] w-[260px]  md:flex-[1]">
               <Image

@@ -9,7 +9,6 @@ export default function PartnerBenifits() {
     useAboutUsPageContext();
   const { section_heading, section_sub_heading, benefits }: any =
     benifitsWithUsData || {};
-  console.log(benifitsWithUsData, "benifitsWithUsData");
 
   useEffect(() => {
     fetchBenifitsWithUsData();

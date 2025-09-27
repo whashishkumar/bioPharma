@@ -1,6 +1,7 @@
 "use client";
 import PageTitle from "@/ui/PageTitle";
 import ProductCard from "@/ui/ProductCard";
+import SwipeSlider from "@/ui/SwipeSlider";
 import { useState } from "react";
 import React from "react";
 
@@ -12,6 +13,45 @@ const productTypes = [
   { id: 5, name: "ENT", icon: "/icons/toys.png" },
   { id: 6, name: "Pediatric", icon: "/icons/sports.png" },
   { id: 7, name: "AyurVedic", icon: "/icons/sports.png" },
+];
+
+const products = [
+  {
+    id: 1,
+    name: "Tazobox-4.5",
+    image: "/images/p1.png",
+    alt: "Tazobactam Injection",
+  },
+  {
+    id: 2,
+    name: "Amoxicillin-500",
+    image: "/images/p2.png",
+    alt: "Amoxicillin Capsule",
+  },
+  {
+    id: 3,
+    name: "Cefixime-200",
+    image: "/images/p3.png",
+    alt: "Cefixime Tablet",
+  },
+  {
+    id: 4,
+    name: "Metformin-500",
+    image: "/images/p4.png",
+    alt: "Metformin Tablet",
+  },
+  {
+    id: 5,
+    name: "Cefixime-200",
+    image: "/images/p3.png",
+    alt: "Cefixime Tablet",
+  },
+  {
+    id: 6,
+    name: "Metformin-500",
+    image: "/images/p4.png",
+    alt: "Metformin Tablet",
+  },
 ];
 
 export default function OurProducts() {
@@ -30,6 +70,13 @@ export default function OurProducts() {
             wrapperClass="grid lg:grid-cols-2 gap-8"
           />
           <div className="flex flex-wrap  justify-start md:justify-start lg:justify-center gap-4 py-10 ">
+            {/* <SwipeSlider
+              slidesPerView={5}
+              bottomSwipeBtn={false}
+              swipebtn={true}
+              spaceBetween={10}
+              autoPlay={false}
+            > */}
             {productTypes.map((product) => (
               <div
                 key={product.id}
@@ -51,9 +98,18 @@ export default function OurProducts() {
                 </p>
               </div>
             ))}
+            {/* </SwipeSlider> */}
           </div>
-
-          <ProductCard />
+          <SwipeSlider
+            slidesPerView={4}
+            bottomSwipeBtn={false}
+            swipebtn={false}
+            spaceBetween={20}
+          >
+            {products?.map((product) => (
+              <ProductCard key={product.id} {...product} />
+            ))}
+          </SwipeSlider>
         </div>
       </div>
     </div>

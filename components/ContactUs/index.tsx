@@ -9,8 +9,6 @@ export default function ContactUs() {
   const { sectionTwoData, fetchContactUsSectionTwo, loading } =
     useContactUsPageContext();
   const { data, menu }: any = sectionTwoData || {};
-  const {} = data || {};
-  console.log(sectionTwoData, "sectionTwoData");
 
   useEffect(() => {
     fetchContactUsSectionTwo();

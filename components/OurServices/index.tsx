@@ -45,7 +45,6 @@ export default function OurServices() {
     fetchOurServiceHeroPageData();
   }, []);
 
-  console.log(data, "ourServicesData");
   const baseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
   const imagePath = process.env.NEXT_PUBLIC_IMAGE_PATH;
   const imageUrl = `${baseUrl}${imagePath}/${franchise_image}`;

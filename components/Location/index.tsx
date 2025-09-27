@@ -30,6 +30,8 @@ export default function Location() {
     useContactUsPageContext();
   const { data }: any = sectionOne || {};
 
+  console.log(data, "data");
+
   useEffect(() => {
     fetchContactUsSectionOne();
   }, []);
@@ -40,7 +42,6 @@ export default function Location() {
         <div className="grid  grid-col-1 lg:grid-cols-2 gap-8 lg:gap-25  py-18">
           {dummyLocations?.map((loc) => (
             <div key={loc.id} className="">
-              {/* Map */}
               <iframe
                 src={loc.iframeSrc}
                 title={loc.heading}
@@ -51,8 +52,6 @@ export default function Location() {
                 allowFullScreen
                 loading="lazy"
               ></iframe>
-
-              {/* Content */}
               <div className="py-6 flex flex-col justify-center gap-3 ">
                 <h2 className="text-2xl  font-semibold text-[#172C45] sanchez">
                   {loc.heading}

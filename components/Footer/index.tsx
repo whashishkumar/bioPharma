@@ -71,7 +71,6 @@ export default function Footer() {
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    console.log("Email submitted:", email);
   };
 
   return (

@@ -1,15 +1,34 @@
+"use client";
 import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import HeroBanner from "@/components/HeroBanner";
+import ScrollToTop from "@/components/ScrollToTop";
+import { useAuth } from "@/context/AuthContext";
 import React from "react";
 import { ReactNode } from "react";
 
+const heroBannerData = {
+  backgroundImage: "/images/header-image.jpg",
+  tag: "Your partner in Health",
+  heading: "Commitment to quality healthcare, its diverse product range",
+  subHeading: "Delivering Care with Eye Dose.",
+};
+
 export default function layout({ children }: { children: ReactNode }) {
+  const { loading } = useAuth();
+
+  if (loading) {
+    return <p>Loading</p>;
+  }
+
   return (
     <div className="relative">
-      <div className="fixed top-0 left-0 w-full z-50 bg-white shadow-xs">
-        <Header innerHeader={true} />
-      </div>
-      <main className="pt-20">{children}</main>
+      <HeroBanner
+        heroData={heroBannerData}
+        innerBanner={true}
+        innerBannerHeight={"h-[350]"}
+      />
+      <main>{children}</main>
+      <ScrollToTop />
       <Footer />
     </div>
   );

@@ -8,7 +8,6 @@ export default function BenifitCard({ cardData }: any) {
     <>
       {cardData?.map((card: any, id: number) => {
         const imageUrl = `${baseUrl}${imagePath}/${card.image}`;
-
         return (
           <div
             key={id}

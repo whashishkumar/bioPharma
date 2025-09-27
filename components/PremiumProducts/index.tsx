@@ -1,6 +1,46 @@
 import PageTitle from "@/ui/PageTitle";
 import ProductCard from "@/ui/ProductCard";
+import SwipeSlider from "@/ui/SwipeSlider";
 import React from "react";
+
+const products = [
+  {
+    id: 1,
+    name: "Tazobox-4.5",
+    image: "/images/p1.png",
+    alt: "Tazobactam Injection",
+  },
+  {
+    id: 2,
+    name: "Amoxicillin-500",
+    image: "/images/p2.png",
+    alt: "Amoxicillin Capsule",
+  },
+  {
+    id: 3,
+    name: "Cefixime-200",
+    image: "/images/p3.png",
+    alt: "Cefixime Tablet",
+  },
+  {
+    id: 4,
+    name: "Metformin-500",
+    image: "/images/p4.png",
+    alt: "Metformin Tablet",
+  },
+  {
+    id: 5,
+    name: "Cefixime-200",
+    image: "/images/p3.png",
+    alt: "Cefixime Tablet",
+  },
+  {
+    id: 6,
+    name: "Metformin-500",
+    image: "/images/p4.png",
+    alt: "Metformin Tablet",
+  },
+];
 
 export default function PremiumProducts() {
   return (
@@ -19,9 +59,22 @@ export default function PremiumProducts() {
                 subHeadingClass=" mt-6 text-center"
                 tagWrapper="flex flex-col items-center"
               />
-              <div className="flex flex-wrap justify-between gap-10 mt-12 sm:justify-center">
+              {/* <div className="flex flex-wrap justify-between gap-10 mt-12 sm:justify-center">
                 <ProductCard />
+              </div> */}
+              <div className="py-12">
+                <SwipeSlider
+                  slidesPerView={4}
+                  bottomSwipeBtn={false}
+                  swipebtn={false}
+                  spaceBetween={20}
+                >
+                  {products?.map((product) => (
+                    <ProductCard key={product.id} {...product} />
+                  ))}
+                </SwipeSlider>
               </div>
+              {/* </div> */}
             </div>
           </div>
         </div>

@@ -1,3 +1,4 @@
+"use client";
 import FaqSection from "@/components/Faq";
 import InnovatingHealthcare from "@/components/InnovatingHealthcare";
 import Marquee from "@/components/Marquee";
@@ -9,6 +10,8 @@ import PcdOppurnity from "@/components/PCDOpportunity";
 import PharmaCategories from "@/components/PharmaCategories";
 import ProductCategories from "@/components/ProductCategories";
 import WhyChooseUs from "@/components/WhyChooseUs";
+import { useAuth } from "@/context/AuthContext";
+import { useEffect } from "react";
 
 const services = [
   { text: "Cardiology", imageSrc: "/images/star.png" },
@@ -24,6 +27,14 @@ const services = [
 ];
 
 export default function Home() {
+  const { loading, login } = useAuth();
+
+  useEffect(() => {
+    login(`bioboxpharma@gmail.com`, `biobox@123`);
+  }, []);
+
+  if (loading) return <p>Loading</p>;
+
   return (
     <>
       <Marquee items={services} speed={30} />

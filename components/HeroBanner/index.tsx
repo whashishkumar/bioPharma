@@ -4,76 +4,125 @@ import PageTitle from "@/ui/PageTitle";
 import Image from "next/image";
 import Button from "@/ui/Button";
 
-const avatars = [
-  { id: 1, src: "/icons/Figure.png", alt: "Avatar 1" },
-  { id: 2, src: "/icons/Figure.png", alt: "Avatar 2" },
-  { id: 3, src: "/icons/Figure.png", alt: "Avatar 3" },
-];
+interface HeroBannerProps {
+  heroData: {
+    backgroundImage: string;
+    overlay: string;
+    tag?: string;
+    heading?: string;
+    subHeading?: string;
+    buttons: Array<{
+      id: string | number;
+      label: string;
+      variant?: string;
+    }>;
+    stats?: {
+      years?: string | number;
+      text?: string;
+      clients?: string | number;
+    };
+    avatars?: Array<{
+      id: string | number;
+      src: string;
+      alt: string;
+    }>;
+    sideImage: {
+      src: string;
+      height: number;
+      width: number;
+      alt: string;
+    };
+  };
+}
 
-export default function HeroBanner() {
+export default function HeroBanner({
+  heroData,
+  innerBanner,
+  innerBannerHeight,
+}: any) {
   return (
-    <section className="relative">
-      <div
-        className="absolute inset-0 bg-cover bg-center z-[-1] "
-        style={{
-          backgroundImage: "url('/images/header-image.jpg')",
-        }}
-      />
-      <div className="absolute inset-0 bg-black/20  z-[-1]" />
-      <div className="hero-sub-container">
-        <Header />
-        <div className="text-white  sub-container">
-          <div className="lg:mt-25 grid grid-cols  md:grid-cols-2 lg:grid-cols-2 lg:gap-20 lg:gap-45 gap-10 py-12">
-            <div className="mb-30">
-              <PageTitle
-                tag="Your partner in Health"
-                tagClass="text-white border  rounded-full w-[180px] p-2 text-sm capitalize "
-                heading="Cottiment to quality healthcare, its diverse product range"
-                headingClass="text-[2.875rem] mt-2 font-normal  text-[#fff] leading-[3.438rem]"
-                subHeading="Delivering Care with Eye Dose."
-                subHeadingClass="text-xl font-normal mt-2 text-white tracking-wide"
-              />
-              <div className="lg:flex gap-8">
-                <Button children={"Contact Us"} />
-                <Button children={"Explore Our Services"} variant="secondary" />
+    <>
+      {heroData && (
+        <section className={`relative ${innerBannerHeight}`}>
+          <div
+            className="absolute inset-0 bg-cover bg-center z-[-1]"
+            style={{ backgroundImage: `url(${heroData?.backgroundImage})` }}
+          />
+          <div className={`absolute inset-0 bg-black/45 z-[-1]`} />
+          <div className="hero-sub-container">
+            <Header />
+            {innerBanner ? (
+              <div className="flex justify-center mt-16">
+                <PageTitle
+                  heading={"About Us"}
+                  headingClass="text-[2.875rem] mt-2 font-normal text-[#fff] leading-[3.438rem]"
+                />
               </div>
-              <div className="flex flex-col sm:flex-col md:flex-row items-center  gap-8 mt-10 text-center md:text-left">
-                <div className="primary-font font-bold text-3xl flex flex-col md:flex-row items-center gap-2">
-                  <h4>25+</h4>
-                  <p className="primary-font font-normal text-sm max-w-[120px]">
-                    Years Of Experience
-                  </p>
-                </div>
-                <div className="flex -space-x-2">
-                  {avatars.map((avatar) => (
-                    <img
-                      key={avatar.id}
-                      className="inline-block h-10 w-10 rounded-full ring-2 ring-white object-contain"
-                      src={avatar.src}
-                      alt={avatar.alt}
+            ) : (
+              <div className="text-white sub-container">
+                <div className="lg:mt-25 grid md:grid-cols-2 lg:gap-20 gap-10 py-12">
+                  {/* left side */}
+                  <div className="mb-30">
+                    <PageTitle
+                      tag={heroData?.tag}
+                      tagClass="text-white border rounded-full w-[180px] p-2 text-sm capitalize"
+                      heading={heroData?.heading}
+                      headingClass="text-[2.875rem] mt-2 font-normal text-[#fff] leading-[3.438rem]"
+                      subHeading={heroData?.subHeading}
+                      subHeadingClass="text-xl font-normal mt-2 text-white tracking-wide"
                     />
-                  ))}
-                </div>
-                <div className="primary-font text-sm flex flex-col items-center md:items-start">
-                  <p>Trusted By</p>
-                  <p className="primary-font font-bold text-sm">
-                    5K Satisfied Clients
-                  </p>
+                    {/* buttons */}
+                    <div className="lg:flex gap-8 mt-6">
+                      {heroData?.buttons.map((btn: any) => (
+                        <Button key={btn.id} variant={btn.variant}>
+                          {btn.label}
+                        </Button>
+                      ))}
+                    </div>
+
+                    {/* stats + avatars */}
+                    <div className="flex flex-col md:flex-row items-center gap-8 mt-10 text-center md:text-left">
+                      <div className="primary-font font-bold text-3xl flex flex-col md:flex-row items-center gap-2">
+                        <h4>{heroData?.stats?.years}</h4>
+                        <p className="primary-font font-normal text-sm max-w-[120px]">
+                          {heroData?.stats?.text}
+                        </p>
+                      </div>
+                      <div className="flex -space-x-2">
+                        {heroData?.avatars?.map((avatar: any) => (
+                          <img
+                            key={avatar.id}
+                            src={avatar.src}
+                            alt={avatar.alt}
+                            className="inline-block h-10 w-10 rounded-full ring-2 ring-white object-contain"
+                          />
+                        ))}
+                      </div>
+                      <div className="primary-font text-sm flex flex-col items-center md:items-start">
+                        <p>Trusted By</p>
+                        <p className="primary-font font-bold text-sm">
+                          {heroData?.stats?.clients}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* right side image */}
+                  <div className="flex justify-center lg:justify-end lg:pr-40">
+                    <Image
+                      src={heroData?.sideImage.src}
+                      height={heroData?.sideImage.height}
+                      width={heroData?.sideImage.width}
+                      alt={heroData?.sideImage.alt}
+                      className="object-contain"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="flex justify-center  md:jusstify-center lg:justify-end lg:items-start lg:pr-40 lg:mt-20">
-              <Image
-                src={"/images/Link.png"}
-                height={120}
-                width={120}
-                alt={"play-cion"}
-                className="object-contain"
-              />
-            </div>
+            )}
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
+      )}
+    </>
   );
 }

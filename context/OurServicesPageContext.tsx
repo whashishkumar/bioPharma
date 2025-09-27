@@ -37,8 +37,6 @@ export function OurServicesProvider({ children }: OurServicesContextProps) {
     setLoading(true);
     try {
       const response = await api.post("/enquiry-form", formData);
-
-      console.log("Form submitted successfully:", response.data);
       return response.data;
     } catch (error: any) {
       console.error(

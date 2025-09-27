@@ -67,6 +67,16 @@ html {
   background-color: #E3F7FF;
 }
 
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  /* IE, Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
 
 @media (min-width: 768px) and (max-width: 1300px) {
   html {

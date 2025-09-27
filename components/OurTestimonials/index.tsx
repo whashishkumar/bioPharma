@@ -1,7 +1,33 @@
 import PageTitle from "@/ui/PageTitle";
 import React from "react";
 import TestimonialCard from "./TestimonialCard";
-
+import SwipeSlider from "@/ui/SwipeSlider";
+const testimonials = [
+  {
+    id: 1,
+    name: "Grace Martin",
+    text: "You'll meet with our scientific advisor to define your research goals, scope, and budget. You'll meet with our scientific advisors to define your research.",
+    image: "/images/Figure.png",
+  },
+  {
+    id: 2,
+    name: "John Doe",
+    text: "Our team will work closely with you to understand your project requirements, ensuring a clear plan and achievable milestones for success.",
+    image: "/images/Figure.png",
+  },
+  {
+    id: 3,
+    name: "Grace Martin",
+    text: "You'll meet with our scientific advisor to define your research goals, scope, and budget. You'll meet with our scientific advisors to define your research.",
+    image: "/images/Figure.png",
+  },
+  {
+    id: 4,
+    name: "John Doe",
+    text: "Our team will work closely with you to understand your project requirements, ensuring a clear plan and achievable milestones for success.",
+    image: "/images/Figure.png",
+  },
+];
 export default function OurTestimonials() {
   return (
     <>
@@ -18,7 +44,14 @@ export default function OurTestimonials() {
                 tagWrapper="flex flex-col items-center"
               />
               <div className="flex gap-15 py-16 ">
-                <TestimonialCard />
+                <SwipeSlider
+                  slidesPerView={2}
+                  bottomSwipeBtn={false}
+                  swipebtn={true}
+                  spaceBetween={10}
+                >
+                  <TestimonialCard testimonials={testimonials} />
+                </SwipeSlider>
               </div>
             </div>
           </div>

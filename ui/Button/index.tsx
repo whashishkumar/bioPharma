@@ -14,6 +14,7 @@ export default function Button({
   onClick,
   variant = "primary",
   showIcon = true,
+  className,
   ...rest
 }: ButtonProps) {
   const baseStyles =
@@ -28,7 +29,7 @@ export default function Button({
   return (
     <button
       onClick={onClick}
-      className={`${baseStyles} ${variants[variant]}`}
+      className={`${baseStyles} ${variants[variant]} ${className}`}
       {...rest}
     >
       {children}
