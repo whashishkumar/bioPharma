@@ -105,7 +105,7 @@ export default function EnquiryForm({ productName }: EnquiryFormProps) {
   }, [submitted]);
 
   return (
-    <div className="w-full max-w-lg mx-auto p-6 bg-white ">
+    <div className="w-full lg:max-w-lg mx-auto  bg-white py-10 max-w-full">
       <h2 className="text-2xl font-bold text-gray-900 mb-6 red-hat">
         Get Updates about Products
       </h2>

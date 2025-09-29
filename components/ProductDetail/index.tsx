@@ -16,7 +16,7 @@ export default function ProductDetail({ slug }: any) {
 
   return (
     <div className="sub-container">
-      <div className="grid grid-cols-2 py-16">
+      <div className="grid grid-cols-1  lg:grid-cols-2 py-12 gap-10">
         <div className="flex justify-center items-center">
           <ProductDescription singleProduct={product} />
         </div>
