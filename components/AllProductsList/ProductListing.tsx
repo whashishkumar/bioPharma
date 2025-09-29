@@ -52,7 +52,7 @@ interface ProductListingProps {
   filteredProducts: any;
   handleProductType: (type: string) => Promise<void>;
   activeProduct: any;
-  handleGetProductDetail: (type: string) => Promise<void>;
+  handleGetProductDetail: any;
 }
 
 export default function ProductListing({

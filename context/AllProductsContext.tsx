@@ -24,8 +24,8 @@ type ProductTypeResponse = {
 
 interface AllProductsPageContextType {
   loading: boolean;
-  categoryList: CategoryResponse;
-  productTypeList: ProductTypeResponse;
+  categoryList: any;
+  productTypeList: any;
   callUsBannerInfo: any;
   allProductsList: any;
   singleProductDetail: any;

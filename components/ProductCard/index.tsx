@@ -17,7 +17,7 @@ interface Product {
 interface ProductCardProps {
   products?: Product[];
   className?: string;
-  handleGetProductDetail: () => void;
+  handleGetProductDetail: (type: string) => void;
 }
 
 interface CardProps {

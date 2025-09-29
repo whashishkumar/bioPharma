@@ -25,7 +25,7 @@ export default function Sidebar({
       </p>
 
       <div className="flex flex-col w-full">
-        {categories?.map((category) => {
+        {categories?.map((category: any) => {
           const isActive =
             selectedCategory?.toLowerCase() === category.slug.toLowerCase();
 

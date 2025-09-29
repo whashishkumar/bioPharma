@@ -19,13 +19,15 @@ export default function AllProductsList({ category }: any) {
 
   const router = useRouter();
 
-  const { data: categories = [] } = categoryList || {};
+  const { data } = categoryList || {};
   const { data: productsTypes = [] } = productTypeList || {};
   const {
     current_page: currentPageFromApi = 1,
     last_page: totalPages = 1,
     products = [],
   } = allProductsList || {};
+
+  console.log(data.data, "categoryList");
 
   const [activeProduct, setActiveProduct] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(
@@ -78,7 +80,7 @@ export default function AllProductsList({ category }: any) {
         <div className="grid grid-cols-1 md:grid-cols-[20%_75%] gap-5 md:gap-[5%] py-16">
           <div className="w-full md:w-auto md:sticky md:top-8 self-start ">
             <Sidebar
-              categories={categories?.data}
+              categories={data?.data}
               handleSelectCategory={handleSelectCategory}
               selectedCategory={selectedCategory || ""}
             />
