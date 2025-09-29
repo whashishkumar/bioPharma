@@ -46,7 +46,7 @@ export default function HeroBanner({
         <section className={`relative ${innerBannerHeight}`}>
           <div
             className="absolute inset-0 bg-cover bg-center z-[-1]"
-            style={{ backgroundImage: `url(${heroData?.backgroundImage})` }}
+            style={{ backgroundImage: `url(${heroData?.image})` }}
           />
           <div className={`absolute inset-0 bg-black/45 z-[-1]`} />
           <div className="hero-sub-container">
@@ -66,16 +66,16 @@ export default function HeroBanner({
                     <PageTitle
                       tag={heroData?.tag}
                       tagClass="text-white border rounded-full w-[180px] p-2 text-sm capitalize"
-                      heading={heroData?.heading}
+                      heading={heroData?.section_name}
                       headingClass="text-[2.875rem] mt-2 font-normal text-[#fff] leading-[3.438rem]"
-                      subHeading={heroData?.subHeading}
+                      subHeading={heroData?.section_heading}
                       subHeadingClass="text-xl font-normal mt-2 text-white tracking-wide"
                     />
                     {/* buttons */}
                     <div className="lg:flex gap-8 mt-6">
-                      {heroData?.buttons.map((btn: any) => (
-                        <Button key={btn.id} variant={btn.variant}>
-                          {btn.label}
+                      {heroData?.buttons?.map((btn: any, id: any) => (
+                        <Button key={id} variant={btn.variant}>
+                          {btn.name}
                         </Button>
                       ))}
                     </div>
@@ -83,25 +83,31 @@ export default function HeroBanner({
                     {/* stats + avatars */}
                     <div className="flex flex-col md:flex-row items-center gap-8 mt-10 text-center md:text-left">
                       <div className="primary-font font-bold text-3xl flex flex-col md:flex-row items-center gap-2">
-                        <h4>{heroData?.stats?.years}</h4>
-                        <p className="primary-font font-normal text-sm max-w-[120px]">
-                          {heroData?.stats?.text}
+                        <h4>{heroData?.years}</h4>
+                        <p className="primary-font font-normal text-sm whitespace-pre-line ">
+                          {/* {heroData?.years_label} */}
+                          {heroData?.years_label?.replace(
+                            "Experience",
+                            "\nExperience"
+                          )}
                         </p>
                       </div>
                       <div className="flex -space-x-2">
-                        {heroData?.avatars?.map((avatar: any) => (
-                          <img
-                            key={avatar.id}
-                            src={avatar.src}
-                            alt={avatar.alt}
-                            className="inline-block h-10 w-10 rounded-full ring-2 ring-white object-contain"
-                          />
-                        ))}
+                        {heroData?.members_images?.map(
+                          (avatar: any, id: any) => (
+                            <img
+                              key={id}
+                              src={`${avatar}`}
+                              alt={"avaor"}
+                              className="inline-block h-10 w-10 rounded-full ring-2 ring-white object-contain"
+                            />
+                          )
+                        )}
                       </div>
                       <div className="primary-font text-sm flex flex-col items-center md:items-start">
-                        <p>Trusted By</p>
+                        <p>{heroData?.custom_fields?.name}</p>
                         <p className="primary-font font-bold text-sm">
-                          {heroData?.stats?.clients}
+                          {heroData?.custom_fields?.value}
                         </p>
                       </div>
                     </div>
@@ -109,13 +115,15 @@ export default function HeroBanner({
 
                   {/* right side image */}
                   <div className="flex justify-center lg:justify-end lg:pr-40">
-                    <Image
-                      src={heroData?.sideImage.src}
-                      height={heroData?.sideImage.height}
-                      width={heroData?.sideImage.width}
-                      alt={heroData?.sideImage.alt}
-                      className="object-contain"
-                    />
+                    {heroData?.sideImage?.src && (
+                      <Image
+                        src={heroData?.sideImage?.src}
+                        height={heroData?.sideImage?.height}
+                        width={heroData?.sideImage?.width}
+                        alt={heroData?.sideImage?.alt}
+                        className="object-contain"
+                      />
+                    )}
                   </div>
                 </div>
               </div>

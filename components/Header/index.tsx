@@ -5,6 +5,7 @@ import { FaPhoneAlt, FaBars, FaTimes } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import { useLandingPageContext } from "@/context/LandingPageContext";
 
 const navBarLinksList = [
   {
@@ -55,9 +56,9 @@ interface HeaderProps {
 }
 
 export default function Header({
-  logo = "/images/bioLogo.png",
+  // logo = "/images/bioLogo.png",
   navBarLinks = navBarLinksList,
-  contact,
+  // contact,
   innerHeader = false,
 }: HeaderProps) {
   const pathname = usePathname();
@@ -65,6 +66,12 @@ export default function Header({
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const { navigationList, fetchNaviagtionList } = useLandingPageContext();
+  const { menus, logo, phone }: any = navigationList || [];
+
+  useEffect(() => {
+    fetchNaviagtionList();
+  }, []);
 
   const handleLinkClick = (url: string) => {
     setMenuOpen(false);
@@ -77,18 +84,20 @@ export default function Header({
     <nav className="sub-container">
       <div className=" flex items-center justify-between  py-4 ">
         <Link href="/">
-          <Image
-            src={logo}
-            alt="Logo"
-            width={193}
-            height={83}
-            className="object-contain"
-          />
+          {logo && (
+            <Image
+              src={logo}
+              alt="Logo"
+              width={193}
+              height={83}
+              className="object-contain"
+            />
+          )}
         </Link>
 
         {/* Desktop Links */}
         <ul className="hidden lg:flex gap-10 items-center">
-          {navBarLinks.map((link) => {
+          {menus?.map((link: any) => {
             const isActive = pathname === link.url;
             const hasDropdown = link.submenu && link.submenu.length > 0;
 
@@ -114,9 +123,9 @@ export default function Header({
           })}
 
           <li>
-            <Link href={`tel:${1234567890}`}>
+            <Link href={`tel:${phone}`}>
               <div className="flex items-center gap-2 bg-[#01A859] text-white px-6 py-2 rounded-full primary-font  text-base">
-                <FaPhoneAlt /> <span>{1234567890}</span>
+                <FaPhoneAlt /> <span>{phone}</span>
               </div>
             </Link>
           </li>
@@ -135,7 +144,7 @@ export default function Header({
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="lg:hidden bg-black/1 w-full  p-6 flex flex-col gap-4">
-          {navBarLinks.map((link) => {
+          {menus?.map((link: any) => {
             const isActive = pathname === link.url;
             const hasDropdown = link.submenu && link.submenu.length > 0;
             const isDropdownOpen = activeDropdown === link.title;
@@ -159,7 +168,7 @@ export default function Header({
                 </button>
 
                 {/* Mobile Dropdown */}
-                {hasDropdown && isDropdownOpen && (
+                {/* {hasDropdown && isDropdownOpen && (
                   <ul className="pl-4 mt-2 flex flex-col gap-2">
                     {link.submenu!.map((sub) => (
                       <li key={sub.id}>
@@ -172,7 +181,7 @@ export default function Header({
                       </li>
                     ))}
                   </ul>
-                )}
+                )} */}
               </div>
             );
           })}

@@ -1,7 +1,9 @@
+"use client";
 import Footer from "@/components/Footer";
 import HeroBanner from "@/components/HeroBanner";
 import ScrollToTop from "@/components/ScrollToTop";
-import React from "react";
+import { useLandingPageContext } from "@/context/LandingPageContext";
+import React, { useEffect } from "react";
 import { ReactNode } from "react";
 
 const heroBannerData = {
@@ -32,9 +34,16 @@ const heroBannerData = {
 };
 
 export default function layout({ children }: { children: ReactNode }) {
+  const { heroSectionInfo, fetchHeroSection } = useLandingPageContext();
+
+  console.log(heroSectionInfo, "heroSectionInfo");
+
+  useEffect(() => {
+    fetchHeroSection();
+  }, []);
   return (
     <div>
-      <HeroBanner heroData={heroBannerData} />
+      <HeroBanner heroData={heroSectionInfo} />
       {children}
       <ScrollToTop />
       <Footer />
