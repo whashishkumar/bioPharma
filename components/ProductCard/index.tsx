@@ -4,12 +4,33 @@ import Image from "next/image";
 import Button from "@/ui/Button";
 import Link from "next/link";
 
+interface Product {
+  id: number;
+  title: string;
+  description?: string;
+  image?: string;
+  type: string;
+  pack?: string;
+  mrp?: number;
+}
+
+interface ProductCardProps {
+  products?: Product[];
+  className?: string;
+  handleGetProductDetail: () => void;
+}
+
+interface CardProps {
+  product: Product;
+  handleGetProductDetail: () => void;
+}
+
 export default function ProductCard({
   products = [],
   className = "",
-  onProductClick = () => {},
-}) {
-  const Card = ({ product, onProductClick }: any) => {
+  handleGetProductDetail,
+}: ProductCardProps) {
+  const Card = ({ product, handleGetProductDetail }: CardProps) => {
     const baseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
     const imagePath = process.env.NEXT_PUBLIC_IMAGE_PATH;
     const imageUrl = `${baseUrl}${imagePath}/${product.image}`;
@@ -53,12 +74,12 @@ export default function ProductCard({
           <p className="text-lg font-bold text-orange-500 font-sanchez red-hat">
             {product.mrp ? `₹ ${product.mrp}` : "₹"}
           </p>
-          <Link
-            href={"#"}
-            className="flex justify-center red-hat bg-[#157fd3] hover:bg-[#157fd3] py-3 rounded-xl text-white"
+          <button
+            className="flex justify-center red-hat bg-[#157fd3] hover:bg-[#157fd3] py-3 rounded-xl text-white cursor-pointer"
+            onClick={handleGetProductDetail}
           >
             Get Details
-          </Link>
+          </button>
         </div>
       </div>
     );
@@ -69,7 +90,11 @@ export default function ProductCard({
       {products?.length > 0 ? (
         <div className="flex flex-wrap gap-10">
           {products?.map((p: any, id: number) => (
-            <Card key={id} product={p} onProductClick={onProductClick} />
+            <Card
+              key={id}
+              product={p}
+              handleGetProductDetail={() => handleGetProductDetail(p?.slug)}
+            />
           ))}
         </div>
       ) : (

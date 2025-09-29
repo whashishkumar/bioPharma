@@ -2,6 +2,7 @@ import PageTitle from "@/ui/PageTitle";
 import React from "react";
 import TestimonialCard from "./TestimonialCard";
 import SwipeSlider from "@/ui/SwipeSlider";
+
 const testimonials = [
   {
     id: 1,
@@ -28,6 +29,7 @@ const testimonials = [
     image: "/images/Figure.png",
   },
 ];
+
 export default function OurTestimonials() {
   return (
     <>
@@ -43,14 +45,16 @@ export default function OurTestimonials() {
                 wrapperClass="w-full mx-auto px-4"
                 tagWrapper="flex flex-col items-center"
               />
-              <div className="flex gap-15 py-16 ">
+              <div className="my-8">
                 <SwipeSlider
                   slidesPerView={2}
                   bottomSwipeBtn={false}
                   swipebtn={true}
                   spaceBetween={10}
                 >
-                  <TestimonialCard testimonials={testimonials} />
+                  {testimonials?.map((product) => (
+                    <TestimonialCard key={product.id} {...product} />
+                  ))}
                 </SwipeSlider>
               </div>
             </div>

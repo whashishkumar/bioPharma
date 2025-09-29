@@ -36,7 +36,7 @@ const Pagination: React.FC<PaginationProps> = ({
       <div className="flex flex-wrap items-center justify-center gap-2">
         {/* Previous */}
         <button
-          className={`flex items-center justify-center min-w-[40px] h-10 px-2 border rounded-md text-sm font-medium transition ${
+          className={`flex items-center justify-center min-w-[40px] h-10 px-2 border rounded-md text-sm font-medium transition cursor-pointer ${
             currentPage === 1
               ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed opacity-60"
               : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100 hover:border-gray-400"
@@ -52,7 +52,7 @@ const Pagination: React.FC<PaginationProps> = ({
         {visiblePages[0] > 1 && (
           <>
             <button
-              className="flex items-center justify-center min-w-[40px] h-10 px-2 border border-gray-300 bg-white text-gray-700 text-sm font-medium rounded-md hover:bg-gray-100 hover:border-gray-400 transition"
+              className="flex items-center justify-center min-w-[40px] h-10 px-2 border border-gray-300 bg-white text-gray-700 text-sm font-medium rounded-md hover:bg-gray-100 hover:border-gray-400 transition cursor-pointer"
               onClick={() => onPageChange(1)}
             >
               1
@@ -69,9 +69,9 @@ const Pagination: React.FC<PaginationProps> = ({
         {visiblePages.map((pageNumber) => (
           <button
             key={pageNumber}
-            className={`flex items-center justify-center min-w-[40px] h-10 px-2 border rounded-md text-sm font-medium transition ${
+            className={`flex items-center justify-center min-w-[40px] h-10 px-2 border rounded-md text-sm font-medium transition cursor-pointer ${
               currentPage === pageNumber
-                ? "bg-primary text-white border-primary font-semibold"
+                ? "bg-gray-100 text-gray-900 border-gray-300 font-semibold"
                 : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100 hover:border-gray-400"
             }`}
             onClick={() => onPageChange(pageNumber)}
@@ -84,7 +84,7 @@ const Pagination: React.FC<PaginationProps> = ({
         {visiblePages[visiblePages.length - 1] < totalPages && (
           <>
             {visiblePages[visiblePages.length - 1] < totalPages - 1 && (
-              <span className="flex items-center justify-center min-w-[40px] h-10 text-gray-400 text-sm font-medium">
+              <span className="flex items-center justify-center min-w-[40px] h-10 text-gray-400 text-sm font-medium ">
                 ...
               </span>
             )}
@@ -99,7 +99,7 @@ const Pagination: React.FC<PaginationProps> = ({
 
         {/* Next */}
         <button
-          className={`flex items-center justify-center min-w-[40px] h-10 px-2 border rounded-md text-sm font-medium transition ${
+          className={`flex items-center justify-center min-w-[40px] h-10 px-2 border rounded-md text-sm font-medium transition cursor-pointer ${
             currentPage === totalPages
               ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed opacity-60"
               : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100 hover:border-gray-400"

@@ -1,4 +1,3 @@
-import AllProducts from "@/components/AllProducts";
 import AllProductsList from "@/components/AllProductsList";
 import ExplorePharmaProducts from "@/components/ExploreProducts";
 import FaqSection from "@/components/Faq";
