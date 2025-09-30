@@ -3,6 +3,8 @@ import Footer from "@/components/Footer";
 import HeroBanner from "@/components/HeroBanner";
 import ScrollToTop from "@/components/ScrollToTop";
 import { useLandingPageContext } from "@/context/LandingPageContext";
+import Loader from "@/ui/Loader";
+
 import React, { useEffect } from "react";
 import { ReactNode } from "react";
 
@@ -34,13 +36,19 @@ const heroBannerData = {
 };
 
 export default function layout({ children }: { children: ReactNode }) {
-  const { heroSectionInfo, fetchHeroSection } = useLandingPageContext();
-
-  console.log(heroSectionInfo, "heroSectionInfo");
+  const { bannerLoading, heroSectionInfo, fetchHeroSection } =
+    useLandingPageContext();
 
   useEffect(() => {
     fetchHeroSection();
   }, []);
+
+  if (bannerLoading)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loader />
+      </div>
+    );
   return (
     <div>
       <HeroBanner heroData={heroSectionInfo} />

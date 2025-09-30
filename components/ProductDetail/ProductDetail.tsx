@@ -49,7 +49,7 @@ export default function ProductDescription({
   };
 
   return (
-    <div className="flex flex-col md:flex-row gap-6 py-6 shadow-md rounded-2xl w-full">
+    <div className="flex flex-col md:flex-row gap-6 p-6 shadow-md rounded-2xl w-full">
       {/* Product Image */}
       <div className="flex justify-center items-center w-full md:w-1/2">
         <div className="w-full h-64 md:h-80 flex justify-center items-center overflow-hidden">

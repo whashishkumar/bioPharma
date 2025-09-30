@@ -40,13 +40,23 @@ export default function HeroBanner({
   innerBanner,
   innerBannerHeight,
 }: any) {
+  const baseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
+  const imagePath = process.env.NEXT_PUBLIC_IMAGE_PATH;
+  const imageUrl = `${baseUrl}${imagePath}/${heroData?.link_image}`;
+
+  console.log(heroData, "heroData");
+
   return (
     <>
       {heroData && (
         <section className={`relative ${innerBannerHeight}`}>
           <div
             className="absolute inset-0 bg-cover bg-center z-[-1]"
-            style={{ backgroundImage: `url(${heroData?.image})` }}
+            style={{
+              backgroundImage: !innerBanner
+                ? `url(${heroData.image})`
+                : `url(${heroData.backgroundImage}`,
+            }}
           />
           <div className={`absolute inset-0 bg-black/45 z-[-1]`} />
           <div className="hero-sub-container">
@@ -54,7 +64,7 @@ export default function HeroBanner({
             {innerBanner ? (
               <div className="flex justify-center mt-16">
                 <PageTitle
-                  heading={"About Us"}
+                  heading={heroData.tag}
                   headingClass="text-[2.875rem] mt-2 font-normal text-[#fff] leading-[3.438rem]"
                 />
               </div>
@@ -114,13 +124,13 @@ export default function HeroBanner({
                   </div>
 
                   {/* right side image */}
-                  <div className="flex justify-center lg:justify-end lg:pr-40">
-                    {heroData?.sideImage?.src && (
+                  <div className="flex justify-center lg:justify-end lg:pb-40 lg:pr-40">
+                    {heroData?.link_image && (
                       <Image
-                        src={heroData?.sideImage?.src}
-                        height={heroData?.sideImage?.height}
-                        width={heroData?.sideImage?.width}
-                        alt={heroData?.sideImage?.alt}
+                        src={imageUrl}
+                        height={110}
+                        width={110}
+                        alt={"link"}
                         className="object-contain"
                       />
                     )}

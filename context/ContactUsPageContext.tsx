@@ -1,8 +1,8 @@
 "use client";
 import api from "@/lib/axious";
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode, useRef } from "react";
 
-interface ContactUsPageCoxtextType {
+interface ContactUsPageContextType {
   sectionOne: any[];
   sectionTwoData: any[];
   loading: boolean;
@@ -11,7 +11,7 @@ interface ContactUsPageCoxtextType {
 }
 
 const ContactUsPageContext = createContext<
-  ContactUsPageCoxtextType | undefined
+  ContactUsPageContextType | undefined
 >(undefined);
 
 interface ContactUsProviderProps {
@@ -22,33 +22,44 @@ export function ContactUsPageProvider({ children }: ContactUsProviderProps) {
   const [loading, setLoading] = useState(false);
   const [sectionOne, setSectionOne] = useState<any[]>([]);
   const [sectionTwoData, setSectionTwoData] = useState<any[]>([]);
+
+  // track which APIs have been fetched
+  const fetched = useRef({ sectionOne: false, sectionTwo: false });
+
+  const withLoading = async (fn: () => Promise<void>) => {
+    setLoading(true);
+    try {
+      await fn();
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const fetchContactUsSectionOne = async () => {
-    setLoading(true);
-    try {
-      const response = await api.get("/contact-page/second-section");
-      setSectionOne(response.data || []);
-    } catch (error) {
-    } finally {
-      setLoading(false);
-    }
+    if (fetched.current.sectionOne) return; // already fetched
+    await withLoading(async () => {
+      const res = await api.get("/contact-page/second-section");
+      setSectionOne(res.data || []);
+      fetched.current.sectionOne = true;
+    });
   };
+
   const fetchContactUsSectionTwo = async () => {
-    setLoading(true);
-    try {
-      const response = await api.get("/contact-page/third-section");
-      setSectionTwoData(response.data || []);
-    } catch (error) {
-    } finally {
-      setLoading(false);
-    }
+    if (fetched.current.sectionTwo) return; // already fetched
+    await withLoading(async () => {
+      const res = await api.get("/contact-page/third-section");
+      setSectionTwoData(res.data || []);
+      fetched.current.sectionTwo = true;
+    });
   };
+
   return (
     <ContactUsPageContext.Provider
       value={{
         loading,
-        fetchContactUsSectionOne,
         sectionOne,
         sectionTwoData,
+        fetchContactUsSectionOne,
         fetchContactUsSectionTwo,
       }}
     >
@@ -61,7 +72,7 @@ export const useContactUsPageContext = () => {
   const context = useContext(ContactUsPageContext);
   if (!context) {
     throw new Error(
-      "ContactUs PageContext must be used within LandingPageProvider"
+      "useContactUsPageContext must be used within ContactUsPageProvider"
     );
   }
   return context;

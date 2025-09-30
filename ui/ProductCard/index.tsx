@@ -16,7 +16,7 @@ export default function ProductCard({
     <div>
       <div
         key={id}
-        className="bg-white rounded-xl  overflow-hidden md:max-w-sm border border-[#99999940]/60 shadow-sm"
+        className="bg-white rounded-xl  overflow-hidden border border-[#99999940]/60 shadow-sm"
       >
         <div className="p-4 flex justify-center items-center h-64">
           <Image

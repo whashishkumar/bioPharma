@@ -1,9 +1,8 @@
 import Image from "next/image";
 
-export default function TestimonialCard({ id, text, name, image }: any) {
+export default function TestimonialCard({ id, value, name, image }: any) {
   return (
     <div>
-      {/* {testimonials?.map((item: any) => ( */}
       <div key={id} className="bg-[#fff] rounded-2xl  overflow-hidden">
         <div className="flex flex-col md:flex-row h-full">
           <div className="relative bg-[#183B56] w-[260px]  md:flex-[1]">
@@ -21,7 +20,7 @@ export default function TestimonialCard({ id, text, name, image }: any) {
               &#8220;
             </div>
             <p className="text-base sm:text-lg italic text-[#45566A] mb-4 sm:mb-6 border-b border-[#172C451A] pb-4 sm:pb-6 red-hat">
-              {text}
+              {value}
             </p>
             <p className="text-xl sm:text-xl font-semibold text-[#172C45] mt-2 red-hat">
               {name}
@@ -29,7 +28,6 @@ export default function TestimonialCard({ id, text, name, image }: any) {
           </div>
         </div>
       </div>
-      {/* ))} */}
     </div>
   );
 }

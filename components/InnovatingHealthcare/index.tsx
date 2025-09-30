@@ -23,7 +23,6 @@ export default function InnovatingHealthcare() {
     custom_data,
     images,
   }: any = aboutUs || {};
-  console.log(aboutUs, "aboutUs");
 
   useEffect(() => {
     fetchAboutSection();
@@ -36,13 +35,15 @@ export default function InnovatingHealthcare() {
           <div className=" py-16 relative grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-[40%_60%] gap-10 py-14">
             <div className="relative">
               <div className="relative w-full h-64 lg:h-[500px]">
-                <Image
-                  src={images?.[0]}
-                  alt="bg"
-                  layout="fill"
-                  objectFit="cover"
-                  className="rounded-3xl"
-                />
+                {images?.[0] && (
+                  <Image
+                    src={images?.[0]}
+                    alt="bg"
+                    layout="fill"
+                    objectFit="cover"
+                    className="rounded-3xl"
+                  />
+                )}
                 <div className="absolute top-0 left-0 w-full h-full bg-black/10 rounded-3xl"></div>
               </div>
               <div className="absolute bottom-[60px] left-[80px]  bg-white/40  backdrop-blur-[25px] p-4 w-[240px] rounded-lg border border-[#FFFFFF1A]">
@@ -83,12 +84,14 @@ export default function InnovatingHealthcare() {
                   <div className="flex gap-4">
                     <div className="flex justify-center items-center gap-5">
                       <div className="flex items-center justify-center w-12 h-12 rounded-full bg-green-100">
-                        <Image
-                          src={custom_data?.[0]?.image}
-                          alt="Quality"
-                          width={24}
-                          height={24}
-                        />
+                        {custom_data?.[0]?.image && (
+                          <Image
+                            src={custom_data?.[0]?.image}
+                            alt="Quality"
+                            width={24}
+                            height={24}
+                          />
+                        )}
                       </div>
                       <h3 className="text-lg font-semibold text-[#172C45] leading-[23px]  w-[99px]">
                         {custom_data?.[0]?.name}
@@ -106,13 +109,15 @@ export default function InnovatingHealthcare() {
                   <div className="flex gap-4">
                     <div className="flex justify-center items-center gap-5 primary-font">
                       <div className="flex items-center justify-center w-12 h-12 rounded-full bg-green-100">
-                        <Image
-                          src={custom_data?.[1]?.image}
-                          alt="Quality"
-                          width={50}
-                          height={50}
-                          className="object-contain"
-                        />
+                        {custom_data?.[1]?.image && (
+                          <Image
+                            src={custom_data?.[1]?.image}
+                            alt="Quality"
+                            width={50}
+                            height={50}
+                            className="object-contain"
+                          />
+                        )}
                       </div>
                       <h3 className="text-lg font-semibold text-[#172C45] leading-[23px] w-[99px]">
                         {custom_data?.[1]?.name}
@@ -133,13 +138,15 @@ export default function InnovatingHealthcare() {
                 </div>
 
                 <div>
-                  <Image
-                    src={images?.[1]}
-                    alt="Laboratory"
-                    width={300}
-                    height={274}
-                    className="rounded-xl object-cover"
-                  />
+                  {images?.[1] && (
+                    <Image
+                      src={images?.[1]}
+                      alt="Laboratory"
+                      width={300}
+                      height={274}
+                      className="rounded-xl object-cover"
+                    />
+                  )}
                 </div>
               </div>
             </div>

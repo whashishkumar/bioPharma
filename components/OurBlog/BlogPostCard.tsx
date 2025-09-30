@@ -26,35 +26,39 @@ const cards = [
   },
 ];
 
-const BlogPostCard = () => {
+const BlogPostCard = ({ blogs }: any) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      {cards.map((item) => (
-        <div key={item.id} className="bg-white  flex flex-col h-full">
-          <div className="relative h-60 w-full overflow-hidden rounded-[20px] ">
-            <Image
-              src={item.image}
-              alt={item.alt}
-              layout="fill"
-              objectFit="cover"
-              className="rounded-t-[20px]"
-              priority
-            />
-          </div>
-          <div className="py-6 flex flex-col flex-grow">
-            <p className="text-lg font-semibold text-[#172C45] mb-4 red-hat">
-              {item.title}
-            </p>
-
-            <Link href={item.link} className="mt-auto">
-              <p className="text-lg font-semibold text-[#172C45] red-hat flex gap-2 items-center">
-                Learn More
-                <ArrowUpRight size={18} />
+      {blogs?.map((item: any, id: number) => {
+        const baseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
+        const imagePath = process.env.NEXT_PUBLIC_IMAGE_PATH;
+        const imageUrl = `${baseUrl}${imagePath}/${item.image}`;
+        return (
+          <div key={id} className="bg-white  flex flex-col h-full">
+            <div className="relative h-60 w-full overflow-hidden rounded-[20px] ">
+              <Image
+                src={imageUrl}
+                alt={"blog banner"}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-t-[20px]"
+                priority
+              />
+            </div>
+            <div className="py-6 flex flex-col flex-grow">
+              <p className="text-lg font-semibold text-[#172C45] mb-4 red-hat">
+                {item?.name}
               </p>
-            </Link>
+              <button className="mt-auto">
+                <p className="text-lg font-semibold text-[#172C45] red-hat flex gap-2 items-center">
+                  Learn More
+                  <ArrowUpRight size={18} />
+                </p>
+              </button>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };

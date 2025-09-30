@@ -1,7 +1,9 @@
+"use client";
+import { useLandingPageContext } from "@/context/LandingPageContext";
 import Accordion from "@/ui/Accordian";
 import Button from "@/ui/Button";
 import PageTitle from "@/ui/PageTitle";
-import React from "react";
+import React, { useEffect } from "react";
 
 const faqData = [
   {
@@ -37,6 +39,19 @@ const faqData = [
 ];
 
 export default function FaqSection() {
+  const { faq, fetchFaq } = useLandingPageContext();
+  const {
+    section_heading,
+    section_name,
+    section_sub_heading,
+    data,
+    button,
+  }: any = faq;
+
+  useEffect(() => {
+    fetchFaq();
+  }, []);
+
   return (
     <>
       <div className="hero-sub-container">
@@ -45,19 +60,19 @@ export default function FaqSection() {
             <div className="py-16 grid grid-col-1 lg:grid-cols-2 gap-20">
               <div>
                 <PageTitle
-                  tag="Frequently Asked Questions"
+                  tag={section_name}
                   tagClass="border border-[#172C451A] rounded-full max-w-[240px]  p-2 text-sm capitalize text-[#172C45] leading-[16px]"
-                  heading="Browse our most asked questions"
+                  heading={section_heading}
                   headingClass="text-[2.875rem] mt-2 font-normal text-[#172C45] leading-[3.438rem] mt-6"
-                  subHeading="We've compiled answers to the most common questions about our lab services, research process, and capabilities."
+                  subHeading={section_sub_heading}
                   subHeadingClass="text-base font-normal mt-2 text-[#45566A] leading-[25px] mt-2"
                 />
-                <div className="mt-8">
-                  <Button children={"Contact Us"} />
-                </div>
+                {/* <div className="mt-8">
+                  <Button children={button?.[0].name} />
+                </div> */}
               </div>
               <div className="bg-product-category rounded-[20px] p-6">
-                <Accordion data={faqData} />
+                <Accordion data={data} />
               </div>
             </div>
           </div>

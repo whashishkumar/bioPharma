@@ -14,7 +14,7 @@ interface AboutUsPageContextType {
   fetchBenifitsWithUsData: () => Promise<void>;
 }
 
-const AboutUsPageContex = createContext<AboutUsPageContextType | undefined>(
+const AboutUsPageContext = createContext<AboutUsPageContextType | undefined>(
   undefined
 );
 
@@ -30,48 +30,51 @@ export function AboutUsPageProvider({ children }: AboutUsProviderProps) {
   const [loading, setLoading] = useState(false);
 
   const fetchAboutSectionOne = async () => {
+    if (sectionOne.length > 0) return; // already fetched
     setLoading(true);
     try {
       const response = await api.get("/about-page/second-section");
       setSectionOne(response.data || []);
-    } catch (error) {
     } finally {
       setLoading(false);
     }
   };
+
   const fetchAboutSectionCeo = async () => {
+    if (ceoSectionData.length > 0) return;
     setLoading(true);
     try {
-      const response = await api.get("about-page/third-section");
+      const response = await api.get("/about-page/third-section");
       setCeoSectionData(response.data || []);
-    } catch (error) {
     } finally {
       setLoading(false);
     }
   };
+
   const fetchAboutSectionWhyWeUnique = async () => {
+    if (whyWeUniqueData.length > 0) return;
     setLoading(true);
     try {
       const response = await api.get("/about-page/fourth-section");
       setWhyWeUniqueData(response.data || []);
-    } catch (error) {
     } finally {
       setLoading(false);
     }
   };
 
   const fetchBenifitsWithUsData = async () => {
+    if (benifitsWithUsData.length > 0) return;
     setLoading(true);
     try {
       const response = await api.get("/about-page/fifth-section");
       setBenifitsWithUsData(response.data || []);
-    } catch (error) {
     } finally {
       setLoading(false);
     }
   };
+
   return (
-    <AboutUsPageContex.Provider
+    <AboutUsPageContext.Provider
       value={{
         loading,
         sectionOne,
@@ -85,15 +88,15 @@ export function AboutUsPageProvider({ children }: AboutUsProviderProps) {
       }}
     >
       {children}
-    </AboutUsPageContex.Provider>
+    </AboutUsPageContext.Provider>
   );
 }
 
 export const useAboutUsPageContext = () => {
-  const context = useContext(AboutUsPageContex);
+  const context = useContext(AboutUsPageContext);
   if (!context) {
     throw new Error(
-      "aboutUsPageContext must be used within LandingPageProvider"
+      "useAboutUsPageContext must be used within AboutUsPageProvider"
     );
   }
   return context;

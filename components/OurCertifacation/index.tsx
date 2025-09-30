@@ -41,11 +41,9 @@ export default function OurCertification() {
             subHeadingClass="text-base font-normal mt-2 text-[#45566A] leading-[25px] lg:mt-15"
             wrapperClass="grid lg:grid-cols-2 gap-8"
           />
-
-          {/* Responsive Grid for Certifications */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 mt-12 justify-items-center">
-            {custom_fields?.map((cert: any) => (
-              <div key={cert.id} className="w-full max-w-[150px]">
+            {custom_fields?.map((cert: any, id: any) => (
+              <div key={id} className="w-full max-w-[150px]">
                 <Image
                   src={cert.image}
                   alt={cert.name}

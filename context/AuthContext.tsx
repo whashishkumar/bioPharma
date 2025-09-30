@@ -31,11 +31,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // const storedUser = localStorage.getItem("user");
     const token = Cookies.get("token");
-    // if (storedUser && token) {
-    //   setUser(JSON.parse(storedUser));
-    // }
     setLoading(false);
   }, []);
 
@@ -43,8 +39,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const response = await api.post("/login", { email, password });
       const { bearer_token, user } = response.data;
-
-      // Save token in cookie
       Cookies.set("token", bearer_token, {
         expires: 7,
         secure: true,
@@ -52,9 +46,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         path: "/",
       });
 
-      // Save user in state + localStorage
       setUser(user);
-      // localStorage.setItem("user", JSON.stringify(user));
     } catch (err: any) {
       throw new Error(err.response?.data || "Login failed");
     }

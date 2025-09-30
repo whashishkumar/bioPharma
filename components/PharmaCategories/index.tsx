@@ -1,6 +1,8 @@
+"use client";
+import { useLandingPageContext } from "@/context/LandingPageContext";
 import PageTitle from "@/ui/PageTitle";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 
 const categories = [
   {
@@ -46,36 +48,50 @@ const categories = [
 ];
 
 export default function PharmaCategories() {
+  const { typesOfProducts, fetchProductTypes } = useLandingPageContext();
+  const { section_name, section_heading, section_sub_heading, data }: any =
+    typesOfProducts || {};
+
+  useEffect(() => {
+    fetchProductTypes();
+  });
+
   return (
     <div className="hero-sub-container">
       <div className="bg-pharma-category rounded-[20px]">
         <div className="sub-container">
           <div className="py-16">
             <PageTitle
-              tag="Products Categories"
+              tag={section_name}
               tagClass="border border-[#00A859] rounded-full w-[180px] p-2 text-sm capitalize text-[#172C45] leading-[16px] mb-4"
-              heading="Trusted Pharma Categories with Innovation, Quality, and Care"
+              heading={section_heading}
               headingClass="text-[2.875rem] mt-2 font-normal  text-[#172C45] leading-[3.438rem]"
-              subHeading="From everyday health concerns to complex therapeutic needs, our product categories are designed to deliver trust and results.Covering General, Cardiac, Diabetic, Gynae, Ortho & more – we ensure complete care under one trusted name."
+              subHeading={section_sub_heading}
               subHeadingClass="text-base font-normal mt-2 text-[#45566A] leading-[25px] lg:mt-15"
               wrapperClass="grid lg:grid-cols-2 gap-10"
             />
-
             <div className="flex flex-wrap gap-6 justify-center mt-10">
-              {categories.map((cat) => (
-                <div key={cat.id} className="w-[299px]">
-                  <Image
-                    src={cat.image}
-                    alt={cat.title}
-                    width={299}
-                    height={263}
-                    className="block rounded-t-lg object-contain"
-                  />
-                  <p className="h-[63px] bg-white flex justify-center items-center rounded-b-lg text-xl font-semibold text-[#172C45] red-hat leading-[32px]">
-                    {cat.title}
-                  </p>
-                </div>
-              ))}
+              {data?.map((cat: any) => {
+                const baseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
+                const imagePath = process.env.NEXT_PUBLIC_IMAGE_PATH;
+                const imageUrl = `${baseUrl}${imagePath}/${cat.image}`;
+                return (
+                  <div key={cat.id} className="w-[299px]">
+                    {cat.image && (
+                      <Image
+                        src={imageUrl}
+                        alt={cat.title}
+                        width={299}
+                        height={263}
+                        className="block rounded-t-lg object-cover"
+                      />
+                    )}
+                    <p className="h-[63px] bg-white flex justify-center items-center rounded-b-lg text-xl font-semibold text-[#172C45] red-hat leading-[32px]">
+                      {cat.title}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

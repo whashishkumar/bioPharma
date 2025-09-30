@@ -1,9 +1,11 @@
+"use client";
 import PageTitle from "@/ui/PageTitle";
-import React from "react";
+import React, { useEffect } from "react";
 import TestimonialCard from "./TestimonialCard";
 import SwipeSlider from "@/ui/SwipeSlider";
+import { useLandingPageContext } from "@/context/LandingPageContext";
 
-const testimonials = [
+const testimonial = [
   {
     id: 1,
     name: "Grace Martin",
@@ -31,6 +33,13 @@ const testimonials = [
 ];
 
 export default function OurTestimonials() {
+  const { testimonials, fetchTestimonials } = useLandingPageContext();
+  const { section_heading, section_name, data }: any = testimonials;
+
+  useEffect(() => {
+    fetchTestimonials();
+  }, []);
+
   return (
     <>
       <div className="hero-sub-container">
@@ -38,9 +47,9 @@ export default function OurTestimonials() {
           <div className="hero-child-container">
             <div className="py-14">
               <PageTitle
-                tag="Our Testimonials"
+                tag={section_name}
                 tagClass="border border-[#00A859] rounded-full px-4 py-1 text-sm sm:text-base capitalize text-[#172C45] leading-4 sm:leading-5 w-max"
-                heading="What our clients say about their experience with us"
+                heading={section_heading}
                 headingClass="text-2xl sm:text-3xl md:text-[2.875rem] mt-2 font-normal text-[#172C45] leading-snug sm:leading-normal md:leading-[3.438rem] mt-6 max-w-full sm:max-w-xl md:max-w-2xl text-center"
                 wrapperClass="w-full mx-auto px-4"
                 tagWrapper="flex flex-col items-center"
@@ -52,7 +61,7 @@ export default function OurTestimonials() {
                   swipebtn={true}
                   spaceBetween={10}
                 >
-                  {testimonials?.map((product) => (
+                  {data?.map((product: any) => (
                     <TestimonialCard key={product.id} {...product} />
                   ))}
                 </SwipeSlider>

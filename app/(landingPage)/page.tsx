@@ -11,6 +11,7 @@ import PharmaCategories from "@/components/PharmaCategories";
 import ProductCategories from "@/components/ProductCategories";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import { useAuth } from "@/context/AuthContext";
+import Loader from "@/ui/Loader";
 import { useEffect } from "react";
 
 const services = [
@@ -33,7 +34,7 @@ export default function Home() {
     login(`bioboxpharma@gmail.com`, `biobox@123`);
   }, []);
 
-  if (loading) return <p>Loading</p>;
+  // if (loading) return <Loader />;
 
   return (
     <>

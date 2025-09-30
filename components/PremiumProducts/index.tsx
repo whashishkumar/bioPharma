@@ -1,7 +1,9 @@
+"use client";
+import { useLandingPageContext } from "@/context/LandingPageContext";
 import PageTitle from "@/ui/PageTitle";
 import ProductCard from "@/ui/ProductCard";
 import SwipeSlider from "@/ui/SwipeSlider";
-import React from "react";
+import React, { useEffect } from "react";
 
 const products = [
   {
@@ -43,6 +45,15 @@ const products = [
 ];
 
 export default function PremiumProducts() {
+  const { pharmaProducts, fetchPharmaProducts } = useLandingPageContext();
+  const { section_name, section_heading, section_sub_heading }: any =
+    pharmaProducts;
+  console.log(pharmaProducts, "pharmaProducts");
+
+  useEffect(() => {
+    fetchPharmaProducts();
+  }, []);
+
   return (
     <>
       <div className="bg-white">
@@ -50,18 +61,15 @@ export default function PremiumProducts() {
           <div className="hero-child-container">
             <div className="py-14">
               <PageTitle
-                tag="Revolutiononing HealthCare"
+                tag={section_name}
                 tagClass="border border-[#00A859] rounded-full px-4 py-1 text-sm sm:text-base capitalize text-[#172C45] leading-4 sm:leading-5 w-max"
-                heading="Innovating Healthcare With Over 2500 Premium Products."
-                subHeading="At Biobox Pharma, we are redefining healthcare through cutting-edge innovation and unwavering excellence. Our commitment to advanced research and quality ensures superior solutions for a healthier future."
+                heading={section_heading}
+                subHeading={section_sub_heading}
                 headingClass="text-2xl sm:text-3xl md:text-[2.875rem] mt-2 font-normal text-[#172C45] leading-snug sm:leading-normal md:leading-[3.438rem] mt-6 text-center"
                 wrapperClass="w-full mx-auto px-4"
                 subHeadingClass=" mt-6 text-center"
                 tagWrapper="flex flex-col items-center"
               />
-              {/* <div className="flex flex-wrap justify-between gap-10 mt-12 sm:justify-center">
-                <ProductCard />
-              </div> */}
               <div className="py-12">
                 <SwipeSlider
                   slidesPerView={4}
@@ -74,7 +82,6 @@ export default function PremiumProducts() {
                   ))}
                 </SwipeSlider>
               </div>
-              {/* </div> */}
             </div>
           </div>
         </div>

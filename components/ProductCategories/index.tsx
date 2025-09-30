@@ -1,6 +1,8 @@
+"use client";
+import { useLandingPageContext } from "@/context/LandingPageContext";
 import PageTitle from "@/ui/PageTitle";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 
 const cards = [
   {
@@ -90,6 +92,13 @@ const cards = [
 ];
 
 export default function ProductCategories() {
+  const { productCategories, fetchProductCategories } = useLandingPageContext();
+  const { data }: any = productCategories;
+
+  useEffect(() => {
+    fetchProductCategories();
+  }, []);
+
   return (
     <div className="hero-sub-container">
       <div className="bg-product-category rounded-[20px]">
@@ -104,55 +113,62 @@ export default function ProductCategories() {
               subHeadingClass="text-base font-normal mt-2 text-[#45566A] leading-[25px] lg:mt-14"
               wrapperClass="grid lg:grid-cols-2 gap-10"
             />
-
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 lg:gap-5 py-14">
-              {cards.map((card) => (
-                <div key={card.id} className="group cursor-pointer w-full">
-                  <div className="relative h-[261px] w-full overflow-hidden rounded-xl bg-white">
-                    {card.bgImage && (
-                      <Image
-                        src={card.bgImage}
-                        alt={card.title}
-                        fill
-                        style={{ objectFit: "cover" }}
-                        className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      />
-                    )}
-
-                    <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#172C45]/0 via-[#172C45]/40 to-[#172C45] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="relative z-20 flex h-full flex-col justify-between p-4 md:p-6">
-                      <div>
+              {data?.slice(0, 12)?.map((card: any) => {
+                const baseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
+                const imagePath = process.env.NEXT_PUBLIC_IMAGE_PATH;
+                const imageUrl = `${baseUrl}${imagePath}/${card?.image}`;
+                const iconImgUrl = `${baseUrl}${imagePath}/${card?.icon_image}`;
+                return (
+                  <div key={card.id} className="group cursor-pointer w-full">
+                    <div className="relative h-[261px] w-full overflow-hidden rounded-xl bg-white">
+                      {card.image && (
                         <Image
-                          src={card.icon}
-                          height={50}
-                          width={50}
-                          alt="icon"
+                          src={imageUrl}
+                          alt={card.title}
+                          fill
+                          style={{ objectFit: "contain" }}
+                          className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                         />
-                      </div>
-                      <div>
-                        <h3
-                          className={`text-lg font-bold primary-font font-medium transition-colors duration-300 ${
-                            card.bgImage
-                              ? "text-[#172C45] group-hover:text-white"
-                              : "text-[#172C45]"
-                          }`}
-                        >
-                          {card.title}
-                        </h3>
-                        <p
-                          className={`mt-1 text-base font-normal primary-font transition-colors duration-300 ${
-                            card.bgImage
-                              ? "text-[#606B78] group-hover:text-white"
-                              : "text-[#606B78]"
-                          }`}
-                        >
-                          {card.description}
-                        </p>
+                      )}
+
+                      <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#172C45]/0 via-[#172C45]/40 to-[#172C45] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="relative z-20 flex h-full flex-col justify-between p-4 md:p-6">
+                        <div>
+                          {card.icon_image && (
+                            <Image
+                              src={iconImgUrl}
+                              height={50}
+                              width={50}
+                              alt="icon"
+                            />
+                          )}
+                        </div>
+                        <div>
+                          <h3
+                            className={`text-lg font-bold primary-font font-medium transition-colors duration-300 ${
+                              card.image
+                                ? "text-[#172C45] group-hover:text-white"
+                                : "text-[#172C45]"
+                            }`}
+                          >
+                            {card.title}
+                          </h3>
+                          <p
+                            className={`mt-1 text-base font-normal primary-font transition-colors duration-300 ${
+                              card.image
+                                ? "text-[#606B78] group-hover:text-white"
+                                : "text-[#606B78]"
+                            }`}
+                          >
+                            {/* {card.description} */}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

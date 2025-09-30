@@ -8,7 +8,7 @@ import { ReactNode } from "react";
 
 const heroBannerData = {
   backgroundImage: "/images/header-image.jpg",
-  tag: "Your partner in Health",
+  tag: "About Us",
   heading: "Commitment to quality healthcare, its diverse product range",
   subHeading: "Delivering Care with Eye Dose.",
 };

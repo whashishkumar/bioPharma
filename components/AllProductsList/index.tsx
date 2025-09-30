@@ -5,6 +5,7 @@ import ProductListing from "./ProductListing";
 import { useAllProductsPageContext } from "@/context/AllProductsContext";
 import Pagination from "@/ui/Pagination";
 import { useRouter } from "next/navigation";
+import Loader from "@/ui/Loader";
 
 export default function AllProductsList({ category }: any) {
   const {
@@ -21,13 +22,18 @@ export default function AllProductsList({ category }: any) {
 
   const { data } = categoryList || {};
   const { data: productsTypes = [] } = productTypeList || {};
-  const {
-    current_page: currentPageFromApi = 1,
-    last_page: totalPages = 1,
-    products = [],
-  } = allProductsList || {};
 
-  console.log(data.data, "categoryList");
+  // Handle case where allProductsList might be an array or object with pagination
+  const isArrayResponse = Array.isArray(allProductsList);
+  const currentPageFromApi = isArrayResponse
+    ? 1
+    : (allProductsList as any)?.current_page || 1;
+  const totalPages = isArrayResponse
+    ? 1
+    : (allProductsList as any)?.last_page || 1;
+  const products = isArrayResponse
+    ? (allProductsList as any[]) || []
+    : (allProductsList as any)?.products || [];
 
   const [activeProduct, setActiveProduct] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(
@@ -76,11 +82,16 @@ export default function AllProductsList({ category }: any) {
 
   return (
     <div>
+      {/* {products.length <= 0 ? (
+        <p>
+          <Loader />
+        </p>
+      ) : ( */}
       <div className="sub-container">
         <div className="grid grid-cols-1 md:grid-cols-[20%_75%] gap-5 md:gap-[5%] py-16">
-          <div className="w-full md:w-auto md:sticky md:top-8 self-start ">
+          <div className="w-full md:w-auto md:sticky md:top-8 self-start order-1 md:order-none">
             <Sidebar
-              categories={data?.data}
+              categories={data}
               handleSelectCategory={handleSelectCategory}
               selectedCategory={selectedCategory || ""}
             />
@@ -102,6 +113,7 @@ export default function AllProductsList({ category }: any) {
           </div>
         </div>
       </div>
+      {/* )} */}
     </div>
   );
 }

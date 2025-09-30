@@ -33,7 +33,7 @@ export default function EnquiryForm({ productName }: EnquiryFormProps) {
   const [formData, setFormData] = useState<FormData>(initialState);
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
-  const { getProductEnquary } = useAllProductsPageContext();
+  const { getProductEnquary }: any = useAllProductsPageContext();
 
   const validateField = (name: string, value: string) => {
     switch (name) {

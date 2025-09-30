@@ -1,14 +1,12 @@
 "use client";
-
 import api from "@/lib/axious";
-
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useState, useRef } from "react";
 
 interface OurServicesPageContextType {
   ourServicesData: any[];
   loading: boolean;
   fetchOurServiceHeroPageData: () => Promise<void>;
-  getServicesEnquiry: (formData: any) => Promise<void>;
+  getServicesEnquiry: (formData: any) => Promise<any>;
 }
 
 const OurServicesContext = createContext<
@@ -23,15 +21,25 @@ export function OurServicesProvider({ children }: OurServicesContextProps) {
   const [loading, setLoading] = useState(false);
   const [ourServicesData, setOurServicesData] = useState<any[]>([]);
 
-  const fetchOurServiceHeroPageData = async () => {
+  // track if data is already fetched
+  const fetched = useRef(false);
+
+  const withLoading = async (fn: () => Promise<void>) => {
     setLoading(true);
     try {
-      const response = await api.get("/service-page/second-section");
-      setOurServicesData(response.data || {});
-    } catch (error) {
+      await fn();
     } finally {
       setLoading(false);
     }
+  };
+
+  const fetchOurServiceHeroPageData = async () => {
+    if (fetched.current) return; // already fetched
+    await withLoading(async () => {
+      const response = await api.get("/service-page/second-section");
+      setOurServicesData(response.data || []);
+      fetched.current = true;
+    });
   };
 
   const getServicesEnquiry = async (formData: any) => {
@@ -39,12 +47,6 @@ export function OurServicesProvider({ children }: OurServicesContextProps) {
     try {
       const response = await api.post("/enquiry-form", formData);
       return response.data;
-    } catch (error: any) {
-      console.error(
-        "Failed to submit enquiry:",
-        error.response?.data || error.message
-      );
-      throw error;
     } finally {
       setLoading(false);
     }
@@ -68,7 +70,7 @@ export const useOurServicesPageContext = () => {
   const context = useContext(OurServicesContext);
   if (!context) {
     throw new Error(
-      "ourServices PageContext must be used within LandingPageProvider"
+      "useOurServicesPageContext must be used within OurServicesProvider"
     );
   }
   return context;

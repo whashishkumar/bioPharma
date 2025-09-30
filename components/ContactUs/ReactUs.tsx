@@ -25,8 +25,8 @@ export default function ReachUs({ data, menu }: any) {
           loading="lazy"
         />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        <div className="flex flex-col gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 ">
+        <div className="flex flex-col gap-2 justify-center">
           <h2 className="text-xl md:text-2xl font-bold text-[#172C45] uppercase">
             Reach Us Through
           </h2>
