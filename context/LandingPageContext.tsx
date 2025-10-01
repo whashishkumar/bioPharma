@@ -16,7 +16,9 @@ interface LandingPageContextType {
   faq: any[];
   testimonials: any[];
   ourBlogs: any[];
-  pharmaProducts: any[];
+  pharmaProducts: any;
+  footerData: any[];
+  pharmaProductsMenu: any[];
   fetchAboutSection: () => Promise<void>;
   fetchNaviagtionList: () => Promise<void>;
   fetchHeroSection: () => Promise<void>;
@@ -28,7 +30,9 @@ interface LandingPageContextType {
   fetchFaq: () => Promise<void>;
   fetchTestimonials: () => Promise<void>;
   fetchBlogs: () => Promise<void>;
-  fetchPharmaProducts: () => Promise<void>;
+  fetchPharmaProductsMenu: () => Promise<void>;
+  fetchPharmaProducts: (slug?: string) => Promise<void>;
+  fetchFooterList: () => Promise<void>;
 }
 
 const LandingPageContext = createContext<LandingPageContextType | undefined>(
@@ -55,7 +59,9 @@ export function LandingPageProvider({ children }: LandingPageProviderProps) {
   const [faq, setFaq] = useState<any[]>([]);
   const [testimonials, setTestimonials] = useState<any[]>([]);
   const [ourBlogs, setOurBlogs] = useState<any[]>([]);
-  const [pharmaProducts, setPharmaProducts] = useState<any[]>([]);
+  const [pharmaProducts, setPharmaProducts] = useState<any>();
+  const [footerData, setFooterData] = useState<any[]>([]);
+  const [pharmaProductsMenu, setPharmaProductsMenu] = useState<any[]>([]);
 
   // Track which APIs are already fetched
   const fetched = useRef({
@@ -71,6 +77,8 @@ export function LandingPageProvider({ children }: LandingPageProviderProps) {
     testimonials: false,
     ourBlogs: false,
     pharmaProducts: false,
+    footerData: false,
+    pharmaProductsMenu: false,
   });
 
   // Helper to manage loading across multiple calls
@@ -234,13 +242,43 @@ export function LandingPageProvider({ children }: LandingPageProviderProps) {
       }
     });
   };
-  const fetchPharmaProducts = async () => {
-    if (fetched.current.pharmaProducts || pharmaProducts.length > 0) return;
+
+  const fetchPharmaProductsMenu = async () => {
+    if (fetched.current.pharmaProductsMenu || pharmaProductsMenu.length > 0)
+      return;
     await withLoading(async () => {
       try {
         const res = await api.get("/home/our-products");
+        setPharmaProductsMenu(res.data);
+        fetched.current.pharmaProductsMenu = true;
+      } catch (error) {
+        console.error("Failed to fetch", error);
+      }
+    });
+  };
+
+  const fetchPharmaProducts = async (slug: any) => {
+    console.log(slug, "slug");
+
+    // if (fetched.current.pharmaProducts || setPharmaProducts.length > 0) return;
+    await withLoading(async () => {
+      try {
+        const res = await api.get(`/home/our-products/${slug}`);
         setPharmaProducts(res.data);
         fetched.current.pharmaProducts = true;
+      } catch (error) {
+        console.error("Failed to fetch", error);
+      }
+    });
+  };
+
+  const fetchFooterList = async () => {
+    if (fetched.current.footerData || footerData.length > 0) return;
+    await withLoading(async () => {
+      try {
+        const res = await api.get("/footer-menu");
+        setFooterData(res.data);
+        fetched.current.footerData = true;
       } catch (error) {
         console.error("Failed to fetch", error);
       }
@@ -275,6 +313,10 @@ export function LandingPageProvider({ children }: LandingPageProviderProps) {
         ourBlogs,
         fetchBlogs,
         pharmaProducts,
+        fetchPharmaProductsMenu,
+        footerData,
+        fetchFooterList,
+        pharmaProductsMenu,
         fetchPharmaProducts,
       }}
     >

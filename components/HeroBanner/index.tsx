@@ -44,8 +44,6 @@ export default function HeroBanner({
   const imagePath = process.env.NEXT_PUBLIC_IMAGE_PATH;
   const imageUrl = `${baseUrl}${imagePath}/${heroData?.link_image}`;
 
-  console.log(heroData, "heroData");
-
   return (
     <>
       {heroData && (

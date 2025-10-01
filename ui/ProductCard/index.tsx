@@ -2,16 +2,21 @@ import Image from "next/image";
 
 interface ProductCardTypes {
   id: number | string;
-  name: string;
+  title: string;
   image: string;
   alt: string;
+  handleClickProduct: () => Promise<void>;
 }
 export default function ProductCard({
   id,
-  name,
+  title,
   image,
-  alt,
+  handleClickProduct,
 }: ProductCardTypes) {
+  const baseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
+  const imagePath = process.env.NEXT_PUBLIC_IMAGE_PATH;
+  const imageUrl = `${baseUrl}${imagePath}/${image}`;
+
   return (
     <div>
       <div
@@ -19,18 +24,23 @@ export default function ProductCard({
         className="bg-white rounded-xl  overflow-hidden border border-[#99999940]/60 shadow-sm"
       >
         <div className="p-4 flex justify-center items-center h-64">
-          <Image
-            className="object-contain w-full h-full"
-            src={image}
-            alt={alt}
-            width={300}
-            height={236}
-            priority
-          />
+          {image && (
+            <Image
+              className="object-contain w-full h-full"
+              src={image}
+              alt={"alt"}
+              width={300}
+              height={236}
+              priority
+            />
+          )}
         </div>
-        <div className="p-4 pt-0">
-          <h2 className="mt-1 text-lg text-center py-2 red-hat font-bold text-[#172C45]">
-            {name}
+        <div className="p-4 pt-0 cursor-pointer">
+          <h2
+            className="mt-1 text-lg text-center py-2 red-hat font-bold text-[#172C45]"
+            onClick={handleClickProduct}
+          >
+            {title}
           </h2>
         </div>
       </div>

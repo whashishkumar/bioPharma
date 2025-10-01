@@ -3,7 +3,6 @@ const nextConfig = {
   async headers() {
     return [
       {
-        // Cache images, fonts, CSS, JS for 1 year
         source:
           "/:all*(svg|jpg|jpeg|png|gif|webp|avif|ico|css|js|woff2|ttf|eot)",
         headers: [
@@ -14,7 +13,6 @@ const nextConfig = {
         ],
       },
       {
-        // Cache HTML minimally so content updates immediately
         source: "/:path*",
         headers: [
           {
@@ -31,11 +29,10 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "biobox.whdev.in",
-        port: "",
-        pathname: "/storage/**", // allow all images under /storage
+        pathname: "/storage/**",
       },
     ],
-    unoptimized: process.env.NEXT_PUBLIC_DISABLE_IMAGE_OPTIMIZATION === "true", // optional toggle
+    unoptimized: process.env.NEXT_PUBLIC_DISABLE_IMAGE_OPTIMIZATION === "true", // FIXED
   },
   env: {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,

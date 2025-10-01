@@ -8,10 +8,12 @@ interface AboutUsPageContextType {
   whyWeUniqueData: any[];
   benifitsWithUsData: any[];
   loading: boolean;
+  aboutUsProducts: any[];
   fetchAboutSectionOne: () => Promise<void>;
   fetchAboutSectionCeo: () => Promise<void>;
   fetchAboutSectionWhyWeUnique: () => Promise<void>;
   fetchBenifitsWithUsData: () => Promise<void>;
+  fetchAboutUsProductsList: () => Promise<void>;
 }
 
 const AboutUsPageContext = createContext<AboutUsPageContextType | undefined>(
@@ -28,6 +30,7 @@ export function AboutUsPageProvider({ children }: AboutUsProviderProps) {
   const [whyWeUniqueData, setWhyWeUniqueData] = useState<any[]>([]);
   const [benifitsWithUsData, setBenifitsWithUsData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
+  const [aboutUsProducts, setAboutUsProducts] = useState<any[]>([]);
 
   const fetchAboutSectionOne = async () => {
     if (sectionOne.length > 0) return; // already fetched
@@ -73,6 +76,17 @@ export function AboutUsPageProvider({ children }: AboutUsProviderProps) {
     }
   };
 
+  const fetchAboutUsProductsList = async () => {
+    if (benifitsWithUsData.length > 0) return;
+    setLoading(true);
+    try {
+      const response = await api.get("/about-page/our-products");
+      setAboutUsProducts(response.data || []);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <AboutUsPageContext.Provider
       value={{
@@ -85,6 +99,8 @@ export function AboutUsPageProvider({ children }: AboutUsProviderProps) {
         fetchAboutSectionCeo,
         fetchAboutSectionWhyWeUnique,
         fetchBenifitsWithUsData,
+        aboutUsProducts,
+        fetchAboutUsProductsList,
       }}
     >
       {children}

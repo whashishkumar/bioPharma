@@ -37,8 +37,6 @@ export default function WhyChooseUs() {
     fetchWhyToChooseUs();
   }, []);
 
-  console.log(image, "whyToChooseus");
-
   return (
     <div className="choose-usWrapper">
       <div className="hero-sub-container">

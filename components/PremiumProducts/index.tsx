@@ -1,57 +1,70 @@
 "use client";
-import { useLandingPageContext } from "@/context/LandingPageContext";
+import { useAboutUsPageContext } from "@/context/AboutUsPageContext";
 import PageTitle from "@/ui/PageTitle";
 import ProductCard from "@/ui/ProductCard";
 import SwipeSlider from "@/ui/SwipeSlider";
+import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
 const products = [
   {
     id: 1,
-    name: "Tazobox-4.5",
+    title: "Tazobox-4.5",
     image: "/images/p1.png",
     alt: "Tazobactam Injection",
+    slug: "tazobox-4-5",
   },
   {
     id: 2,
-    name: "Amoxicillin-500",
+    title: "Amoxicillin-500",
     image: "/images/p2.png",
     alt: "Amoxicillin Capsule",
+    slug: "amoxicillin-500",
   },
   {
     id: 3,
-    name: "Cefixime-200",
+    title: "Cefixime-200",
     image: "/images/p3.png",
     alt: "Cefixime Tablet",
+    slug: "cefixime-200",
   },
   {
     id: 4,
-    name: "Metformin-500",
+    title: "Metformin-500",
     image: "/images/p4.png",
     alt: "Metformin Tablet",
+    slug: "metformin-500",
   },
   {
     id: 5,
-    name: "Cefixime-200",
+    title: "Cefixime-200",
     image: "/images/p3.png",
     alt: "Cefixime Tablet",
+    slug: "cefixime-200-2",
   },
   {
     id: 6,
-    name: "Metformin-500",
+    title: "Metformin-500",
     image: "/images/p4.png",
     alt: "Metformin Tablet",
+    slug: "metformin-500-2",
   },
 ];
 
 export default function PremiumProducts() {
-  const { pharmaProducts, fetchPharmaProducts } = useLandingPageContext();
-  const { section_name, section_heading, section_sub_heading }: any =
-    pharmaProducts;
-  console.log(pharmaProducts, "pharmaProducts");
+  const router = useRouter();
+  const { aboutUsProducts, fetchAboutUsProductsList } = useAboutUsPageContext();
+  const { section_name, section_heading, section_sub_heading, product }: any =
+    aboutUsProducts;
+
+  console.log(product, "aboutUsProducts");
+
+  const handleProductDetail = async (slug: any) => {
+    router.push(`/product-detail/${slug}`);
+  };
 
   useEffect(() => {
-    fetchPharmaProducts();
+    fetchAboutUsProductsList();
   }, []);
 
   return (
@@ -77,8 +90,14 @@ export default function PremiumProducts() {
                   swipebtn={false}
                   spaceBetween={20}
                 >
-                  {products?.map((product) => (
-                    <ProductCard key={product.id} {...product} />
+                  {product?.map((product: any) => (
+                    <ProductCard
+                      key={product.id}
+                      {...product}
+                      handleClickProduct={() =>
+                        handleProductDetail(product.slug)
+                      }
+                    />
                   ))}
                 </SwipeSlider>
               </div>

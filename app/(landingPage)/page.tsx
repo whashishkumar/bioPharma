@@ -4,7 +4,7 @@ import InnovatingHealthcare from "@/components/InnovatingHealthcare";
 import Marquee from "@/components/Marquee";
 import OurBlogs from "@/components/OurBlog";
 import OurCertifacation from "@/components/OurCertifacation";
-import OutProducts from "@/components/OurProducts";
+import OurProducts from "@/components/OurProducts";
 import OurTestimonials from "@/components/OurTestimonials";
 import PcdOppurnity from "@/components/PCDOpportunity";
 import PharmaCategories from "@/components/PharmaCategories";
@@ -44,7 +44,7 @@ export default function Home() {
       <WhyChooseUs />
       <PharmaCategories />
       <OurCertifacation />
-      <OutProducts />
+      <OurProducts />
       <PcdOppurnity />
       <FaqSection />
       <OurTestimonials />

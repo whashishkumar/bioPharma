@@ -2,76 +2,23 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
-
-const dummyFooterData = {
-  logo: "/images/biofooterlogo.png",
-  site_description:
-    "BioBox Pharma for high-quality, affordable, and innovative pharmaceutical products manufactured in WHO-GMP-certified facilities. We offer monopoly-based PCD franchise opportunities.",
-
-  quick_links: [
-    {
-      id: "home",
-      title: "Home",
-      url: "/",
-    },
-    {
-      id: "about",
-      title: "About Us",
-      url: "/about-us",
-    },
-    {
-      id: "patient",
-      title: "Our Services",
-      url: "/our-services",
-    },
-    {
-      id: "OurProducts",
-      title: "Our Products",
-      url: "/our-products",
-    },
-
-    {
-      id: "contact",
-      title: "Contact Us",
-      url: "/contact-us",
-    },
-  ],
-
-  categories: [
-    { id: 1, title: "Cardiology", slug: "cardiology" },
-    { id: 2, title: "Neurology", slug: "neurology" },
-    { id: 3, title: "Orthopedics", slug: "orthopedics" },
-    { id: 4, title: "Pediatrics", slug: "pediatrics" },
-    { id: 5, title: "Cardiology", slug: "cardiology" },
-    { id: 6, title: "Neurology", slug: "neurology" },
-    { id: 7, title: "Orthopedics", slug: "orthopedics" },
-    { id: 8, title: "Pediatrics", slug: "pediatrics" },
-    { id: 9, title: "Cardiology", slug: "cardiology" },
-    { id: 10, title: "Neurology", slug: "neurology" },
-    { id: 11, title: "Orthopedics", slug: "orthopedics" },
-    { id: 12, title: "Pediatrics", slug: "pediatrics" },
-    { id: 13, title: "Pediatrics", slug: "pediatrics" },
-  ],
-  company_iframe:
-    "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6864.1333451236505!2d76.822!3d30.660251000000002!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390f9331aae7b425%3A0xea9f2c132206dc8c!2sBiophar%20Lifesciences%20Pvt.%20Ltd.%20-%20Leading%20Pharma%20Company%20In%20India!5e0!3m2!1sen!2sin!4v1758777594059!5m2!1sen!2sin",
-  copyright: "Bioboxpharma. All rights reserved",
-};
+import { useEffect, useState } from "react";
+import { useLandingPageContext } from "@/context/LandingPageContext";
 
 export default function Footer() {
-  const {
-    logo,
-    site_description,
-    quick_links,
-    categories,
-    company_iframe,
-    copyright,
-  } = dummyFooterData;
   const [email, setEmail] = useState("");
-
+  const { footerData, fetchFooterList } = useLandingPageContext();
+  const { data, menu }: any = footerData;
+  const { logo, site_description, address, copyright, company_iframe }: any =
+    data || {};
+  const { social_icons, categories, quick_links }: any = menu || {};
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
   };
+
+  useEffect(() => {
+    fetchFooterList();
+  }, []);
 
   return (
     <div className="hero-sub-container">
@@ -123,7 +70,7 @@ export default function Footer() {
                     Quick Links
                   </h4>
                   <ol className="flex flex-col gap-2  list-disc pl-5">
-                    {quick_links.map((link) => (
+                    {quick_links?.map((link: any) => (
                       <li key={link.id}>
                         <Link
                           href={link.url}
@@ -141,7 +88,7 @@ export default function Footer() {
                     Categories
                   </h4>
                   <ol className="grid grid-cols-1 sm:grid-cols-2 gap-2 list-disc pl-5">
-                    {categories.map((cat) => (
+                    {categories?.slice(0, 13)?.map((cat: any) => (
                       <li key={cat.id}>
                         <Link
                           href={`/our-products/${cat.slug}`}
