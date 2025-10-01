@@ -2,32 +2,38 @@
 import Footer from "@/components/Footer";
 import HeroBanner from "@/components/HeroBanner";
 import ScrollToTop from "@/components/ScrollToTop";
-import { useAboutUsPageContext } from "@/context/AboutUsPageContext";
+import { useAllProductsPageContext } from "@/context/AllProductsContext";
 import { useAuth } from "@/context/AuthContext";
-import { useOurServicesPageContext } from "@/context/OurServicesPageContext";
 import Loader from "@/ui/Loader";
 import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";
 import { ReactNode } from "react";
 
-const heroBannerData = {
-  backgroundImage: "/images/header-image.jpg",
-  tag: "About Us",
-  heading: "Commitment to quality healthcare, its diverse product range",
-  subHeading: "Delivering Care with Eye Dose.",
-};
-
-export default function layout({ children }: { children: ReactNode }) {
+export default function Layout({ children }: { children: ReactNode }) {
   const { loading } = useAuth();
-  const { aboutUsBannerInfo, fetchAboutUsBanner } = useAboutUsPageContext();
-  const { ourServicesBanner, fetchOurServicesBanner } =
-    useOurServicesPageContext();
+  const { bannerInfo, fetchBannerInfo } = useAllProductsPageContext();
+
   const pathname = usePathname();
+  const firstPath = pathname === "/" ? "/" : `/${pathname.split("/")[1]}`;
+  const firstSegment = pathname === "/" ? "" : pathname.split("/")[1];
+  console.log(pathname, "pathname");
+
+  const defaultHeroData = {
+    heading: "About Us",
+    image: "/images/bannerH.jpg",
+    section_name: firstSegment,
+  };
+  // Safely pick heroInfo or fallback
+  const heroInfo =
+    bannerInfo &&
+    bannerInfo[pathname] &&
+    Object.keys(bannerInfo[firstPath]).length > 0
+      ? bannerInfo[pathname]
+      : defaultHeroData;
 
   useEffect(() => {
-    fetchAboutUsBanner();
-    fetchOurServicesBanner();
-  }, []);
+    fetchBannerInfo();
+  }, [fetchBannerInfo]);
 
   if (loading) {
     return <Loader />;
@@ -36,9 +42,9 @@ export default function layout({ children }: { children: ReactNode }) {
   return (
     <div className="relative">
       <HeroBanner
-        heroData={ourServicesBanner}
+        heroData={heroInfo}
         innerBanner={true}
-        innerBannerHeight={"h-[350]"}
+        innerBannerHeight="h-[320px]"
       />
       <main>{children}</main>
       <ScrollToTop />

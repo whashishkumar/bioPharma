@@ -1,0 +1,82 @@
+"use client";
+
+import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
+import { useBlogsContext } from "@/context/OurBlogsContext";
+import { parseBlogContent } from "@/utils/parseContent";
+
+interface Category {
+  id: number;
+  name: string;
+  slug: string;
+  url: string;
+}
+
+interface Tag {
+  id: number;
+  name: string;
+  slug: string;
+}
+
+interface Blog {
+  id: number;
+  name: string;
+  description: string;
+  content: string;
+  image: string;
+  categories: Category[];
+  tags: Tag[];
+  created_at: string;
+}
+
+interface BlogDescriptionProps {
+  blog: Blog;
+}
+
+export default function BlogDescription() {
+  const { blodDetail } = useBlogsContext();
+  const { data }: any = blodDetail;
+  const htmlContent = parseBlogContent(data?.content);
+
+  console.log(data, "blodDetail");
+
+  return (
+    <div className="max-w-5xl mx-auto px-4 py-10">
+      <div className="relative h-80 w-full rounded-2xl overflow-hidden mb-6">
+        <Image
+          src={data?.image.replace("Image preview", "")}
+          alt={"blog.name"}
+          layout="fill"
+          objectFit="cover"
+          className="rounded-2xl"
+        />
+      </div>
+      <h1 className="text-3xl md:text-4xl font-bold text-[#172C45] mb-4">
+        {data?.name}
+      </h1>
+      <div className="flex flex-wrap gap-2 mb-4">
+        {data?.categories.map((cat: any) => (
+          <a
+            key={cat.id}
+            href={cat.url}
+            className="bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full hover:bg-green-200 transition"
+          >
+            {cat.name}
+          </a>
+        ))}
+      </div>
+      <div className="flex flex-wrap gap-2 mb-6">
+        {data?.tags.map((tag: any) => (
+          <span
+            key={tag.id}
+            className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full"
+          >
+            {tag.name}
+          </span>
+        ))}
+      </div>
+
+      <p className="text-gray-700 text-lg mb-6">{data?.description}</p>
+    </div>
+  );
+}

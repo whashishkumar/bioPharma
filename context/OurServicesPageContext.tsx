@@ -5,10 +5,8 @@ import { createContext, ReactNode, useContext, useState, useRef } from "react";
 interface OurServicesPageContextType {
   ourServicesData: any[];
   loading: boolean;
-  ourServicesBanner: any[];
   fetchOurServiceHeroPageData: () => Promise<void>;
   getServicesEnquiry: (formData: any) => Promise<any>;
-  fetchOurServicesBanner: () => Promise<void>;
 }
 
 const OurServicesContext = createContext<
@@ -53,16 +51,6 @@ export function OurServicesProvider({ children }: OurServicesContextProps) {
       setLoading(false);
     }
   };
-  const fetchOurServicesBanner = async () => {
-    if (ourServicesBanner.length > 0) return;
-    setLoading(true);
-    try {
-      const response = await api.get("/about-page/banner");
-      setOurServicesBanner(response.data || []);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <OurServicesContext.Provider
@@ -71,8 +59,6 @@ export function OurServicesProvider({ children }: OurServicesContextProps) {
         fetchOurServiceHeroPageData,
         loading,
         getServicesEnquiry,
-        ourServicesBanner,
-        fetchOurServicesBanner,
       }}
     >
       {children}

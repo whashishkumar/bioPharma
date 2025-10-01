@@ -6,6 +6,7 @@ import { OurServicesProvider } from "./OurServicesPageContext";
 import { ContactUsPageProvider } from "./ContactUsPageContext";
 import { AllProductsPageProvider } from "./AllProductsContext";
 import { AuthProvider } from "./AuthContext";
+import { BlogsProvider } from "./OurBlogsContext";
 
 const providers = [
   LandingPageProvider,
@@ -13,6 +14,7 @@ const providers = [
   OurServicesProvider,
   ContactUsPageProvider,
   AllProductsPageProvider,
+  BlogsProvider,
   // AuthProvider,
 ];
 

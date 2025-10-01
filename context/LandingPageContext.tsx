@@ -258,8 +258,6 @@ export function LandingPageProvider({ children }: LandingPageProviderProps) {
   };
 
   const fetchPharmaProducts = async (slug: any) => {
-    console.log(slug, "slug");
-
     // if (fetched.current.pharmaProducts || setPharmaProducts.length > 0) return;
     await withLoading(async () => {
       try {

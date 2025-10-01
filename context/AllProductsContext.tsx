@@ -11,6 +11,7 @@ interface AllProductsPageContextType {
   callUsBannerInfo: any;
   allProductsList: any[];
   singleProductDetail: any;
+  bannerInfo: Record<string, any>;
   fetchAllCategoryList: () => Promise<void>;
   fetchAllProductTypes: () => Promise<void>;
   fetchCallUsContent: () => Promise<void>;
@@ -21,6 +22,7 @@ interface AllProductsPageContextType {
   }) => Promise<void>;
   fetchSingleProductDetail: (productSlug: string) => Promise<void>;
   getProductEnquiry: (formData: any) => Promise<any>;
+  fetchBannerInfo: () => Promise<any>;
 }
 
 const AllProductsPageContext = createContext<
@@ -43,13 +45,14 @@ export function AllProductsPageProvider({
   const [callUsBannerInfo, setCallUsBannerInfo] = useState<any[]>([]);
   const [allProductsList, setAllProductsList] = useState<any[]>([]);
   const [singleProductDetail, setSingleProductDetail] = useState<any>({});
-
+  const [bannerInfo, setBannerInfo] = useState<any>({});
   // Track fetched APIs
   const fetched = useRef({
     categories: false,
     productTypes: false,
     callUs: false,
     singleProductDetail: false,
+    bannerInfo: false,
   });
 
   const withLoading = async (fn: () => Promise<void>) => {
@@ -146,6 +149,17 @@ export function AllProductsPageProvider({
     }
   };
 
+  const fetchBannerInfo = async () => {
+    if (Object.keys(bannerInfo).length > 0) return;
+    setLoading(true);
+    try {
+      const response = await api.get("/all-pages-banners");
+      setBannerInfo(response.data || {});
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <AllProductsPageContext.Provider
       value={{
@@ -163,6 +177,8 @@ export function AllProductsPageProvider({
         fetchSingleProductDetail,
         getProductEnquiry,
         deailPageLoader,
+        bannerInfo,
+        fetchBannerInfo,
       }}
     >
       {children}

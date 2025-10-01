@@ -1,5 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import { useBlogsContext } from "@/context/OurBlogsContext";
+import PageTitle from "@/ui/PageTitle";
+import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import React, { useEffect } from "react";
 
 type Blog = {
   id: number;
@@ -8,9 +13,10 @@ type Blog = {
   date: string;
   description: string;
   content: string;
+  image?: string;
 };
 
-const blogs: Blog[] = [
+const blog: Blog[] = [
   {
     id: 1,
     title: "Getting Started with React",
@@ -20,12 +26,14 @@ const blogs: Blog[] = [
       "Learn the basics of React, including components, props, and state management.",
     content:
       "React is a JavaScript library for building user interfaces. It allows you to create reusable UI components and manage state efficiently. In this article, we cover how to get started with React step by step...",
+    image: "/images/arti1.jpg",
   },
   {
     id: 2,
     title: "Tailwind CSS Tips & Tricks",
     author: "Jane Smith",
     date: "2025-09-28",
+    image: "/images/arti1.jpg",
     description:
       "Discover how to use Tailwind CSS effectively to style your applications quickly.",
     content:
@@ -36,6 +44,7 @@ const blogs: Blog[] = [
     title: "Next.js for Beginners",
     author: "Alice Johnson",
     date: "2025-09-25",
+    image: "/images/arti1.jpg",
     description:
       "An introduction to Next.js, covering file-based routing, API routes, and SSR.",
     content:
@@ -45,6 +54,7 @@ const blogs: Blog[] = [
     id: 4,
     title: "Tailwind CSS Tips & Tricks",
     author: "Jane Smith",
+    image: "/images/arti1.jpg",
     date: "2025-09-28",
     description:
       "Discover how to use Tailwind CSS effectively to style your applications quickly.",
@@ -56,6 +66,7 @@ const blogs: Blog[] = [
     title: "Next.js for Beginners",
     author: "Alice Johnson",
     date: "2025-09-25",
+    image: "/images/arti1.jpg",
     description:
       "An introduction to Next.js, covering file-based routing, API routes, and SSR.",
     content:
@@ -64,39 +75,86 @@ const blogs: Blog[] = [
 ];
 
 export default function Blogs() {
-  const [selectedBlog, setSelectedBlog] = useState<Blog>(blogs[0]);
+  const router = useRouter();
+  const { blogs, loading, fetchBlogs, fetchSingleblog } = useBlogsContext();
+  const { data }: any = blogs;
+
+  const handleReadBlog = (slug: any) => {
+    fetchSingleblog(slug);
+    router.push(`/blogs/${slug}`);
+  };
+
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
 
   return (
     <div className="sub-container">
-      <div className="py-16 mx-auto p-6 grid grid-cols-1 md:grid-cols-3 gap-6 red-hat">
-        <div className="md:col-span-2  rounded-lg p-6 ">
-          <h1 className="text-2xl font-bold mb-2">{selectedBlog.title}</h1>
-          <p className="text-gray-500 text-sm mb-4">
-            By {selectedBlog.author} • {selectedBlog.date}
-          </p>
-          <p className="text-gray-700 leading-relaxed">
-            {selectedBlog.content}
-          </p>
+      <div className="py-16">
+        <div className="pb-12">
+          <PageTitle
+            tag={"Our Blogs"}
+            tagClass="border border-[#00A859] rounded-full px-4 py-1 text-sm sm:text-base capitalize text-[#172C45] leading-4 sm:leading-5 w-max"
+            headingClass="text-2xl sm:text-3xl md:text-[2.875rem] mt-2 font-normal text-[#172C45] leading-snug sm:leading-normal md:leading-[3.438rem] mt-6 max-w-full sm:max-w-xl md:max-w-2xl text-center"
+            wrapperClass="w-full mx-auto px-4"
+            tagWrapper="flex flex-col items-center"
+          />
         </div>
-        {/* <div className="space-y-4 border rounded-lg p-4 shadow-sm red-hat">
-          <h2 className="text-xl font-semibold mb-2">All Blogs</h2>
-          {blogs.map((blog) => (
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {data?.map((blog: any) => (
             <div
               key={blog.id}
-              onClick={() => setSelectedBlog(blog)}
-              className={`cursor-pointer p-3 rounded-lg transition ${
-                selectedBlog.id === blog.id
-                  ? "bg-blue-100 border border-blue-400"
-                  : "hover:bg-gray-100"
-              }`}
+              className="bg-white flex flex-col h-full shadow-md rounded-2xl overflow-hidden hover:shadow-xl transition-shadow red-hat"
             >
-              <h3 className="font-medium">{blog.title}</h3>
-              <p className="text-xs text-gray-500">
-                {blog.author} • {blog.date}
-              </p>
+              <div className="relative h-60 w-full">
+                {blog.image && (
+                  <Image
+                    src={blog.image}
+                    alt={"blog"}
+                    layout="fill"
+                    objectFit="cover"
+                    className="rounded-t-2xl"
+                    priority
+                  />
+                )}
+              </div>
+
+              <div className="flex flex-col flex-grow p-6">
+                <h2 className="text-xl font-semibold text-[#172C45] mb-2">
+                  {blog.name}
+                </h2>
+                <p className="text-gray-700 text-base mb-4 flex-grow">
+                  {blog.description}
+                </p>
+                {blog.content && (
+                  <p className="text-gray-600 text-base mb-4">{blog.content}</p>
+                )}
+
+                {blog.categories && (
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {blog.categories.map((cat: any) => (
+                      <span
+                        key={cat.id}
+                        className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full"
+                      >
+                        {cat.name}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {/* Learn More Button */}
+                <button
+                  className="mt-auto text-green-600 font-semibold flex items-center gap-2 hover:gap-3 transition-all"
+                  onClick={() => handleReadBlog(blog.slug)}
+                >
+                  Learn More <ArrowUpRight size={18} />
+                </button>
+              </div>
             </div>
           ))}
-        </div> */}
+        </div>
       </div>
     </div>
   );
