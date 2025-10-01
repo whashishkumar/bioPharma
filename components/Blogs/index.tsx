@@ -78,7 +78,7 @@ export default function Blogs() {
             {selectedBlog.content}
           </p>
         </div>
-        <div className="space-y-4 border rounded-lg p-4 shadow-sm red-hat">
+        {/* <div className="space-y-4 border rounded-lg p-4 shadow-sm red-hat">
           <h2 className="text-xl font-semibold mb-2">All Blogs</h2>
           {blogs.map((blog) => (
             <div
@@ -96,7 +96,7 @@ export default function Blogs() {
               </p>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );

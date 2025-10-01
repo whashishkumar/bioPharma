@@ -75,7 +75,7 @@ export default function Header({
 
   const handleLinkClick = (url: string) => {
     setMenuOpen(false);
-    router.push(url);
+    router.push(`${`/${url.replace(/^\/?/, "")}`}`);
   };
 
   const inactiveColor = innerHeader ? "text-gray-600" : "text-white";
