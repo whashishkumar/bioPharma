@@ -33,7 +33,7 @@ export default function EnquiryForm({ productName }: EnquiryFormProps) {
   const [formData, setFormData] = useState<FormData>(initialState);
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
-  const { getProductEnquary }: any = useAllProductsPageContext();
+  const { getProductEnquiry } = useAllProductsPageContext();
 
   const validateField = (name: string, value: string) => {
     switch (name) {
@@ -82,7 +82,7 @@ export default function EnquiryForm({ productName }: EnquiryFormProps) {
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length === 0) {
       setFormData(initialState);
-      getProductEnquary(formData);
+      getProductEnquiry(formData);
       setSubmitted(true);
       setErrors({});
     } else {

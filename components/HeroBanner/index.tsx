@@ -44,6 +44,8 @@ export default function HeroBanner({
   const imagePath = process.env.NEXT_PUBLIC_IMAGE_PATH;
   const imageUrl = `${baseUrl}${imagePath}/${heroData?.link_image}`;
 
+  console.log(heroData, "heroData");
+
   return (
     <>
       {heroData && (
@@ -53,7 +55,7 @@ export default function HeroBanner({
             style={{
               backgroundImage: !innerBanner
                 ? `url(${heroData.image})`
-                : `url(${heroData.backgroundImage}`,
+                : `url(${heroData?.data?.image}`,
             }}
           />
           <div className={`absolute inset-0 bg-black/45 z-[-1]`} />
@@ -62,7 +64,7 @@ export default function HeroBanner({
             {innerBanner ? (
               <div className="flex justify-center mt-16">
                 <PageTitle
-                  heading={heroData.tag}
+                  heading={heroData?.data?.heading}
                   headingClass="text-[2.875rem] mt-2 font-normal text-[#fff] leading-[3.438rem]"
                 />
               </div>
@@ -125,7 +127,7 @@ export default function HeroBanner({
                   <div className="flex justify-center lg:justify-end lg:pb-40 lg:pr-40">
                     {heroData?.link_image && (
                       <Image
-                        src={imageUrl}
+                        src={heroData?.link_image}
                         height={110}
                         width={110}
                         alt={"link"}

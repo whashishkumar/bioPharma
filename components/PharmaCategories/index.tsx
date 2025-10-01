@@ -79,7 +79,7 @@ export default function PharmaCategories() {
                   <div key={cat.id} className="w-[299px]">
                     {cat.image && (
                       <Image
-                        src={imageUrl}
+                        src={cat.image}
                         alt={cat.title}
                         width={299}
                         height={263}

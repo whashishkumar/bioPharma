@@ -10,6 +10,7 @@ import Loader from "@/ui/Loader";
 export default function AllProductsList({ category }: any) {
   const {
     loading,
+    loadingProducts,
     categoryList,
     fetchAllCategoryList,
     productTypeList,
@@ -74,6 +75,7 @@ export default function AllProductsList({ category }: any) {
 
   const handlePageChange = async (page: number): Promise<void> => {
     setCurrentPage(page);
+    window.scrollTo({ top: 20, behavior: "smooth" });
   };
 
   const handleGetProductDetail = (slug: any) => {
@@ -82,38 +84,36 @@ export default function AllProductsList({ category }: any) {
 
   return (
     <div>
-      {/* {products.length <= 0 ? (
-        <p>
-          <Loader />
-        </p>
-      ) : ( */}
-      <div className="sub-container">
-        <div className="grid grid-cols-1 md:grid-cols-[20%_75%] gap-5 md:gap-[5%] py-16">
-          <div className="w-full md:w-auto md:sticky md:top-8 self-start order-1 md:order-none">
-            <Sidebar
-              categories={data}
-              handleSelectCategory={handleSelectCategory}
-              selectedCategory={selectedCategory || ""}
-            />
-          </div>
+      {loadingProducts ? (
+        <Loader />
+      ) : (
+        <div className="sub-container">
+          <div className="grid grid-cols-1 md:grid-cols-[20%_75%] gap-5 md:gap-[5%] py-16">
+            <div className="w-full md:w-auto md:sticky md:top-8 self-start order-1 md:order-none">
+              <Sidebar
+                categories={data}
+                handleSelectCategory={handleSelectCategory}
+                selectedCategory={selectedCategory || ""}
+              />
+            </div>
 
-          <div className="w-full">
-            <ProductListing
-              filteredProducts={products}
-              productstTypes={productsTypes}
-              handleProductType={handleProductType}
-              activeProduct={activeProduct}
-              handleGetProductDetail={handleGetProductDetail}
-            />
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
-            />
+            <div className="w-full">
+              <ProductListing
+                filteredProducts={products}
+                productstTypes={productsTypes}
+                handleProductType={handleProductType}
+                activeProduct={activeProduct}
+                handleGetProductDetail={handleGetProductDetail}
+              />
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
+            </div>
           </div>
         </div>
-      </div>
-      {/* )} */}
+      )}
     </div>
   );
 }

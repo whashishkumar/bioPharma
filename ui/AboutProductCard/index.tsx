@@ -7,7 +7,7 @@ interface ProductCardTypes {
   alt: string;
   handleClickProduct: () => Promise<void>;
 }
-export default function ProductCard({
+export default function AboutProductCard({
   id,
   title,
   image,
@@ -24,15 +24,18 @@ export default function ProductCard({
         className="bg-white rounded-xl  overflow-hidden border border-[#99999940]/60 shadow-sm"
       >
         <div className="p-4 flex justify-center items-center h-64">
-          {image && (
+          {image ? (
             <Image
               className="object-contain w-full h-full"
               src={image}
-              alt={"alt"}
-              width={300}
-              height={236}
-              priority
+              alt="alt"
+              width={500}
+              height={500}
             />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-gray-100">
+              No image
+            </div>
           )}
         </div>
         <div className="p-4 pt-0 cursor-pointer">

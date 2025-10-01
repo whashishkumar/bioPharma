@@ -30,6 +30,8 @@ export default function Location() {
     useContactUsPageContext();
   const { data }: any = sectionOne || {};
 
+  console.log(data, "sectionOne");
+
   useEffect(() => {
     fetchContactUsSectionOne();
   }, []);
@@ -38,10 +40,10 @@ export default function Location() {
     <div className="bg-product-category">
       <section className="hero-child-container">
         <div className="grid  grid-col-1 lg:grid-cols-2 gap-8 lg:gap-25  py-18">
-          {dummyLocations?.map((loc) => (
-            <div key={loc.id} className="">
+          {data?.map((loc: any, id: any) => (
+            <div key={id} className="">
               <iframe
-                src={loc.iframeSrc}
+                src={loc.iframe}
                 title={loc.heading}
                 width="100%"
                 height="320"
@@ -56,11 +58,11 @@ export default function Location() {
                 </h2>
                 <p className="flex items-center gap-2 text-[#172C45] red-hat font-normal text-base md:text-lg leading-7 md:leading-8 uppercase">
                   <FaShoppingBasket />
-                  {loc.localAddress}
+                  {loc.address}
                 </p>
                 <p className="flex items-center gap-2 text-[#172C45] red-hat font-normal text-base md:text-lg leading-7 md:leading-8 uppercase">
                   <IoLocationSharp />
-                  {loc.fullAddress}
+                  {loc.local_address}
                 </p>
               </div>
             </div>

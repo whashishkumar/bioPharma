@@ -50,20 +50,15 @@ export default function OurServices() {
   const imageUrl = `${baseUrl}${imagePath}/${franchise_image}`;
   const imageUrl2 = `${baseUrl}${imagePath}/${enquiry_image}`;
 
+  console.log(franchise_image, "franchise_image");
+
   return (
     <div className="hero-child-container">
       <section className="grid grid-col-1 lg:grid-cols-2 gap-20 py-20">
         <div className="">
           {franchise_image && (
-            // <Image
-            //   src={imageUrl}
-            //   alt={"Service"}
-            //   width={400}
-            //   height={550}
-            //   className=" h-auto object-contain w-full"
-            // />
             <Image
-              src={imageUrl}
+              src={franchise_image}
               alt="Service"
               width={400}
               height={550}
@@ -85,7 +80,7 @@ export default function OurServices() {
         <div>
           {enquiry_image && (
             <Image
-              src={imageUrl2}
+              src={enquiry_image}
               alt={"Service"}
               width={400}
               height={550}

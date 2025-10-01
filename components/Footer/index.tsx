@@ -73,7 +73,7 @@ export default function Footer() {
                     {quick_links?.map((link: any) => (
                       <li key={link.id}>
                         <Link
-                          href={link.url}
+                          href={`/${link.url.replace(/^\/?/, "")}`}
                           className="hover:text-[#01A859] transition-colors text-base marope font-medium"
                         >
                           {link.title}

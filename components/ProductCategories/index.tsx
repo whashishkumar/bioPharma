@@ -124,23 +124,25 @@ export default function ProductCategories() {
                     <div className="relative h-[261px] w-full overflow-hidden rounded-xl bg-white">
                       {card.image && (
                         <Image
-                          src={imageUrl}
+                          src={card.image}
                           alt={card.title}
                           fill
-                          style={{ objectFit: "contain" }}
+                          style={{ objectFit: "cover" }}
                           className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                         />
                       )}
 
-                      <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#172C45]/0 via-[#172C45]/40 to-[#172C45] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#172C45]/0 via-[#172C45]/60 to-[#172C45] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
                       <div className="relative z-20 flex h-full flex-col justify-between p-4 md:p-6">
-                        <div>
+                        <div className="bg-[#00A859] h-14 w-14 rounded-full flex justify-center items-center">
                           {card.icon_image && (
                             <Image
                               src={iconImgUrl}
-                              height={50}
-                              width={50}
+                              height={20}
+                              width={20}
                               alt="icon"
+                              className="object-contain"
                             />
                           )}
                         </div>
@@ -161,7 +163,7 @@ export default function ProductCategories() {
                                 : "text-[#606B78]"
                             }`}
                           >
-                            {/* {card.description} */}
+                            {card.desc}
                           </p>
                         </div>
                       </div>

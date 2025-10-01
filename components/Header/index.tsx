@@ -111,7 +111,7 @@ export default function Header({
                 onMouseLeave={() => hasDropdown && setActiveDropdown(null)}
               >
                 <Link
-                  href={link.url}
+                  href={`/${link.url.replace(/^\/?/, "")}`} // ensure starts with /
                   className={`${
                     isActive ? "text-[#01A859]" : inactiveColor
                   } hover:text-[#01A859]`}
@@ -166,22 +166,6 @@ export default function Header({
                 >
                   {link.title}
                 </button>
-
-                {/* Mobile Dropdown */}
-                {/* {hasDropdown && isDropdownOpen && (
-                  <ul className="pl-4 mt-2 flex flex-col gap-2">
-                    {link.submenu!.map((sub) => (
-                      <li key={sub.id}>
-                        <button
-                          className="text-gray-600 hover:text-[#01A859] text-left primary-font"
-                          onClick={() => handleLinkClick(sub.url)}
-                        >
-                          {sub.title}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                )} */}
               </div>
             );
           })}

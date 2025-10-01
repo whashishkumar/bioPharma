@@ -48,8 +48,8 @@ export default function OurCertification() {
                   src={cert.image}
                   alt={cert.name}
                   width={150}
-                  height={195}
-                  className="rounded-lg object-contain w-full h-auto"
+                  height={150}
+                  className="rounded-lg object-contain w-full h-70"
                 />
               </div>
             ))}

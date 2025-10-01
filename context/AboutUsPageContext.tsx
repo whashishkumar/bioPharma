@@ -9,11 +9,13 @@ interface AboutUsPageContextType {
   benifitsWithUsData: any[];
   loading: boolean;
   aboutUsProducts: any[];
+  aboutUsBannerInfo: any[];
   fetchAboutSectionOne: () => Promise<void>;
   fetchAboutSectionCeo: () => Promise<void>;
   fetchAboutSectionWhyWeUnique: () => Promise<void>;
   fetchBenifitsWithUsData: () => Promise<void>;
   fetchAboutUsProductsList: () => Promise<void>;
+  fetchAboutUsBanner: () => Promise<void>;
 }
 
 const AboutUsPageContext = createContext<AboutUsPageContextType | undefined>(
@@ -31,6 +33,7 @@ export function AboutUsPageProvider({ children }: AboutUsProviderProps) {
   const [benifitsWithUsData, setBenifitsWithUsData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [aboutUsProducts, setAboutUsProducts] = useState<any[]>([]);
+  const [aboutUsBannerInfo, setAboutUsBannerInfo] = useState<any[]>([]);
 
   const fetchAboutSectionOne = async () => {
     if (sectionOne.length > 0) return; // already fetched
@@ -86,6 +89,16 @@ export function AboutUsPageProvider({ children }: AboutUsProviderProps) {
       setLoading(false);
     }
   };
+  const fetchAboutUsBanner = async () => {
+    if (aboutUsBannerInfo.length > 0) return;
+    setLoading(true);
+    try {
+      const response = await api.get("/about-page/banner");
+      setAboutUsBannerInfo(response.data || []);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <AboutUsPageContext.Provider
@@ -101,6 +114,8 @@ export function AboutUsPageProvider({ children }: AboutUsProviderProps) {
         fetchBenifitsWithUsData,
         aboutUsProducts,
         fetchAboutUsProductsList,
+        aboutUsBannerInfo,
+        fetchAboutUsBanner,
       }}
     >
       {children}

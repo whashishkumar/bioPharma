@@ -5,8 +5,10 @@ import { createContext, ReactNode, useContext, useState, useRef } from "react";
 interface OurServicesPageContextType {
   ourServicesData: any[];
   loading: boolean;
+  ourServicesBanner: any[];
   fetchOurServiceHeroPageData: () => Promise<void>;
   getServicesEnquiry: (formData: any) => Promise<any>;
+  fetchOurServicesBanner: () => Promise<void>;
 }
 
 const OurServicesContext = createContext<
@@ -20,7 +22,7 @@ interface OurServicesContextProps {
 export function OurServicesProvider({ children }: OurServicesContextProps) {
   const [loading, setLoading] = useState(false);
   const [ourServicesData, setOurServicesData] = useState<any[]>([]);
-
+  const [ourServicesBanner, setOurServicesBanner] = useState<any[]>([]);
   // track if data is already fetched
   const fetched = useRef(false);
 
@@ -51,6 +53,16 @@ export function OurServicesProvider({ children }: OurServicesContextProps) {
       setLoading(false);
     }
   };
+  const fetchOurServicesBanner = async () => {
+    if (ourServicesBanner.length > 0) return;
+    setLoading(true);
+    try {
+      const response = await api.get("/about-page/banner");
+      setOurServicesBanner(response.data || []);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <OurServicesContext.Provider
@@ -59,6 +71,8 @@ export function OurServicesProvider({ children }: OurServicesContextProps) {
         fetchOurServiceHeroPageData,
         loading,
         getServicesEnquiry,
+        ourServicesBanner,
+        fetchOurServicesBanner,
       }}
     >
       {children}

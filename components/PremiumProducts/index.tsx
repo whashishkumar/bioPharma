@@ -1,7 +1,7 @@
 "use client";
 import { useAboutUsPageContext } from "@/context/AboutUsPageContext";
 import PageTitle from "@/ui/PageTitle";
-import ProductCard from "@/ui/ProductCard";
+import AboutProductCard from "@/ui/AboutProductCard";
 import SwipeSlider from "@/ui/SwipeSlider";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
@@ -91,7 +91,7 @@ export default function PremiumProducts() {
                   spaceBetween={20}
                 >
                   {product?.map((product: any) => (
-                    <ProductCard
+                    <AboutProductCard
                       key={product.id}
                       {...product}
                       handleClickProduct={() =>

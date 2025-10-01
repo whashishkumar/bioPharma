@@ -4,6 +4,8 @@ import { createContext, useContext, useState, ReactNode, useRef } from "react";
 
 interface AllProductsPageContextType {
   loading: boolean;
+  loadingProducts: boolean;
+  deailPageLoader: boolean;
   categoryList: any;
   productTypeList: any;
   callUsBannerInfo: any;
@@ -33,6 +35,9 @@ export function AllProductsPageProvider({
   children,
 }: AllProductsProviderProps) {
   const [loading, setLoading] = useState(false);
+  const [loadingProducts, setLoadingProducts] = useState(false);
+  const [deailPageLoader, setDeailPageLoader] = useState(false);
+
   const [categoryList, setCategoryList] = useState<any[]>([]);
   const [productTypeList, setProductTypeList] = useState<any[]>([]);
   const [callUsBannerInfo, setCallUsBannerInfo] = useState<any[]>([]);
@@ -44,6 +49,7 @@ export function AllProductsPageProvider({
     categories: false,
     productTypes: false,
     callUs: false,
+    singleProductDetail: false,
   });
 
   const withLoading = async (fn: () => Promise<void>) => {
@@ -55,9 +61,27 @@ export function AllProductsPageProvider({
     }
   };
 
+  const withLoadingProduct = async (fn: () => Promise<void>) => {
+    setLoadingProducts(true);
+    try {
+      await fn();
+    } finally {
+      setLoadingProducts(false);
+    }
+  };
+
+  const withProductDetail = async (fn: () => Promise<void>) => {
+    setDeailPageLoader(true);
+    try {
+      await fn();
+    } finally {
+      setDeailPageLoader(false);
+    }
+  };
+
   const fetchAllCategoryList = async () => {
     if (fetched.current.categories) return;
-    await withLoading(async () => {
+    await withLoadingProduct(async () => {
       const res = await api.get("/home/product-categories");
       setCategoryList(res.data || []);
       fetched.current.categories = true;
@@ -66,7 +90,7 @@ export function AllProductsPageProvider({
 
   const fetchAllProductTypes = async () => {
     if (fetched.current.productTypes) return;
-    await withLoading(async () => {
+    await withLoadingProduct(async () => {
       const res = await api.get("/product-types");
       setProductTypeList(res.data || []);
       fetched.current.productTypes = true;
@@ -105,13 +129,11 @@ export function AllProductsPageProvider({
   };
 
   const fetchSingleProductDetail = async (productSlug: string) => {
-    setLoading(true);
-    try {
+    if (fetched.current.singleProductDetail) return;
+    await withProductDetail(async () => {
       const res = await api.get(`/our-products/${productSlug}`);
       setSingleProductDetail(res.data || {});
-    } finally {
-      setLoading(false);
-    }
+    });
   };
 
   const getProductEnquiry = async (formData: any) => {
@@ -128,6 +150,7 @@ export function AllProductsPageProvider({
     <AllProductsPageContext.Provider
       value={{
         loading,
+        loadingProducts,
         categoryList,
         fetchAllCategoryList,
         productTypeList,
@@ -139,6 +162,7 @@ export function AllProductsPageProvider({
         singleProductDetail,
         fetchSingleProductDetail,
         getProductEnquiry,
+        deailPageLoader,
       }}
     >
       {children}

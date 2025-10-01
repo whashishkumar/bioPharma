@@ -1,7 +1,7 @@
 "use client";
 import { useLandingPageContext } from "@/context/LandingPageContext";
 import PageTitle from "@/ui/PageTitle";
-import ProductCard from "@/ui/ProductCard";
+import AboutProductCard from "@/ui/AboutProductCard";
 import SwipeSlider from "@/ui/SwipeSlider";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -89,7 +89,7 @@ export default function OurProducts() {
               spaceBetween={20}
             >
               {product?.map((product: any) => (
-                <ProductCard
+                <AboutProductCard
                   key={product.id}
                   {...product}
                   handleClickProduct={() => handleClickProduct(product.slug)}
