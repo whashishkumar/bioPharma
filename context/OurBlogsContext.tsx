@@ -1,8 +1,6 @@
 "use client";
 import api from "@/lib/axious";
 import React, { createContext, useContext, useState, ReactNode } from "react";
-
-// Define the blog type
 export interface Blog {
   id: string;
   title: string;
@@ -15,53 +13,79 @@ export interface Blog {
 interface BlogsContextType {
   blogs: Blog[];
   loading: boolean;
-  blodDetail: any[];
+  blogDetailLoading: boolean;
+  blogDetail: Record<string, any>;
   fetchBlogs: () => Promise<void>;
-  fetchSingleblog: (slug: any) => Promise<void>;
+  fetchSingleBlog: (slug: string) => Promise<void>;
 }
 
 const BlogsContext = createContext<BlogsContextType | undefined>(undefined);
+
 export const BlogsProvider = ({ children }: { children: ReactNode }) => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [blodDetail, setBlodDetail] = useState<any[]>([]);
-  const fetchBlogs = async () => {
+  const [blogDetail, setBlogDetail] = useState<Record<string, any>>({});
+  const [blogDetailLoading, setBlogDetailLoading] = useState<boolean>(false);
+
+  const withBlogLoading = async (fn: () => Promise<void>) => {
+    setLoading(true);
     try {
-      setLoading(true);
-      const res = await api("/posts");
-      setBlogs(res.data);
-    } catch (err) {
-      console.error("Failed to fetch blogs", err);
+      await fn();
     } finally {
       setLoading(false);
     }
   };
-
-  const fetchSingleblog = async (slug: any) => {
-    // if (fetched.current.pharmaProducts || setPharmaProducts.length > 0) return;
+  const withBlogDetailLoading = async (fn: () => Promise<void>) => {
+    setBlogDetailLoading(true);
     try {
-      const res = await api.get(`posts/${slug}`);
-      setBlodDetail(res.data);
-      // fetched.current.pharmaProducts = true;
-    } catch (error) {
-      console.error("Failed to fetch", error);
+      await fn();
+    } finally {
+      setBlogDetailLoading(false);
     }
+  };
+  const fetchBlogs = async () => {
+    await withBlogLoading(async () => {
+      try {
+        const res = await api.get("/posts");
+        setBlogs(res.data || []);
+      } catch (err) {
+        console.error("Failed to fetch blogs", err);
+      }
+    });
+  };
+
+  const fetchSingleBlog = async (slug: string) => {
+    if (blogDetail[slug]) return;
+    await withBlogDetailLoading(async () => {
+      try {
+        const res = await api.get(`/posts/${slug}`);
+        setBlogDetail(res.data);
+      } catch (error) {
+        console.error("Failed to fetch blog", error);
+      }
+    });
   };
 
   return (
     <BlogsContext.Provider
-      value={{ blogs, loading, fetchBlogs, fetchSingleblog, blodDetail }}
+      value={{
+        blogs,
+        loading,
+        fetchBlogs,
+        fetchSingleBlog,
+        blogDetail,
+        blogDetailLoading,
+      }}
     >
       {children}
     </BlogsContext.Provider>
   );
 };
 
-// Custom hook for consuming the context
 export const useBlogsContext = () => {
   const context = useContext(BlogsContext);
   if (!context) {
-    throw new Error("useBlogs must be used within a BlogsProvider");
+    throw new Error("useBlogsContext must be used within a BlogsProvider");
   }
   return context;
 };

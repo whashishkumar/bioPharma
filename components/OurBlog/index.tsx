@@ -5,14 +5,19 @@ import React, { useEffect } from "react";
 import BlogPostCard from "./BlogPostCard";
 import { useRouter } from "next/navigation";
 import { useLandingPageContext } from "@/context/LandingPageContext";
+import { useBlogsContext } from "@/context/OurBlogsContext";
 
 export default function OurBlogs() {
-  const { ourBlogs, fetchBlogs } = useLandingPageContext();
+  const { ourBlogs, fetchBlogsBanner } = useLandingPageContext();
+  const { fetchBlogs, blogs } = useBlogsContext();
   const router = useRouter();
-  const { section_heading, section_name, data }: any = ourBlogs;
-
+  // const { section_heading, section_name ,data}: any = ourBlogs;
+  // const { data }: any = blogs;
+  const { section_heading, section_name, data: ourBlogsData }: any = ourBlogs;
+  const { data: blogsData }: any = blogs;
   useEffect(() => {
     fetchBlogs();
+    fetchBlogsBanner();
   }, []);
 
   return (
@@ -37,7 +42,7 @@ export default function OurBlogs() {
               </div>
             </div>
             <div className="mt-10">
-              <BlogPostCard blogs={data} />
+              <BlogPostCard blogs={blogsData} />
             </div>
           </div>
         </div>

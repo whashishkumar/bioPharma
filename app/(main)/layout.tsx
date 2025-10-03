@@ -16,14 +16,13 @@ export default function Layout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const firstPath = pathname === "/" ? "/" : `/${pathname.split("/")[1]}`;
   const firstSegment = pathname === "/" ? "" : pathname.split("/")[1];
-  console.log(pathname, "pathname");
 
   const defaultHeroData = {
     heading: "About Us",
     image: "/images/bannerH.jpg",
     section_name: firstSegment,
   };
-  // Safely pick heroInfo or fallback
+
   const heroInfo =
     bannerInfo &&
     bannerInfo[pathname] &&

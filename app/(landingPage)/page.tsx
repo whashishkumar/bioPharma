@@ -11,7 +11,6 @@ import PharmaCategories from "@/components/PharmaCategories";
 import ProductCategories from "@/components/ProductCategories";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import { useAuth } from "@/context/AuthContext";
-import Loader from "@/ui/Loader";
 import { useEffect } from "react";
 
 const services = [
@@ -28,13 +27,15 @@ const services = [
 ];
 
 export default function Home() {
-  const { loading, login } = useAuth();
+  const { login } = useAuth();
 
   useEffect(() => {
-    login(`bioboxpharma@gmail.com`, `biobox@123`);
+    const email = process.env.NEXT_USER_AUTH_EMAIL;
+    const password = process.env.NEXT_USER_AUTH_PASSWORD;
+    if (email && password) {
+      login(email, password);
+    }
   }, []);
-
-  // if (loading) return <Loader />;
 
   return (
     <>

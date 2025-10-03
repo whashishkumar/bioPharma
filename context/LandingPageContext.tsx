@@ -29,7 +29,7 @@ interface LandingPageContextType {
   fetchProductTypes: () => Promise<void>;
   fetchFaq: () => Promise<void>;
   fetchTestimonials: () => Promise<void>;
-  fetchBlogs: () => Promise<void>;
+  fetchBlogsBanner: () => Promise<void>;
   fetchPharmaProductsMenu: () => Promise<void>;
   fetchPharmaProducts: (slug?: string) => Promise<void>;
   fetchFooterList: () => Promise<void>;
@@ -218,19 +218,19 @@ export function LandingPageProvider({ children }: LandingPageProviderProps) {
   };
 
   const fetchTestimonials = async () => {
-    if (fetched.current.faq || faq.length > 0) return;
+    if (fetched.current.testimonials || testimonials.length > 0) return;
     await withLoading(async () => {
       try {
         const res = await api.get("/testimonials");
         setTestimonials(res.data);
-        fetched.current.faq = true;
+        fetched.current.testimonials = true;
       } catch (error) {
         console.error("Failed to fetch", error);
       }
     });
   };
 
-  const fetchBlogs = async () => {
+  const fetchBlogsBanner = async () => {
     if (fetched.current.ourBlogs || ourBlogs.length > 0) return;
     await withLoading(async () => {
       try {
@@ -309,7 +309,7 @@ export function LandingPageProvider({ children }: LandingPageProviderProps) {
         testimonials,
         fetchTestimonials,
         ourBlogs,
-        fetchBlogs,
+        fetchBlogsBanner,
         pharmaProducts,
         fetchPharmaProductsMenu,
         footerData,

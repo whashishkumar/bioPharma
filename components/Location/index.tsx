@@ -30,8 +30,6 @@ export default function Location() {
     useContactUsPageContext();
   const { data }: any = sectionOne || {};
 
-  console.log(data, "sectionOne");
-
   useEffect(() => {
     fetchContactUsSectionOne();
   }, []);

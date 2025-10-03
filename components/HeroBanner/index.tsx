@@ -3,6 +3,7 @@ import Header from "../Header";
 import PageTitle from "@/ui/PageTitle";
 import Image from "next/image";
 import Button from "@/ui/Button";
+import { useRouter } from "next/navigation";
 
 interface HeroBannerProps {
   heroData: {
@@ -43,7 +44,11 @@ export default function HeroBanner({
   const baseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
   const imagePath = process.env.NEXT_PUBLIC_IMAGE_PATH;
   const imageUrl = `${baseUrl}${imagePath}/${heroData?.link_image}`;
+  const router = useRouter();
 
+  const handleRedirect = (value: string) => {
+    router.push(value);
+  };
   return (
     <>
       {heroData && (
@@ -82,7 +87,11 @@ export default function HeroBanner({
                     {/* buttons */}
                     <div className="lg:flex gap-8 mt-6">
                       {heroData?.buttons?.map((btn: any, id: any) => (
-                        <Button key={id} variant={btn.variant}>
+                        <Button
+                          key={id}
+                          variant={btn.variant}
+                          onClick={() => handleRedirect(btn?.value)}
+                        >
                           {btn.name}
                         </Button>
                       ))}

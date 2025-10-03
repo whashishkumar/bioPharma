@@ -7,67 +7,18 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useLandingPageContext } from "@/context/LandingPageContext";
 
-const navBarLinksList = [
-  {
-    id: "home",
-    title: "Home",
-    url: "/",
-  },
-  {
-    id: "about",
-    title: "About Us",
-    url: "/about-us",
-  },
-  {
-    id: "patient",
-    title: "Our Services",
-    url: "/our-services",
-  },
-  {
-    id: "OurProducts",
-    title: "Our Products",
-    url: "/our-products",
-  },
-
-  {
-    id: "contact",
-    title: "Contact Us",
-    url: "/contact-us",
-  },
-];
-
-interface MenuItem {
-  id: string;
-  title: string;
-  url: string;
-  submenu?: MenuItem[];
-  innerHeader?: boolean;
-}
-
-interface Contact {
-  phone?: string;
-}
-
-interface HeaderProps {
-  logo?: string;
-  navBarLinks?: MenuItem[];
-  contact?: Contact;
-  innerHeader?: boolean;
-}
-
 export default function Header({
-  // logo = "/images/bioLogo.png",
-  navBarLinks = navBarLinksList,
-  // contact,
   innerHeader = false,
-}: HeaderProps) {
+}: {
+  innerHeader?: boolean;
+}) {
   const pathname = usePathname();
   const router = useRouter();
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const { navigationList, fetchNaviagtionList } = useLandingPageContext();
-  const { menus, logo, phone }: any = navigationList || [];
+  const { menus, logo, phone }: any = navigationList || {};
 
   useEffect(() => {
     fetchNaviagtionList();
@@ -82,7 +33,7 @@ export default function Header({
 
   return (
     <nav className="sub-container">
-      <div className=" flex items-center justify-between  py-4 ">
+      <div className="flex items-center justify-between py-4">
         <Link href="/">
           {logo && (
             <Image
@@ -95,23 +46,17 @@ export default function Header({
           )}
         </Link>
 
-        {/* Desktop Links */}
+        {/* Desktop Menu */}
         <ul className="hidden lg:flex gap-10 items-center">
           {menus?.map((link: any) => {
             const isActive = pathname === link.url;
-            const hasDropdown = link.submenu && link.submenu.length > 0;
-
             return (
               <li
                 key={link.id}
-                className="relative group primary-font text-base "
-                onMouseEnter={() =>
-                  hasDropdown && setActiveDropdown(link.title)
-                }
-                onMouseLeave={() => hasDropdown && setActiveDropdown(null)}
+                className="relative group primary-font text-base"
               >
                 <Link
-                  href={`/${link.url.replace(/^\/?/, "")}`} // ensure starts with /
+                  href={`/${link.url.replace(/^\/?/, "")}`}
                   className={`${
                     isActive ? "text-[#01A859]" : inactiveColor
                   } hover:text-[#01A859]`}
@@ -121,63 +66,72 @@ export default function Header({
               </li>
             );
           })}
-
-          <li>
-            <Link href={`tel:${phone}`}>
-              <div className="flex items-center gap-2 bg-[#01A859] text-white px-6 py-2 rounded-full primary-font  text-base">
-                <FaPhoneAlt /> <span>{phone}</span>
-              </div>
-            </Link>
-          </li>
-          {/* )} */}
+          {phone && (
+            <li>
+              <Link href={`tel:${phone}`}>
+                <div className="flex items-center gap-2 bg-[#01A859] text-white px-6 py-2 rounded-full primary-font text-base">
+                  <FaPhoneAlt /> <span>{phone}</span>
+                </div>
+              </Link>
+            </li>
+          )}
         </ul>
 
-        {/* Hamburger */}
+        {/* Mobile menu toggle */}
         <div
-          className="lg:hidden text-xl cursor-pointer"
-          onClick={() => setMenuOpen(!menuOpen)}
+          className="lg:hidden text-2xl cursor-pointer"
+          onClick={() => setMenuOpen(true)}
         >
-          {menuOpen ? <FaTimes /> : <FaBars />}
+          <FaBars />
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Fullscreen Mobile Menu */}
       {menuOpen && (
-        <div className="lg:hidden bg-black/1 w-full  p-6 flex flex-col gap-4">
-          {menus?.map((link: any) => {
-            const isActive = pathname === link.url;
-            const hasDropdown = link.submenu && link.submenu.length > 0;
-            const isDropdownOpen = activeDropdown === link.title;
+        <div className="fixed inset-0 z-100 bg-black text-white flex flex-col">
+          {/* Header inside menu */}
+          <div className="flex justify-between items-center px-6 py-4 border-b border-gray-700">
+            <Link href="/" onClick={() => setMenuOpen(false)}>
+              {logo && (
+                <Image
+                  src={logo}
+                  alt="Logo"
+                  width={150}
+                  height={60}
+                  className="object-contain"
+                />
+              )}
+            </Link>
+            <button className="text-2xl" onClick={() => setMenuOpen(false)}>
+              <FaTimes />
+            </button>
+          </div>
 
-            return (
-              <div
-                key={link.id}
-                className="flex flex-col text-base primary-font"
-              >
+          {/* Menu Items */}
+          <div className="flex-1 flex flex-col gap-6 p-6 overflow-y-auto">
+            {menus?.map((link: any) => {
+              const isActive = pathname === link.url;
+              return (
                 <button
-                  className={`text-white font-medium text-left ${
-                    isActive ? "text-[#01A859]" : ""
+                  key={link.id}
+                  className={`text-left text-lg font-medium ${
+                    isActive ? "text-[#01A859]" : "text-white"
                   }`}
-                  onClick={() =>
-                    hasDropdown
-                      ? setActiveDropdown(isDropdownOpen ? null : link.title)
-                      : handleLinkClick(link.url)
-                  }
+                  onClick={() => handleLinkClick(link.url)}
                 >
                   {link.title}
                 </button>
-              </div>
-            );
-          })}
+              );
+            })}
 
-          {/* Mobile Call */}
-          {/* {contact?.phone && ( */}
-          <Link href={`tel:${1234567890}`}>
-            <div className="flex items-center gap-2 bg-[#01A859] text-white px-6 py-2 rounded-full font-semibold mt-4 primary-font">
-              <FaPhoneAlt /> <span>{1234567890}</span>
-            </div>
-          </Link>
-          {/* )} */}
+            {phone && (
+              <Link href={`tel:${phone}`} onClick={() => setMenuOpen(false)}>
+                <div className="flex items-center gap-2 bg-[#01A859] text-white px-6 py-3 rounded-full font-semibold mt-6">
+                  <FaPhoneAlt /> <span>{phone}</span>
+                </div>
+              </Link>
+            )}
+          </div>
         </div>
       )}
     </nav>

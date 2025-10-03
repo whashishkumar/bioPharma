@@ -24,7 +24,7 @@ export default function AllProductsList({ category }: any) {
   const { data } = categoryList || {};
   const { data: productsTypes = [] } = productTypeList || {};
 
-  // Handle case where allProductsList might be an array or object with pagination
+  //Handle case where allProductsList might be an array or object with pagination
   const isArrayResponse = Array.isArray(allProductsList);
   const currentPageFromApi = isArrayResponse
     ? 1
@@ -83,12 +83,12 @@ export default function AllProductsList({ category }: any) {
   };
 
   return (
-    <div>
+    <div className="py-12">
       {loadingProducts ? (
         <Loader />
       ) : (
         <div className="sub-container">
-          <div className="grid grid-cols-1 md:grid-cols-[20%_75%] gap-5 md:gap-[5%] py-16">
+          <div className="grid grid-cols-1 md:grid-cols-[20%_75%] gap-5 md:gap-[5%] ">
             <div className="w-full md:w-auto md:sticky md:top-8 self-start order-1 md:order-none">
               <Sidebar
                 categories={data}
@@ -96,7 +96,6 @@ export default function AllProductsList({ category }: any) {
                 selectedCategory={selectedCategory || ""}
               />
             </div>
-
             <div className="w-full">
               <ProductListing
                 filteredProducts={products}

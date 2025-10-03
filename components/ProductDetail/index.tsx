@@ -15,20 +15,20 @@ export default function ProductDetail({ slug }: any) {
     fetchSingleProductDetail(slug);
   }, []);
 
-  console.log(deailPageLoader, "deailPageLoader");
-
   return (
     <div className="sub-container">
-      {deailPageLoader ? (
-        <Loader />
-      ) : (
-        <div className="grid grid-cols-1  lg:grid-cols-2 py-12 gap-10">
-          <div className="flex justify-center items-center">
-            <ProductDescription singleProduct={product} />
+      <div className="py-12">
+        {deailPageLoader ? (
+          <Loader />
+        ) : (
+          <div className="grid grid-cols-1  lg:grid-cols-2  gap-10">
+            <div className="flex justify-center items-center">
+              <ProductDescription singleProduct={product} />
+            </div>
+            <EnquiryForm productName={title} />
           </div>
-          <EnquiryForm productName={title} />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

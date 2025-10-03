@@ -3,17 +3,12 @@ import { useLandingPageContext } from "@/context/LandingPageContext";
 import PageTitle from "@/ui/PageTitle";
 import Image from "next/image";
 import React, { useEffect } from "react";
-
-const certifications = [
-  { id: 1, src: "/images/certifacation.png", alt: "Certification 1" },
-  { id: 2, src: "/images/c1.png", alt: "Certification 2" },
-  { id: 3, src: "/images/c2.png", alt: "Certification 3" },
-  { id: 4, src: "/images/c3.png", alt: "Certification 4" },
-  { id: 5, src: "/images/c4.png", alt: "Certification 5" },
-  { id: 6, src: "/images/c2.png", alt: "Certification 3" },
-];
+import { useRef, useState } from "react";
+import { FaPlay, FaPause } from "react-icons/fa";
 
 export default function OurCertification() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
   const { loading, ourCertification, fetchOurCertifacation } =
     useLandingPageContext();
 
@@ -23,6 +18,18 @@ export default function OurCertification() {
     section_sub_heading,
     custom_fields,
   }: any = ourCertification || {};
+
+  const togglePlay = () => {
+    if (!videoRef.current) return;
+
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+      setIsPlaying(true);
+    } else {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    }
+  };
 
   useEffect(() => {
     fetchOurCertifacation();
@@ -56,7 +63,29 @@ export default function OurCertification() {
           </div>
         </div>
       </div>
-      <Image src={"/images/play.png"} alt={"play"} height={800} width={1820} />
+      {/* <Image src={"/images/play.png"} alt={"play"} height={800} width={1820} /> */}
+      <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden bg-gray-100">
+        <video
+          ref={videoRef}
+          loop
+          muted
+          playsInline
+          preload="auto"
+          poster="/images/play.png"
+          className="w-full h-full object-cover"
+        >
+          <source src="/videos/pharma1.mp4" type="video/mp4" />
+          <source src="/videos/pharma.mp4" type="video/webm" />
+          Your browser does not support this video.
+        </video>
+
+        <button
+          onClick={togglePlay}
+          className="absolute inset-0 flex items-center justify-center text-white text-5xl opacity-80 hover:opacity-100 transition"
+        >
+          {isPlaying ? <FaPause /> : <FaPlay />}
+        </button>
+      </div>
     </div>
   );
 }
