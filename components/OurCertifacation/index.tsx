@@ -66,7 +66,7 @@ export default function OurCertification() {
         </div>
       </div>
       {/* <Image src={"/images/play.png"} alt={"play"} height={800} width={1820} /> */}
-      <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden bg-gray-100">
+      <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden">
         {image && (
           <div>
             <video
