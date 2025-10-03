@@ -32,7 +32,7 @@ export default function Button({
       {...rest}
     >
       {children}
-      {showIcon && <ArrowRight className="w-4 h-4" />}
+      {showIcon && <ArrowRight className="w-4 h-4 rotate-340" />}
     </button>
   );
 }
