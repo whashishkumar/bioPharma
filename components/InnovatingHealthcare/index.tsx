@@ -93,7 +93,7 @@ export default function InnovatingHealthcare() {
                           />
                         )}
                       </div>
-                      <h3 className="text-lg font-semibold text-[#172C45] leading-[23px] w-auto  min-w-[99px] w-auto max-w-[110px]  ">
+                      <h3 className="text-lg font-semibold text-[#172C45] leading-[23px] w-auto   w-auto max-w-[110px]  ">
                         {custom_data?.[0]?.name}
                       </h3>
                     </div>
@@ -119,7 +119,7 @@ export default function InnovatingHealthcare() {
                           />
                         )}
                       </div>
-                      <h3 className="text-lg font-semibold text-[#172C45] leading-[23px] min-w-[99px] w-auto max-w-[110px]  ">
+                      <h3 className="text-lg font-semibold text-[#172C45] leading-[23px]  w-auto max-w-[110px]  ">
                         {custom_data?.[1]?.name}
                       </h3>
                     </div>

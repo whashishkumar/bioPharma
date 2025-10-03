@@ -38,7 +38,7 @@ export default function ProductCard({
     return (
       <div
         className="bg-white rounded-lg overflow-hidden flex flex-col border border-black/5 hover:shadow-md transition
-                flex-1 min-w-[250px] max-w-[350px] "
+                flex-1 max-w-[350px] "
       >
         {/* Image Section */}
         <div className="w-full h-[150px] flex items-center justify-center">

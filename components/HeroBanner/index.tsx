@@ -65,7 +65,7 @@ export default function HeroBanner({
           <div className="hero-sub-container">
             <Header />
             {innerBanner ? (
-              <div className="flex justify-center mt-16">
+              <div className="flex justify-center pt-16">
                 <PageTitle
                   heading={heroData?.section_name}
                   headingClass="text-[2.875rem] mt-2 font-normal text-[#fff] leading-[3.438rem]"
