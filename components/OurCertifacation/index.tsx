@@ -41,7 +41,7 @@ export default function OurCertification() {
         <div className="py-16">
           <PageTitle
             tag={section_name}
-            tagClass="border border-[#172C451A] rounded-full w-[160px] p-2 text-sm capitalize text-[#172C45] leading-[16px] mb-4"
+            tagClass="border border-[#172C451A] rounded-full max-w-[160px] w-full sm:w-auto p-2 text-sm capitalize text-[#172C45] leading-[16px] mb-4"
             heading={section_heading}
             headingClass="text-[2.875rem] mt-2 font-normal text-[#172C45] leading-[3.438rem]"
             subHeading={section_sub_heading}

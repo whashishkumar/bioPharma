@@ -61,7 +61,7 @@ export default function HeroBanner({
                 : `url(${heroData?.image}`,
             }}
           />
-          <div className={`absolute inset-0 bg-black/55 z-[-1]`} />
+          <div className={`absolute inset-0 bg-black/40 z-[-1]`} />
           <div className="hero-sub-container">
             <Header />
             {innerBanner ? (
@@ -78,7 +78,7 @@ export default function HeroBanner({
                   <div className="mb-30">
                     <PageTitle
                       tag={heroData?.tag}
-                      tagClass="text-white border rounded-full w-[180px] p-2 text-sm capitalize"
+                      tagClass="text-white border rounded-full max-w-[180px] w-full sm:w-auto p-2 text-sm capitalize"
                       heading={heroData?.section_name}
                       headingClass="text-[2.875rem] mt-2 font-normal text-[#fff] leading-[3.438rem]"
                       subHeading={heroData?.section_heading}

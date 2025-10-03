@@ -177,7 +177,7 @@ export default function AboutPharma() {
               alt="Unique overlay"
               width={220}
               height={300}
-              className="absolute -left-10 bottom-[-30]  w-32 sm:w-40 md:w-52 lg:w-[300px] object-contain"
+              className="absolute -left-10 bottom-[-30] w-[32%] sm:w-[40%] md:w-[45%] lg:w-[50%] object-contain"
             />
           )}
         </div>

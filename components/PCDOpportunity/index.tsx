@@ -60,7 +60,7 @@ export default function PcdOppurnity() {
               <div>
                 <PageTitle
                   tag={section_name}
-                  tagClass="border border-[#00A859] rounded-full w-[240px] p-2 text-sm capitalize text-[#172C45] leading-[16px]"
+                  tagClass="border border-[#00A859] rounded-full max-w-[240px] w-full sm:w-auto p-2 text-sm capitalize text-[#172C45] leading-[16px]"
                   heading={section_heading}
                   headingClass="text-[2.875rem] mt-2 font-normal text-[#172C45] leading-[3.438rem] mt-6"
                   subHeading={section_sub_heading}
@@ -80,7 +80,7 @@ export default function PcdOppurnity() {
                           />
                         </div>
                       )}
-                      <div className="flex flex-col max-w-[472px]">
+                      <div className="flex flex-col w-full max-w-[472px]">
                         <h3 className="text-lg font-semibold text-xl text-[#172C45] sanchez leading-[26px]">
                           {item.name}
                         </h3>

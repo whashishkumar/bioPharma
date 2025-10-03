@@ -4,30 +4,6 @@ import PageTitle from "@/ui/PageTitle";
 import Image from "next/image";
 import React, { useEffect } from "react";
 
-const missionItems = [
-  {
-    id: 1,
-    title: "Mission",
-    description:
-      "Biobox Pharma is dedicated to improving global health through innovative and effective pharmaceutical solutions. We strive to ensure quality, affordability, and accessibility for every patient.",
-    icon: "/icons/whyIcon.png",
-  },
-  {
-    id: 2,
-    title: "Vision",
-    description:
-      "Our vision is to lead the pharmaceutical industry with groundbreaking research and development, ensuring a healthier future for communities worldwide.",
-    icon: "/icons/whyIcon.png",
-  },
-  {
-    id: 3,
-    title: "Values",
-    description:
-      "Integrity, innovation, and patient-centricity are the core values that guide every decision and action at Biobox Pharma.",
-    icon: "/icons/whyIcon.png",
-  },
-];
-
 export default function WhyChooseUs() {
   const { whyToChooseus, fetchWhyToChooseUs } = useLandingPageContext();
   const { section_name, section_heading, image, custom_fields }: any =
@@ -43,7 +19,7 @@ export default function WhyChooseUs() {
         <div className="sub-container">
           <div className="py-16 grid grid-cols-1 lg:grid-cols-2 gap-15">
             <div className="flex justify-center items-center">
-              <div className="relative w-full h-64 sm:h-[320px] md:h-[350px] lg:w-[605px] lg:h-[500px]">
+              <div className="relative w-full h-64 sm:h-[320px] md:h-[350px] lg:w-[90%] lg:h-[500px]">
                 {image && (
                   <Image
                     src={image}
@@ -60,7 +36,7 @@ export default function WhyChooseUs() {
             <div className="flex justify-center items-center flex-col">
               <PageTitle
                 tag={section_name}
-                tagClass="border rounded-full w-[160px] p-2 text-sm capitalize text-[#172C45] leading-[16px]"
+                tagClass="border rounded-full max-w-[160px] w-full sm:w-auto p-2 text-sm capitalize text-[#172C45] leading-[16px]"
                 subHeading={section_heading}
                 subHeadingClass="text-[1.75rem] font-normal mt-2 text-[#45566A] leading-[25px] mt-8"
               />
@@ -76,8 +52,8 @@ export default function WhyChooseUs() {
                         className="object-contain shrink-0"
                       />
                     )}
-                    <div className="flex-1 w-[663px]">
-                      <p className="bg-[#00A859] w-[86px] h-[33px] rounded-lg flex justify-center items-center text-base font-semibold text-white mb-2">
+                    <div className="flex-1 w-full max-w-[663px]">
+                      <p className="bg-[#00A859] min-w-[86px]  max-w-[102px] px-3 h-[33px] rounded-lg flex justify-center items-center text-base font-semibold text-white mb-2">
                         {item.name}
                       </p>
                       <span className="text-base font-normal primary-font text-[#45566A]">

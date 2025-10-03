@@ -65,7 +65,7 @@ export default function BlogDescription({ slug }: any) {
                 />
               )}
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-[#172C45] mb-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-[#172C45] mb-4 poppins">
               {data?.name}
             </h1>
             <div className="flex flex-wrap gap-2 mb-4">
@@ -83,7 +83,7 @@ export default function BlogDescription({ slug }: any) {
               {data?.tags.map((tag: any) => (
                 <span
                   key={tag.id}
-                  className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full"
+                  className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-full "
                 >
                   {tag.name}
                 </span>

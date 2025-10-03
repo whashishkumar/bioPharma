@@ -46,7 +46,7 @@ export default function InnovatingHealthcare() {
                 )}
                 <div className="absolute top-0 left-0 w-full h-full bg-black/10 rounded-3xl"></div>
               </div>
-              <div className="absolute bottom-[60px] left-[80px]  bg-white/40  backdrop-blur-[25px] p-4 w-[240px] rounded-lg border border-[#FFFFFF1A]">
+              <div className="absolute bottom-[5%] left-[5%] lg:left-[10%] lg:bottom-[15%] bg-white/40 backdrop-blur-[25px] p-4 w-[85%] sm:w-[60%] lg:w-[240px] rounded-lg border border-[#FFFFFF1A]">
                 <div className="flex -space-x-2 mt-2 justify-center">
                   <div className="flex -space-x-3">
                     {avatars.map((avatar) => (
@@ -72,11 +72,12 @@ export default function InnovatingHealthcare() {
             <div>
               <PageTitle
                 tag={section_name}
-                tagClass="border rounded-full w-[160px] p-2 text-sm capitalize text-[#172C45] leading-[16px]"
+                tagClass="border rounded-full max-w-[160px] w-full sm:w-auto p-2 text-sm capitalize text-[#172C45] leading-[16px]"
                 heading={section_heading}
                 headingClass="text-[2.875rem] mt-2 font-normal  text-[#172C45]  leading-[3.438rem]"
                 subHeading={section_sub_heading}
-                subHeadingClass="text-base font-normal mt-2 text-[ #45566A] leading-[25px]"
+                subHeadingClass="text-base font-normal mt-2 text-[ #45566A] leading-[25px] 
+"
               />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div className="space-y-4 mt-4">
@@ -93,7 +94,7 @@ export default function InnovatingHealthcare() {
                           />
                         )}
                       </div>
-                      <h3 className="text-lg font-semibold text-[#172C45] leading-[23px]  w-[99px]">
+                      <h3 className="text-lg font-semibold text-[#172C45] leading-[23px] w-auto  min-w-[99px] w-auto max-w-[110px]  ">
                         {custom_data?.[0]?.name}
                       </h3>
                     </div>
@@ -119,7 +120,7 @@ export default function InnovatingHealthcare() {
                           />
                         )}
                       </div>
-                      <h3 className="text-lg font-semibold text-[#172C45] leading-[23px] w-[99px]">
+                      <h3 className="text-lg font-semibold text-[#172C45] leading-[23px] min-w-[99px] w-auto max-w-[110px]  ">
                         {custom_data?.[1]?.name}
                       </h3>
                     </div>
@@ -137,7 +138,7 @@ export default function InnovatingHealthcare() {
                   />
                 </div>
 
-                <div>
+                {/* <div>
                   {images?.[1] && (
                     <Image
                       src={images?.[1]}
@@ -145,6 +146,17 @@ export default function InnovatingHealthcare() {
                       width={300}
                       height={274}
                       className="rounded-xl object-cover"
+                    />
+                  )}
+                </div> */}
+                <div className="relative w-full h-64 md:h-80 lg:h-96 rounded-xl overflow-hidden">
+                  {images?.[1] && (
+                    <Image
+                      src={images[1]}
+                      alt="Laboratory"
+                      fill
+                      className="object-cover rounded-xl"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   )}
                 </div>

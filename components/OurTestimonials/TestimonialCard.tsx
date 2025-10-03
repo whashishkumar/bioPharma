@@ -5,7 +5,7 @@ export default function TestimonialCard({ id, value, name, image }: any) {
     <div>
       <div key={id} className="bg-[#fff] rounded-2xl  overflow-hidden">
         <div className="flex flex-col md:flex-row h-full">
-          <div className="relative bg-[#183B56] w-[260px]  md:flex-[1]">
+          <div className="relative bg-[#183B56] w-full md:w-[35%] lg:flex-[1]">
             <Image
               src={image}
               alt={name}

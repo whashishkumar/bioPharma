@@ -118,7 +118,7 @@ export default function Blogs() {
               {data?.map((blog: any) => (
                 <div
                   key={blog.id}
-                  className="bg-white flex flex-col h-full shadow-md rounded-2xl overflow-hidden hover:shadow-xl transition-shadow red-hat"
+                  className="bg-white flex flex-col h-full shadow-md rounded-2xl overflow-hidden hover:shadow-xl transition-shadow poppins"
                 >
                   <div className="relative h-60 w-full">
                     {blog.image && (
@@ -134,10 +134,10 @@ export default function Blogs() {
                   </div>
 
                   <div className="flex flex-col flex-grow p-6">
-                    <h2 className="text-lg font-semibold text-[#172C45] mb-4 red-hat mb-2">
+                    <h2 className="text-lg font-semibold text-[#172C45] mb-4 poppins mb-2  ">
                       {blog.name}
                     </h2>
-                    <p className="text-base text-[#172C45] red-hat line-clamp-3 mb-4">
+                    <p className="text-base text-[#172C45] poppins line-clamp-3 mb-4 font-normal">
                       {blog.description}
                     </p>
                     {blog.content && (
@@ -147,11 +147,11 @@ export default function Blogs() {
                     )}
 
                     {blog.categories && (
-                      <div className="flex flex-wrap gap-2 mb-4">
+                      <div className="flex flex-wrap gap-2 mb-4 ">
                         {blog.categories.map((cat: any) => (
                           <span
                             key={cat.id}
-                            className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full"
+                            className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full red-hat"
                           >
                             {cat.name}
                           </span>

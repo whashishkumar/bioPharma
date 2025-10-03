@@ -62,7 +62,7 @@ export default function OurServices() {
               alt="Service"
               width={400}
               height={550}
-              className="lg:w-[550px] h-auto object-contain  md:w-full "
+              className="w-full lg:max-w-[550px] h-auto object-contain"
             />
           )}
           <div className="flex flex-col gap-4 py-6 text-left mt-10">
@@ -84,7 +84,7 @@ export default function OurServices() {
               alt={"Service"}
               width={400}
               height={550}
-              className="lg:w-[550px] h-auto object-contain md:w-full  "
+              className="w-full lg:max-w-[550px] h-auto object-contain"
             />
           )}
           {ourServicesData && (

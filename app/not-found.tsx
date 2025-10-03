@@ -4,8 +4,8 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <div className="relative flex flex-col items-center justify-center h-screen text-center  px-5 overflow-hidden">
-      <div className="absolute bottom-[-40px] left-[-60px] w-[220px] h-[220px] bg-product-category rounded-full"></div>
-      <div className="absolute top-[-80px] right-[-80px] w-[300px] h-[300px] bg-product-category rounded-full"></div>
+      <div className="absolute bottom-[-40px] left-[-60px] w-[30vw] h-[30vw] max-w-[220px] max-h-[220px] bg-product-category rounded-full"></div>
+      <div className="absolute top-[-80px] right-[-80px] w-[40vw] h-[40vw] max-w-[300px] max-h-[300px] bg-product-category rounded-full"></div>
       <h1 className="text-[8rem] font-bold text-gray-900 mb-3 font-red-hat-display z-10">
         404
       </h1>

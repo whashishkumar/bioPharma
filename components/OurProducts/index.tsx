@@ -43,7 +43,7 @@ export default function OurProducts() {
         <div className="py-16">
           <PageTitle
             tag={section_name}
-            tagClass="border border-[#172C451A] rounded-full w-[160px] p-2 text-sm capitalize text-[#172C45] leading-[16px] mb-4"
+            tagClass="border border-[#172C451A] rounded-full max-w-[160px] w-full sm:w-auto p-2 text-sm capitalize text-[#172C45] leading-[16px] mb-4"
             heading={section_heading}
             headingClass="text-[2.875rem] mt-2 font-normal text-[#172C45] leading-[3.438rem]"
             subHeading={section_sub_heading}
@@ -58,7 +58,7 @@ export default function OurProducts() {
               spaceBetween={10}
               autoPlay={false}
             > */}
-            {product_categories?.map((product: any) => (
+            {product_categories?.slice(0, 8)?.map((product: any) => (
               <div
                 key={product.id}
                 onClick={() => handleSelectProductType(product.slug)}

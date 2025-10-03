@@ -42,6 +42,12 @@ const sanchez = localFont({
   variable: "--font-sanchez",
 });
 
+const poppins = localFont({
+  src: "../public/fonts/Poppins-SemiBold.ttf",
+  weight: "400",
+  variable: "--font-poppins",
+});
+
 const marope = localFont({
   src: "../public/fonts/Manrope-Medium.ttf",
   weight: "400",
@@ -65,7 +71,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${sora.variable} ${marope.variable} ${redHatDisplay.variable} ${sanchez.variable} antialiased`}
+        className={`${sora.variable} ${marope.variable} ${redHatDisplay.variable} ${sanchez.variable} ${poppins.variable} antialiased grayscale`}
       >
         <AuthProvider>
           <Providers>{children}</Providers>

@@ -57,7 +57,7 @@ const BlogPostCard = ({ blogs }: any) => {
               )}
             </div>
             <div className="py-6 flex flex-col flex-grow">
-              <p className="text-lg font-semibold text-[#172C45] mb-4 red-hat">
+              <p className="text-lg text-[#172C45] mb-4 red-hat font-semibold poppins">
                 {item?.name}
               </p>
               <button

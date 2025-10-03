@@ -63,7 +63,7 @@ export default function PharmaCategories() {
           <div className="py-16">
             <PageTitle
               tag={section_name}
-              tagClass="border border-[#00A859] rounded-full w-[180px] p-2 text-sm capitalize text-[#172C45] leading-[16px] mb-4"
+              tagClass="border border-[#00A859] rounded-full max-w-[180px] w-full sm:w-auto p-2 text-sm capitalize text-[#172C45] leading-[16px] mb-4"
               heading={section_heading}
               headingClass="text-[2.875rem] mt-2 font-normal  text-[#172C45] leading-[3.438rem]"
               subHeading={section_sub_heading}
@@ -76,7 +76,10 @@ export default function PharmaCategories() {
                 const imagePath = process.env.NEXT_PUBLIC_IMAGE_PATH;
                 const imageUrl = `${baseUrl}${imagePath}/${cat.image}`;
                 return (
-                  <div key={cat.id} className="w-[299px]">
+                  <div
+                    key={cat.id}
+                    className="w-full sm:w-[calc(50%-12px)] md:w-[calc(33.33%-16px)] lg:w-[calc(25%-18px)] max-w-[299px]"
+                  >
                     {cat.image && (
                       <Image
                         src={cat.image}

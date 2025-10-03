@@ -11,7 +11,7 @@ export default function BenifitCard({ cardData }: any) {
         return (
           <div
             key={id}
-            className="flex bg-white rounded-xl shadow-md overflow-hidden max-w-[560px] "
+            className="flex bg-white rounded-xl shadow-md overflow-hidden w-full max-w-[560px]"
           >
             {card.image && (
               <div className="w-50 h-full flex-shrink-0">
