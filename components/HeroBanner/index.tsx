@@ -78,12 +78,11 @@ export default function HeroBanner({
                   <div className="mb-30">
                     <PageTitle
                       tag={heroData?.tag}
-                      tagClass="text-white border rounded-full w-auto inline-block px-4 py-2 text-sm capitalize"
-                      // tagClass="text-white border rounded-full max-w-[180px] w-full sm:w-auto p-2 text-sm capitalize"
+                      tagClass="text-white border rounded-full w-auto inline-block px-4 py-2 text-sm capitalize pb-3"
                       heading={heroData?.section_name}
-                      headingClass="text-[2.875rem] mt-2 font-normal text-[#fff] leading-[3.438rem]"
+                      headingClass="text-[2.875rem] mt-6 font-normal text-[#fff] leading-[3.438rem]"
                       subHeading={heroData?.section_heading}
-                      subHeadingClass="text-xl font-normal mt-2 text-white tracking-wide"
+                      subHeadingClass="text-[1.5rem] font-normal mt-1 text-white leading-[3.438rem] "
                     />
                     {/* buttons */}
                     <div className="lg:flex gap-8 mt-6">
@@ -101,7 +100,7 @@ export default function HeroBanner({
                     {/* stats + avatars */}
                     <div className="flex flex-col md:flex-row items-center gap-8 mt-10 text-center md:text-left">
                       <div className="primary-font font-bold text-3xl flex flex-col md:flex-row items-center gap-2">
-                        <h4>{heroData?.years}</h4>
+                        <h4 className="text-4xl">{heroData?.years}</h4>
                         <p className="primary-font font-normal text-sm whitespace-pre-line ">
                           {/* {heroData?.years_label} */}
                           {heroData?.years_label?.replace(
@@ -110,14 +109,14 @@ export default function HeroBanner({
                           )}
                         </p>
                       </div>
-                      <div className="flex -space-x-2">
+                      <div className="flex -space-x-3">
                         {heroData?.members_images?.map(
                           (avatar: any, id: any) => (
                             <img
                               key={id}
                               src={`${avatar}`}
                               alt={"avaor"}
-                              className="inline-block h-10 w-10 rounded-full ring-2 ring-white object-contain"
+                              className="inline-block h-12 w-12 rounded-full  object-cover"
                             />
                           )
                         )}

@@ -42,7 +42,7 @@ const PageTitle: React.FC<PageTitleProps> = ({
         )}
       </div>
       {subHeading && (
-        <p className={`sub-heading-title  primary-font${subHeadingClass}`}>
+        <p className={`sub-heading-title  primary-font ${subHeadingClass}`}>
           {subHeading}
         </p>
       )}

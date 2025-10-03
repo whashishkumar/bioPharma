@@ -29,7 +29,7 @@ export default function ProductListing({
       <div className="sticky top-0 z-50 bg-white py-4">
         <div className="flex flex-wrap gap-3 ">
           <SwipeSlider
-            slidesPerView={6}
+            slidesPerView={5}
             bottomSwipeBtn={false}
             swipebtn={true}
             spaceBetween={10}

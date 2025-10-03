@@ -22,8 +22,7 @@ export default function Button({
 
   const variants = {
     primary: "bg-[#00A859] hover:bg-green-600 text-white",
-    secondary:
-      "bg-transparent border border-green-500 text-green-600 hover:bg-green-50 hover:border-white",
+    secondary: "bg-transparent border border-green-500 text-green-600 ",
   };
 
   return (

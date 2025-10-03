@@ -82,12 +82,12 @@ export default function OurCertification() {
               <source src="/videos/pharma.mp4" type="video/webm" />
               Your browser does not support this video.
             </video>
-            <button
+            {/* <button
               onClick={togglePlay}
               className="absolute inset-0 flex items-center justify-center text-white text-5xl opacity-80 hover:opacity-100 transition cursor-pointer"
             >
               {isPlaying ? <FaPause /> : <FaPlay />}
-            </button>
+            </button> */}
           </div>
         )}
       </div>

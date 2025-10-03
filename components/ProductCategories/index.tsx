@@ -107,7 +107,6 @@ export default function ProductCategories() {
             <PageTitle
               tag="Products Categories"
               tagClass="border border-[#00A859] rounded-full px-4 py-2 text-sm capitalize text-[#172C45] leading-[16px] w-auto inline-block"
-              // tagClass="border border-[#00A859] rounded-full max-w-[180px] w-full sm:w-auto p-2 text-sm capitalize text-[#172C45] leading-[16px]"
               heading="Trusted Pharma Categories with Innovation, Quality, and Care"
               headingClass="text-[2.875rem] mt-2 font-normal text-[#172C45] leading-[3.438rem]"
               subHeading="From everyday health concerns to complex therapeutic needs, our product categories are designed to deliver trust and results. Covering General, Cardiac, Diabetic, Gynae, Ortho & more – we ensure complete care under one trusted name."
@@ -122,7 +121,7 @@ export default function ProductCategories() {
                 const iconImgUrl = `${baseUrl}${imagePath}/${card?.icon_image}`;
                 return (
                   <div key={card.id} className="group cursor-pointer w-full">
-                    <div className="relative h-[261px] w-full overflow-hidden rounded-xl bg-white">
+                    {/* <div className="relative h-[280px] w-full overflow-hidden rounded-xl bg-white">
                       {card.image && (
                         <Image
                           src={card.image}
@@ -159,6 +158,56 @@ export default function ProductCategories() {
                           </h3>
                           <p
                             className={`mt-1 text-base font-normal primary-font transition-colors duration-300 ${
+                              card.image
+                                ? "text-[#606B78] group-hover:text-white"
+                                : "text-[#606B78]"
+                            }`}
+                          >
+                            {card.desc}
+                          </p>
+                        </div>
+                      </div>
+                    </div> */}
+                    <div className="relative h-[280px] w-full overflow-hidden rounded-xl bg-white group">
+                      {card.image && (
+                        <Image
+                          src={card.image}
+                          alt={card.title}
+                          fill
+                          style={{ objectFit: "cover" }}
+                          className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        />
+                      )}
+
+                      <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#172C45]/0 via-[#172C45]/60 to-[#172C45] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                      <div className="relative z-20 flex h-full flex-col justify-between p-4 ">
+                        {/* Icon */}
+                        <div className="bg-[#00A859] h-14 w-14 rounded-full flex justify-center items-center">
+                          {card.icon_image && (
+                            <Image
+                              src={iconImgUrl}
+                              height={20}
+                              width={20}
+                              alt="icon"
+                              className="object-contain"
+                            />
+                          )}
+                        </div>
+
+                        {/* Text content */}
+                        <div className="flex-1 mt-2 flex flex-col justify-end">
+                          <h3
+                            className={`text-lg font-bold primary-font font-medium transition-colors duration-300 line-clamp-2 ${
+                              card.image
+                                ? "text-[#172C45] group-hover:text-white"
+                                : "text-[#172C45]"
+                            }`}
+                          >
+                            {card.title}
+                          </h3>
+                          <p
+                            className={`mt-1 text-base font-normal primary-font transition-colors duration-300 line-clamp-2 ${
                               card.image
                                 ? "text-[#606B78] group-hover:text-white"
                                 : "text-[#606B78]"

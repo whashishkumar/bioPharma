@@ -38,7 +38,7 @@ export default function WhyChooseUs() {
                 tag={section_name}
                 tagClass="border rounded-full px-4 py-2 text-sm capitalize text-[#172C45] leading-[16px] w-auto inline-block"
                 subHeading={section_heading}
-                subHeadingClass="text-[1.75rem] font-normal mt-2 text-[#45566A] leading-[25px] mt-8"
+                subHeadingClass="text-[1.75rem] font-normal mt-2 text-[#45566A]  mt-8"
               />
               <div className="grid grid-cols-1 gap-6 mt-8">
                 {custom_fields?.map((item: any, id: any) => (
