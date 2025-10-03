@@ -43,7 +43,7 @@ const sanchez = localFont({
 });
 
 const poppins = localFont({
-  src: "../public/fonts/Poppins-SemiBold.ttf",
+  src: "../public/fonts/Poppins-Regular.ttf",
   weight: "400",
   variable: "--font-poppins",
 });
