@@ -71,7 +71,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${sora.variable} ${marope.variable} ${redHatDisplay.variable} ${sanchez.variable} ${poppins.variable} antialiased grayscale`}
+        className={`${sora.variable} ${marope.variable} ${redHatDisplay.variable} ${sanchez.variable} ${poppins.variable} antialiased `}
       >
         <AuthProvider>
           <Providers>{children}</Providers>
