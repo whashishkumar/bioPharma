@@ -63,7 +63,8 @@ export default function PharmaCategories() {
           <div className="py-16">
             <PageTitle
               tag={section_name}
-              tagClass="border border-[#00A859] rounded-full max-w-[180px] w-full sm:w-auto p-2 text-sm capitalize text-[#172C45] leading-[16px] mb-4"
+              tagClass="border border-[#00A859] rounded-full px-4 py-2 text-sm capitalize text-[#172C45] leading-[16px] mb-4 w-auto inline-block"
+              // tagClass="border border-[#00A859] rounded-full max-w-[180px] w-full sm:w-auto p-2 text-sm capitalize text-[#172C45] leading-[16px] mb-4"
               heading={section_heading}
               headingClass="text-[2.875rem] mt-2 font-normal  text-[#172C45] leading-[3.438rem]"
               subHeading={section_sub_heading}

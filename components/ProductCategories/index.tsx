@@ -106,7 +106,8 @@ export default function ProductCategories() {
           <div className="py-16">
             <PageTitle
               tag="Products Categories"
-              tagClass="border border-[#00A859] rounded-full max-w-[180px] w-full sm:w-auto p-2 text-sm capitalize text-[#172C45] leading-[16px]"
+              tagClass="border border-[#00A859] rounded-full px-4 py-2 text-sm capitalize text-[#172C45] leading-[16px] w-auto inline-block"
+              // tagClass="border border-[#00A859] rounded-full max-w-[180px] w-full sm:w-auto p-2 text-sm capitalize text-[#172C45] leading-[16px]"
               heading="Trusted Pharma Categories with Innovation, Quality, and Care"
               headingClass="text-[2.875rem] mt-2 font-normal text-[#172C45] leading-[3.438rem]"
               subHeading="From everyday health concerns to complex therapeutic needs, our product categories are designed to deliver trust and results. Covering General, Cardiac, Diabetic, Gynae, Ortho & more – we ensure complete care under one trusted name."

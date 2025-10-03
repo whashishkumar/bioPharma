@@ -40,7 +40,7 @@ html {
   font-family: var(--font-poppins);
 }
 
-.container {
+/* .container {
   max-width: 100%;
   width: 95%;
   margin: 0 auto;
@@ -49,20 +49,45 @@ html {
 .hero-sub-container {
   max-width: 97%;
   margin: 0 auto;
-  /* padding: 0 2%; */
+  padding: 0 2%;
 }
 
 .hero-child-container {
   max-width: 90%;
   margin: 0 auto;
-  /* padding: 0 3%; */
+  padding: 0 3%;
 }
 
 .sub-container {
   max-width: 90%;
   margin: 0 auto;
-  /* padding: 0 3%; */
+  padding: 0 3%;
+} */
+
+/* Base container for general content */
+.container,
+.hero-sub-container,
+.hero-child-container,
+.sub-container {
+  width: 96%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 2%;
 }
+
+
+.hero-sub-container {
+  max-width: 1820px;
+}
+
+.hero-child-container {
+  max-width: 1270px;
+}
+
+.sub-container {
+  max-width: 1440px;
+}
+
 
 .bg-product-category {
   background-color: #E0FFF1;

@@ -10,15 +10,19 @@ interface MarqueeItem {
 
 interface MarqueeProps {
   items: MarqueeItem[];
-  speed?: number;
+  speed?: number; // pixels per second (higher = faster)
 }
 
-const Marquee: React.FC<MarqueeProps> = ({ items, speed = 50 }) => {
+const Marquee: React.FC<MarqueeProps> = ({ items, speed = 100 }) => {
+  const safeSpeed = speed > 0 ? speed : 50;
+
+  const duration = (items.length * 2 * 100) / safeSpeed;
+
   return (
-    <div className="overflow-hidden relative w-full bg-gray-100 h-[74px] flex items-center">
+    <div className="overflow-hidden relative w-full bg-[#E3F7FF] h-[74px] flex items-center">
       <div
         className="flex whitespace-nowrap animate-marquee"
-        style={{ animationDuration: `${speed * items.length}s` }}
+        style={{ animationDuration: `${duration}s` }}
       >
         {items.concat(items).map((item, index) => (
           <div

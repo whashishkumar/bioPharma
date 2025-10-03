@@ -17,6 +17,7 @@ export default function OurCertification() {
     section_heading,
     section_sub_heading,
     custom_fields,
+    image,
   }: any = ourCertification || {};
 
   const togglePlay = () => {
@@ -41,7 +42,8 @@ export default function OurCertification() {
         <div className="py-16">
           <PageTitle
             tag={section_name}
-            tagClass="border border-[#172C451A] rounded-full max-w-[160px] w-full sm:w-auto p-2 text-sm capitalize text-[#172C45] leading-[16px] mb-4"
+            tagClass="border border-[#172C451A] rounded-full px-4 py-2 text-sm capitalize text-[#172C45] leading-[16px] mb-4 w-auto inline-block"
+            // tagClass="border border-[#172C451A] rounded-full max-w-[160px] w-full sm:w-auto p-2 text-sm capitalize text-[#172C45] leading-[16px] mb-4"
             heading={section_heading}
             headingClass="text-[2.875rem] mt-2 font-normal text-[#172C45] leading-[3.438rem]"
             subHeading={section_sub_heading}
@@ -65,26 +67,29 @@ export default function OurCertification() {
       </div>
       {/* <Image src={"/images/play.png"} alt={"play"} height={800} width={1820} /> */}
       <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden bg-gray-100">
-        <video
-          ref={videoRef}
-          loop
-          muted
-          playsInline
-          preload="auto"
-          poster="/images/play.png"
-          className="w-full h-full object-cover"
-        >
-          <source src="/videos/pharma1.mp4" type="video/mp4" />
-          <source src="/videos/pharma.mp4" type="video/webm" />
-          Your browser does not support this video.
-        </video>
-
-        <button
-          onClick={togglePlay}
-          className="absolute inset-0 flex items-center justify-center text-white text-5xl opacity-80 hover:opacity-100 transition"
-        >
-          {isPlaying ? <FaPause /> : <FaPlay />}
-        </button>
+        {image && (
+          <div>
+            <video
+              ref={videoRef}
+              loop
+              muted
+              playsInline
+              preload="auto"
+              poster={image}
+              className="w-full h-full object-cover"
+            >
+              <source src="/videos/pharma1.mp4" type="video/mp4" />
+              <source src="/videos/pharma.mp4" type="video/webm" />
+              Your browser does not support this video.
+            </video>
+            <button
+              onClick={togglePlay}
+              className="absolute inset-0 flex items-center justify-center text-white text-5xl opacity-80 hover:opacity-100 transition cursor-pointer"
+            >
+              {isPlaying ? <FaPause /> : <FaPlay />}
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -36,7 +36,7 @@ export default function WhyChooseUs() {
             <div className="flex justify-center items-center flex-col">
               <PageTitle
                 tag={section_name}
-                tagClass="border rounded-full max-w-[160px] w-full sm:w-auto p-2 text-sm capitalize text-[#172C45] leading-[16px]"
+                tagClass="border rounded-full px-4 py-2 text-sm capitalize text-[#172C45] leading-[16px] w-auto inline-block"
                 subHeading={section_heading}
                 subHeadingClass="text-[1.75rem] font-normal mt-2 text-[#45566A] leading-[25px] mt-8"
               />

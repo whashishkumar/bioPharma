@@ -72,12 +72,11 @@ export default function InnovatingHealthcare() {
             <div>
               <PageTitle
                 tag={section_name}
-                tagClass="border rounded-full max-w-[160px] w-full sm:w-auto p-2 text-sm capitalize text-[#172C45] leading-[16px]"
+                tagClass="border rounded-full px-4 py-2 text-sm capitalize text-[#172C45] leading-[16px] w-auto inline-block"
                 heading={section_heading}
                 headingClass="text-[2.875rem] mt-2 font-normal  text-[#172C45]  leading-[3.438rem]"
                 subHeading={section_sub_heading}
-                subHeadingClass="text-base font-normal mt-2 text-[ #45566A] leading-[25px] 
-"
+                subHeadingClass="text-base font-normal mt-2 text-[ #45566A] leading-[25px]"
               />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div className="space-y-4 mt-4">
@@ -138,7 +137,7 @@ export default function InnovatingHealthcare() {
                   />
                 </div>
 
-                {/* <div>
+                <div className="flex justify-end">
                   {images?.[1] && (
                     <Image
                       src={images?.[1]}
@@ -146,17 +145,6 @@ export default function InnovatingHealthcare() {
                       width={300}
                       height={274}
                       className="rounded-xl object-cover"
-                    />
-                  )}
-                </div> */}
-                <div className="relative w-full h-64 md:h-80 lg:h-96 rounded-xl overflow-hidden">
-                  {images?.[1] && (
-                    <Image
-                      src={images[1]}
-                      alt="Laboratory"
-                      fill
-                      className="object-cover rounded-xl"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   )}
                 </div>

@@ -78,7 +78,8 @@ export default function HeroBanner({
                   <div className="mb-30">
                     <PageTitle
                       tag={heroData?.tag}
-                      tagClass="text-white border rounded-full max-w-[180px] w-full sm:w-auto p-2 text-sm capitalize"
+                      tagClass="text-white border rounded-full w-auto inline-block px-4 py-2 text-sm capitalize"
+                      // tagClass="text-white border rounded-full max-w-[180px] w-full sm:w-auto p-2 text-sm capitalize"
                       heading={heroData?.section_name}
                       headingClass="text-[2.875rem] mt-2 font-normal text-[#fff] leading-[3.438rem]"
                       subHeading={heroData?.section_heading}

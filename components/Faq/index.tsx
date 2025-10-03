@@ -61,7 +61,8 @@ export default function FaqSection() {
               <div>
                 <PageTitle
                   tag={section_name}
-                  tagClass="border border-[#172C451A] rounded-full max-w-[240px]  p-2 text-sm capitalize text-[#172C45] leading-[16px]"
+                  tagClass="border border-[#172C451A] rounded-full px-4 py-2 text-sm capitalize text-[#172C45] leading-[16px] inline-block"
+                  // tagClass="border border-[#172C451A] rounded-full max-w-[240px]  p-2 text-sm capitalize text-[#172C45] leading-[16px]"
                   heading={section_heading}
                   headingClass="text-[2.875rem] mt-2 font-normal text-[#172C45] leading-[3.438rem] mt-6"
                   subHeading={section_sub_heading}
