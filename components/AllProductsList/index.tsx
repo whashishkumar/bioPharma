@@ -10,6 +10,7 @@ import Loader from "@/ui/Loader";
 export default function AllProductsList({ category }: any) {
   const {
     loading,
+    productLoading,
     loadingProducts,
     categoryList,
     fetchAllCategoryList,
@@ -44,15 +45,16 @@ export default function AllProductsList({ category }: any) {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [selectedCategory, activeProduct]);
+  }, []);
 
-  // useEffect(() => {
-  //   fetchOurProductList({
-  //     mainCategory: selectedCategory || undefined,
-  //     subCategory: activeProduct || undefined,
-  //     currentPage,
-  //   });
-  // }, [selectedCategory, activeProduct, currentPage]);
+  useEffect(() => {
+    console.log("log1234567å");
+    fetchOurProductList({
+      mainCategory: selectedCategory || undefined,
+      subCategory: activeProduct || undefined,
+      currentPage,
+    });
+  }, [selectedCategory, activeProduct, currentPage]);
 
   useEffect(() => {
     fetchAllCategoryList();
@@ -84,7 +86,7 @@ export default function AllProductsList({ category }: any) {
 
   return (
     <div className="py-12">
-      {loadingProducts ? (
+      {productLoading ? (
         <Loader />
       ) : (
         <div className="sub-container">

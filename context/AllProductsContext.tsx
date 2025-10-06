@@ -1,10 +1,18 @@
 "use client";
 import api from "@/lib/axious";
-import { createContext, useContext, useState, ReactNode, useRef } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useRef,
+  useCallback,
+} from "react";
 
 interface AllProductsPageContextType {
   loading: boolean;
   loadingProducts: boolean;
+  productLoading: boolean;
   deailPageLoader: boolean;
   categoryList: any;
   productTypeList: any;
@@ -39,7 +47,7 @@ export function AllProductsPageProvider({
   const [loading, setLoading] = useState(false);
   const [loadingProducts, setLoadingProducts] = useState(false);
   const [deailPageLoader, setDeailPageLoader] = useState(false);
-
+  const [productLoading, setProductLoading] = useState(false);
   const [categoryList, setCategoryList] = useState<any[]>([]);
   const [productTypeList, setProductTypeList] = useState<any[]>([]);
   const [callUsBannerInfo, setCallUsBannerInfo] = useState<any[]>([]);
@@ -109,27 +117,31 @@ export function AllProductsPageProvider({
     });
   };
 
-  const fetchOurProductList = async ({
-    mainCategory,
-    subCategory,
-    currentPage = 1,
-  }: {
-    mainCategory?: string;
-    subCategory?: string;
-    currentPage?: number;
-  }) => {
-    setLoading(true);
-    try {
-      const parts = ["/our-products-list"];
-      if (mainCategory) parts.push(mainCategory);
-      if (subCategory) parts.push(subCategory);
-      const url = `${parts.join("/")}?page=${currentPage}`;
-      const res = await api.get(url);
-      setAllProductsList(res.data || []);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const fetchOurProductList = useCallback(
+    async ({
+      mainCategory,
+      subCategory,
+      currentPage = 1,
+    }: {
+      mainCategory?: string;
+      subCategory?: string;
+      currentPage?: number;
+    }) => {
+      setProductLoading(true);
+      try {
+        const parts = ["/our-products-list"];
+        if (mainCategory) parts.push(mainCategory);
+        if (subCategory) parts.push(subCategory);
+
+        const url = `${parts.join("/")}?page=${currentPage}`;
+        const res = await api.get(url);
+        setAllProductsList(res.data || []);
+      } finally {
+        setProductLoading(false);
+      }
+    },
+    [] // useCallback ensures this function is stable
+  );
 
   const fetchSingleProductDetail = async (productSlug: string) => {
     if (fetched.current.singleProductDetail) return;
@@ -179,6 +191,7 @@ export function AllProductsPageProvider({
         deailPageLoader,
         bannerInfo,
         fetchBannerInfo,
+        productLoading,
       }}
     >
       {children}
