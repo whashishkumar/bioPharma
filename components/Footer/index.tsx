@@ -12,8 +12,12 @@ export default function Footer() {
   const { logo, site_description, address, copyright, company_iframe }: any =
     data || {};
   const { social_icons, categories, quick_links }: any = menu || {};
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = (e: { target: any; preventDefault: () => void }) => {
+    const value = e.target.value;
     e.preventDefault();
+
+    console.log(email, "value");
+    setEmail("");
   };
 
   useEffect(() => {
