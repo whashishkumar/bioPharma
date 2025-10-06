@@ -15,7 +15,7 @@ interface BlogsContextType {
   loading: boolean;
   blogDetailLoading: boolean;
   blogDetail: Record<string, any>;
-  fetchBlogs: () => Promise<void>;
+  fetchBlogs: (page: any) => Promise<void>;
   fetchSingleBlog: (slug: string) => Promise<void>;
 }
 
@@ -43,10 +43,11 @@ export const BlogsProvider = ({ children }: { children: ReactNode }) => {
       setBlogDetailLoading(false);
     }
   };
-  const fetchBlogs = async () => {
+
+  const fetchBlogs = async (page: any) => {
     await withBlogLoading(async () => {
       try {
-        const res = await api.get("/posts");
+        const res = await api.get(`/posts?page=${page}&per_page=${12}`);
         setBlogs(res.data || []);
       } catch (err) {
         console.error("Failed to fetch blogs", err);

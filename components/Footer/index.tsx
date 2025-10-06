@@ -7,7 +7,8 @@ import { useLandingPageContext } from "@/context/LandingPageContext";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
-  const { footerData, fetchFooterList } = useLandingPageContext();
+  const { footerData, fetchFooterList, subScribeNewsLetter } =
+    useLandingPageContext();
   const { data, menu }: any = footerData;
   const { logo, site_description, address, copyright, company_iframe }: any =
     data || {};
@@ -15,8 +16,7 @@ export default function Footer() {
   const handleSubmit = (e: { target: any; preventDefault: () => void }) => {
     const value = e.target.value;
     e.preventDefault();
-
-    console.log(email, "value");
+    subScribeNewsLetter(email);
     setEmail("");
   };
 

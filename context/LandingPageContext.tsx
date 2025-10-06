@@ -33,6 +33,7 @@ interface LandingPageContextType {
   fetchPharmaProductsMenu: () => Promise<void>;
   fetchPharmaProducts: (slug?: string) => Promise<void>;
   fetchFooterList: () => Promise<void>;
+  subScribeNewsLetter: (email: string) => Promise<void>;
 }
 
 const LandingPageContext = createContext<LandingPageContextType | undefined>(
@@ -79,6 +80,7 @@ export function LandingPageProvider({ children }: LandingPageProviderProps) {
     pharmaProducts: false,
     footerData: false,
     pharmaProductsMenu: false,
+    isSubscribed: false,
   });
 
   // Helper to manage loading across multiple calls
@@ -230,8 +232,21 @@ export function LandingPageProvider({ children }: LandingPageProviderProps) {
     });
   };
 
+  const subScribeNewsLetter = async (email: string) => {
+    if (fetched.current.isSubscribed) return;
+    return await withLoading(async () => {
+      try {
+        const res = await api.post("/subscription", { email });
+        return res.data;
+      } catch (error) {
+        console.error("Failed to subscribe:", error);
+        throw error;
+      }
+    });
+  };
+
   const fetchBlogsBanner = async () => {
-    if (fetched.current.ourBlogs || ourBlogs.length > 0) return;
+    if (fetched.current.isSubscribed || ourBlogs.length > 0) return;
     await withLoading(async () => {
       try {
         const res = await api.get("/home/blogs");
@@ -316,6 +331,7 @@ export function LandingPageProvider({ children }: LandingPageProviderProps) {
         fetchFooterList,
         pharmaProductsMenu,
         fetchPharmaProducts,
+        subScribeNewsLetter,
       }}
     >
       {children}

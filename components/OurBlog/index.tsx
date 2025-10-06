@@ -16,7 +16,7 @@ export default function OurBlogs() {
   const { section_heading, section_name, data: ourBlogsData }: any = ourBlogs;
   const { data: blogsData }: any = blogs;
   useEffect(() => {
-    fetchBlogs();
+    fetchBlogs(1);
     fetchBlogsBanner();
   }, []);
 
