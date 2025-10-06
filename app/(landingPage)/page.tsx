@@ -30,8 +30,8 @@ export default function Home() {
   const { login } = useAuth();
 
   useEffect(() => {
-    const email = process.env.NEXT_USER_AUTH_EMAIL;
-    const password = process.env.NEXT_USER_AUTH_PASSWORD;
+    const email = process.env.NEXT_PUBLIC_USER_AUTH_EMAIL;
+    const password = process.env.NEXT_PUBLIC_USER_AUTH_PASSWORD;
     if (email && password) {
       login(email, password);
     }
