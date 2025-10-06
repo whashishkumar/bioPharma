@@ -7,6 +7,8 @@ import { useLandingPageContext } from "@/context/LandingPageContext";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
   const { footerData, fetchFooterList, subScribeNewsLetter } =
     useLandingPageContext();
   const { data, menu }: any = footerData;
@@ -18,6 +20,8 @@ export default function Footer() {
     e.preventDefault();
     subScribeNewsLetter(email);
     setEmail("");
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 3000);
   };
 
   useEffect(() => {
@@ -28,7 +32,7 @@ export default function Footer() {
     <div className="hero-sub-container">
       <div className="bg-[#172C45] rounded-2xl mb-4">
         <div className="sub-container">
-          <footer className="text-white rounded-lg relative overflow-hidden grid md:grid-cols-[60%_40%] lg:grid-cols-[75%_25%] py-5 ">
+          <footer className="text-white rounded-lg relative overflow-hidden grid md:grid-cols-[70%_30%] lg:grid-cols-[72%_25%] py-5 gap-[3%] ">
             <div className="flex flex-col justify-center">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
                 <div className="flex flex-col gap-4">
@@ -67,6 +71,11 @@ export default function Footer() {
                       <ArrowUpRight size={18} />
                     </button>
                   </form>
+                  {submitted && (
+                    <p className="text-[#01A859] mt-3 text-sm animate-fade-in red-hat">
+                      Thank you for subscribing!
+                    </p>
+                  )}
                 </div>
 
                 <div className="flex flex-col gap-4 lg:items-center">
@@ -91,7 +100,7 @@ export default function Footer() {
                   <h4 className="font-bold text-lg primary-font font-semibold text-xl">
                     Categories
                   </h4>
-                  <ol className="grid grid-cols-1 sm:grid-cols-2 gap-2 list-disc pl-5">
+                  <ol className="grid grid-cols-1 sm:grid-cols-2 gap-2 list-disc pl-1 gap-x-6  text-start">
                     {categories?.slice(0, 13)?.map((cat: any) => (
                       <li key={cat.id}>
                         <Link

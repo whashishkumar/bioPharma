@@ -16,7 +16,6 @@ export default function Header({
   const router = useRouter();
 
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const { navigationList, fetchNaviagtionList } = useLandingPageContext();
   const { menus, logo, phone }: any = navigationList || {};
 
@@ -30,6 +29,13 @@ export default function Header({
   };
 
   const inactiveColor = innerHeader ? "text-gray-600" : "text-white";
+
+  const handleLogoClick = () => {
+    router.push("/");
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 0);
+  };
 
   return (
     <nav className="sub-container">
@@ -49,7 +55,9 @@ export default function Header({
         {/* Desktop Menu */}
         <ul className="hidden lg:flex gap-10 items-center">
           {menus?.map((link: any) => {
-            const isActive = pathname === link.url;
+            const isActive = pathname?.replace(/^\/?/, "") === link.url;
+            console.log(link.url, "link");
+
             return (
               <li
                 key={link.id}
@@ -91,7 +99,7 @@ export default function Header({
         <div className="fixed inset-0 z-100 bg-black text-white flex flex-col">
           {/* Header inside menu */}
           <div className="flex justify-between items-center px-6 py-4 border-b border-gray-700">
-            <Link href="/" onClick={() => setMenuOpen(false)}>
+            {/* <Link href="/" onClick={() => setMenuOpen(false)}>
               {logo && (
                 <Image
                   src={logo}
@@ -101,7 +109,24 @@ export default function Header({
                   className="object-contain"
                 />
               )}
-            </Link>
+            </Link> */}
+            <div
+              onClick={() => {
+                setMenuOpen(false);
+                handleLogoClick();
+              }}
+              className="cursor-pointer"
+            >
+              {logo && (
+                <Image
+                  src={logo}
+                  alt="Logo"
+                  width={150}
+                  height={60}
+                  className="object-contain"
+                />
+              )}
+            </div>
             <button className="text-2xl" onClick={() => setMenuOpen(false)}>
               <FaTimes />
             </button>
