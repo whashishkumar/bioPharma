@@ -9,7 +9,7 @@ import React, { useEffect } from "react";
 import { ReactNode } from "react";
 
 export default function Layout({ children }: { children: ReactNode }) {
-  const { bannerInfo, fetchBannerInfo, loading } = useAllProductsPageContext();
+  const { bannerInfo, fetchBannerInfo } = useAllProductsPageContext();
 
   const pathname = usePathname();
   const firstPath = pathname === "/" ? "/" : `/${pathname.split("/")[1]}`;
@@ -31,10 +31,6 @@ export default function Layout({ children }: { children: ReactNode }) {
   useEffect(() => {
     fetchBannerInfo();
   }, [fetchBannerInfo]);
-
-  if (loading) {
-    return <Loader />;
-  }
 
   return (
     <div className="relative">
