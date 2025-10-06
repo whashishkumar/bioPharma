@@ -46,7 +46,6 @@ interface LandingPageProviderProps {
 export function LandingPageProvider({ children }: LandingPageProviderProps) {
   const [loading, setLoading] = useState(false);
   const [bannerLoading, setBannerLoading] = useState(false);
-
   const [navigationList, setNavigationList] = useState<any[]>([]);
   const [heroSectionInfo, setHeroSectionInfo] = useState<any[]>([]);
   const [aboutUs, setAboutUs] = useState<any[]>([]);

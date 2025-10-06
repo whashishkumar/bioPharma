@@ -10,8 +10,6 @@ import PcdOppurnity from "@/components/PCDOpportunity";
 import PharmaCategories from "@/components/PharmaCategories";
 import ProductCategories from "@/components/ProductCategories";
 import WhyChooseUs from "@/components/WhyChooseUs";
-import { useAuth } from "@/context/AuthContext";
-import { useEffect } from "react";
 
 const services = [
   { text: "Cardiology", imageSrc: "/images/star.png" },
@@ -27,16 +25,6 @@ const services = [
 ];
 
 export default function Home() {
-  const { login } = useAuth();
-
-  useEffect(() => {
-    const email = process.env.NEXT_PUBLIC_USER_AUTH_EMAIL;
-    const password = process.env.NEXT_PUBLIC_USER_AUTH_PASSWORD;
-    if (email && password) {
-      login(email, password);
-    }
-  }, []);
-
   return (
     <>
       <Marquee items={services} speed={30} />

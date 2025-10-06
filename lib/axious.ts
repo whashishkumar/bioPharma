@@ -1,16 +1,22 @@
-import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
+import axios, {
+  InternalAxiosRequestConfig,
+  AxiosResponse,
+  AxiosError,
+} from "axios";
 import Cookies from "js-cookie";
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
+  // withCredentials: true,
   headers: {
     "Content-Type": "application/json",
+    "x-api-key": "Zxy5663$!@#thisBiobox",
   },
 });
 
 // Request interceptor
 api.interceptors.request.use(
-  (config) => {
+  (config: InternalAxiosRequestConfig) => {
     if (typeof window !== "undefined") {
       const token = Cookies.get("token");
       if (token) {
@@ -30,7 +36,7 @@ api.interceptors.response.use(
   (response: AxiosResponse) => response,
   (error: AxiosError) => {
     if (error.response?.status === 401) {
-      console.error("Unauthorized - maybe redirect to login?");
+      console.error("Unauthorized - token may be missing or expired.");
     }
     return Promise.reject(error);
   }

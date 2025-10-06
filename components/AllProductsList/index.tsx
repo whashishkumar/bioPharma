@@ -46,13 +46,13 @@ export default function AllProductsList({ category }: any) {
     setCurrentPage(1);
   }, [selectedCategory, activeProduct]);
 
-  useEffect(() => {
-    fetchOurProductList({
-      mainCategory: selectedCategory || undefined,
-      subCategory: activeProduct || undefined,
-      currentPage,
-    });
-  }, [selectedCategory, activeProduct, currentPage]);
+  // useEffect(() => {
+  //   fetchOurProductList({
+  //     mainCategory: selectedCategory || undefined,
+  //     subCategory: activeProduct || undefined,
+  //     currentPage,
+  //   });
+  // }, [selectedCategory, activeProduct, currentPage]);
 
   useEffect(() => {
     fetchAllCategoryList();

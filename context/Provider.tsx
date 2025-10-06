@@ -5,7 +5,6 @@ import { AboutUsPageProvider } from "./AboutUsPageContext";
 import { OurServicesProvider } from "./OurServicesPageContext";
 import { ContactUsPageProvider } from "./ContactUsPageContext";
 import { AllProductsPageProvider } from "./AllProductsContext";
-import { AuthProvider } from "./AuthContext";
 import { BlogsProvider } from "./OurBlogsContext";
 
 const providers = [
@@ -15,7 +14,6 @@ const providers = [
   ContactUsPageProvider,
   AllProductsPageProvider,
   BlogsProvider,
-  // AuthProvider,
 ];
 
 interface ProvidersProps {

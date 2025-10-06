@@ -40,23 +40,33 @@ export default function Header({
   return (
     <nav className="sub-container">
       <div className="flex items-center justify-between py-4">
-        <Link href="/">
+        <div
+          onClick={() => {
+            setMenuOpen(false);
+            handleLogoClick();
+          }}
+          className="cursor-pointer"
+        >
           {logo && (
             <Image
               src={logo}
               alt="Logo"
-              width={193}
-              height={83}
+              width={150}
+              height={60}
               className="object-contain"
             />
           )}
-        </Link>
+        </div>
 
-        {/* Desktop Menu */}
         <ul className="hidden lg:flex gap-10 items-center">
           {menus?.map((link: any) => {
-            const isActive = pathname?.replace(/^\/?/, "") === link.url;
-            console.log(link.url, "link");
+            const currentPath = pathname?.replace(/^\/?/, "");
+            const linkPath = link.url?.replace(/^\/?/, "");
+            const isHome = linkPath === "" || linkPath === "/";
+            const isActive = isHome
+              ? pathname === "/"
+              : currentPath === linkPath ||
+                currentPath.startsWith(`${linkPath}/`);
 
             return (
               <li
@@ -64,16 +74,17 @@ export default function Header({
                 className="relative group primary-font text-base"
               >
                 <Link
-                  href={`/${link.url.replace(/^\/?/, "")}`}
+                  href={`/${linkPath}`}
                   className={`${
                     isActive ? "text-[#01A859]" : inactiveColor
-                  } hover:text-[#01A859]`}
+                  } hover:text-[#01A859] transition-colors`}
                 >
                   {link.title}
                 </Link>
               </li>
             );
           })}
+
           {phone && (
             <li>
               <Link href={`tel:${phone}`}>
@@ -99,17 +110,6 @@ export default function Header({
         <div className="fixed inset-0 z-100 bg-black text-white flex flex-col">
           {/* Header inside menu */}
           <div className="flex justify-between items-center px-6 py-4 border-b border-gray-700">
-            {/* <Link href="/" onClick={() => setMenuOpen(false)}>
-              {logo && (
-                <Image
-                  src={logo}
-                  alt="Logo"
-                  width={150}
-                  height={60}
-                  className="object-contain"
-                />
-              )}
-            </Link> */}
             <div
               onClick={() => {
                 setMenuOpen(false);

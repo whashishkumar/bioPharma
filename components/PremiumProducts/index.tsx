@@ -57,8 +57,6 @@ export default function PremiumProducts() {
   const { section_name, section_heading, section_sub_heading, product }: any =
     aboutUsProducts;
 
-  console.log(product, "aboutUsProducts");
-
   const handleProductDetail = async (slug: any) => {
     router.push(`/product-detail/${slug}`);
   };

@@ -50,8 +50,6 @@ export default function OurServices() {
   const imageUrl = `${baseUrl}${imagePath}/${franchise_image}`;
   const imageUrl2 = `${baseUrl}${imagePath}/${enquiry_image}`;
 
-  console.log(franchise_image, "franchise_image");
-
   return (
     <div className="hero-child-container">
       <section className="grid grid-col-1 lg:grid-cols-2 gap-20 py-20">
