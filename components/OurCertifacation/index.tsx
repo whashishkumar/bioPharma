@@ -43,7 +43,6 @@ export default function OurCertification() {
           <PageTitle
             tag={section_name}
             tagClass="border border-[#172C451A] rounded-full px-4 py-2 text-sm capitalize text-[#172C45] leading-[16px] mb-4 w-auto inline-block"
-            // tagClass="border border-[#172C451A] rounded-full max-w-[160px] w-full sm:w-auto p-2 text-sm capitalize text-[#172C45] leading-[16px] mb-4"
             heading={section_heading}
             headingClass="text-[2.875rem] mt-2 font-normal text-[#172C45] leading-[3.438rem]"
             subHeading={section_sub_heading}
@@ -52,13 +51,16 @@ export default function OurCertification() {
           />
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 mt-12 justify-items-center">
             {custom_fields?.map((cert: any, id: any) => (
-              <div key={id} className="w-full max-w-[150px]">
+              <div
+                key={id}
+                className="w-full max-w-[110px]  flex items-center justify-center"
+              >
                 <Image
                   src={cert.image}
                   alt={cert.name}
-                  width={150}
-                  height={150}
-                  className="rounded-lg object-contain w-full h-70"
+                  width={110}
+                  height={110}
+                  className="rounded-lg h-full object-contain"
                 />
               </div>
             ))}

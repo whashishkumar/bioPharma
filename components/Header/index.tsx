@@ -98,10 +98,10 @@ export default function Header({
 
         {/* Mobile menu toggle */}
         <div
-          className="lg:hidden text-2xl cursor-pointer"
+          className="lg:hidden text-2xl cursor-pointe"
           onClick={() => setMenuOpen(true)}
         >
-          <FaBars />
+          <FaBars color="#fff" />
         </div>
       </div>
 
@@ -128,7 +128,7 @@ export default function Header({
               )}
             </div>
             <button className="text-2xl" onClick={() => setMenuOpen(false)}>
-              <FaTimes />
+              <FaTimes color="#fff" />
             </button>
           </div>
 

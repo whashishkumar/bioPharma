@@ -32,7 +32,7 @@ export default function Footer() {
     <div className="hero-sub-container">
       <div className="bg-[#172C45] rounded-2xl mb-4">
         <div className="sub-container">
-          <footer className="text-white rounded-lg relative overflow-hidden grid md:grid-cols-[70%_30%] lg:grid-cols-[72%_25%] py-5 gap-[3%] ">
+          <footer className="text-white rounded-lg relative overflow-hidden grid md:grid-cols-[70%_30%] lg:grid-cols-[74%_25%] py-5 gap-[1%] ">
             <div className="flex flex-col justify-center">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
                 <div className="flex flex-col gap-4">
@@ -58,6 +58,7 @@ export default function Footer() {
                     className="w-full max-w-md border-b border-b-[#FFFFFF1A] flex items-center pb-2"
                   >
                     <input
+                      required
                       type="email"
                       placeholder="Enter Your E-mail Address"
                       value={email}
@@ -96,7 +97,7 @@ export default function Footer() {
                   </ol>
                 </div>
 
-                <div className="flex flex-col gap-4">
+                {/* <div className="flex flex-col gap-4">
                   <h4 className="font-bold text-lg primary-font font-semibold text-xl">
                     Categories
                   </h4>
@@ -112,6 +113,41 @@ export default function Footer() {
                       </li>
                     ))}
                   </ol>
+                </div> */}
+                <div className="flex flex-col gap-4">
+                  <h4 className="font-bold text-lg primary-font font-semibold text-xl">
+                    Categories
+                  </h4>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-start">
+                    {/* Left Column - First 6 */}
+                    <ol className="list-disc pl-4 space-y-2">
+                      {categories?.slice(0, 6).map((cat: any) => (
+                        <li key={cat.id}>
+                          <Link
+                            href={`/our-products/${cat.slug}`}
+                            className="hover:text-[#01A859] transition-colors marope font-medium text-base"
+                          >
+                            {cat.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ol>
+
+                    {/* Right Column - Next 6 */}
+                    <ol className="list-disc pl-4 space-y-2">
+                      {categories?.slice(6, 13).map((cat: any) => (
+                        <li key={cat.id}>
+                          <Link
+                            href={`/our-products/${cat.slug}`}
+                            className="hover:text-[#01A859] transition-colors marope font-medium text-base"
+                          >
+                            {cat.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
                 </div>
               </div>
 
