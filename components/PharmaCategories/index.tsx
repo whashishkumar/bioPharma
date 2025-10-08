@@ -72,7 +72,7 @@ export default function PharmaCategories() {
               wrapperClass="grid lg:grid-cols-2 gap-10"
             />
             <div className="flex flex-wrap gap-6 justify-center mt-10">
-              {data?.map((cat: any) => {
+              {data?.slice(0, 8).map((cat: any) => {
                 const baseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
                 const imagePath = process.env.NEXT_PUBLIC_IMAGE_PATH;
                 const imageUrl = `${baseUrl}${imagePath}/${cat.image}`;
