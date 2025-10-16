@@ -32,6 +32,8 @@ export default function SwipeSlider({
 }: SwipeSliderProps) {
   const swiperRef = useRef<SwiperType | null>(null);
 
+  // console.log(children, "children");
+
   return (
     <div className="relative w-full ">
       {textQuort && (

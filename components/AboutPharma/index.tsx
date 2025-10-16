@@ -79,7 +79,7 @@ export default function AboutPharma() {
               </div>
             </div>
             {/* ))} */}
-            <div className="flex justify-end">
+            {/* <div className="flex justify-end">
               {data?.about_button_text && (
                 <Link
                   href={`${data?.about_button_link}`}
@@ -88,7 +88,7 @@ export default function AboutPharma() {
                   {data?.about_button_text}
                 </Link>
               )}
-            </div>
+            </div> */}
           </div>
           <div className="relative flex justify-center md:justify-end">
             {data?.about_short_image && (
