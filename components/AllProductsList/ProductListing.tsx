@@ -24,6 +24,7 @@ export default function ProductListing({
   activeProduct,
   handleGetProductDetail,
 }: ProductListingProps) {
+  console.log(productstTypes, "log");
   return (
     <div className="relative">
       <div className="sticky top-0 z-50 bg-white py-4">
@@ -41,7 +42,7 @@ export default function ProductListing({
                 onClick={() => handleProductType(product?.slug)}
                 className={`flex flex-col items-center px-5 py-2 border rounded-lg cursor-pointer hover:bg-[#00A859] hover:text-white hover:border-[#00A859]
             ${
-              activeProduct === product.slug
+              activeProduct === (product.slug ?? product.title?.toLowerCase())
                 ? "bg-[#00A859] text-white border-[#00A859]"
                 : "bg-white text-gray-800 border-gray-300"
             }

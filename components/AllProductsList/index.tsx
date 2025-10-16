@@ -43,24 +43,6 @@ export default function AllProductsList({ category }: any) {
   );
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  useEffect(() => {
-    setCurrentPage(1);
-  }, []);
-
-  useEffect(() => {
-    console.log("log1234567å");
-    fetchOurProductList({
-      mainCategory: selectedCategory || undefined,
-      subCategory: activeProduct || undefined,
-      currentPage,
-    });
-  }, [selectedCategory, activeProduct, currentPage]);
-
-  useEffect(() => {
-    fetchAllCategoryList();
-    fetchAllProductTypes();
-  }, []);
-
   const handleProductType = async (type: string): Promise<void> => {
     setActiveProduct(type);
     if (selectedCategory) {
@@ -84,6 +66,22 @@ export default function AllProductsList({ category }: any) {
     router.push(`/product-detail/${slug}`);
   };
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, []);
+
+  useEffect(() => {
+    fetchOurProductList({
+      mainCategory: selectedCategory || undefined,
+      subCategory: activeProduct || undefined,
+      currentPage,
+    });
+  }, [selectedCategory, activeProduct, currentPage]);
+
+  useEffect(() => {
+    fetchAllCategoryList();
+    fetchAllProductTypes();
+  }, []);
   return (
     <div className="py-12">
       {productLoading ? (

@@ -69,7 +69,7 @@ export default function SwipeSlider({
       {/* Left Arrow */}
       {swipebtn && (
         <button
-          disabled={(swiperRef?.current?.slides?.length ?? 0) <= 2}
+          // disabled={(swiperRef?.current?.slides?.length ?? 0) <= 2}
           onClick={() => swiperRef.current?.slidePrev()}
           className="arrow-btn-box absolute top-1/2 -translate-y-1/2 left-[-20px] flex justify-center items-center z-10 
              cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
@@ -81,7 +81,7 @@ export default function SwipeSlider({
       {/* Right Arrow */}
       {swipebtn && (
         <button
-          disabled={(swiperRef?.current?.slides?.length ?? 0) <= 2}
+          // disabled={(swiperRef?.current?.slides?.length ?? 0) <= 2}
           onClick={() => swiperRef.current?.slideNext()}
           className={`arrow-btn-box absolute top-1/2 -translate-y-1/2 right-[-20px] flex justify-center items-center z-10
     ${
@@ -100,14 +100,14 @@ export default function SwipeSlider({
           <button
             onClick={() => swiperRef.current?.slidePrev()}
             className="arrow-btn-box flex justify-center items-center cursor-pointer "
-            disabled={(swiperRef?.current?.slides?.length ?? 0) <= 2}
+            // disabled={(swiperRef?.current?.slides?.length ?? 0) <= 2}
           >
             <IoIosArrowBack className="arow-icon" />
           </button>
           <button
             onClick={() => swiperRef.current?.slideNext()}
             className="arrow-btn-box flex justify-center items-center cursor-pointer"
-            disabled={(swiperRef?.current?.slides?.length ?? 0) <= 2}
+            // disabled={(swiperRef?.current?.slides?.length ?? 0) <= 2}
           >
             <IoIosArrowForward className="arow-icon" />
           </button>
