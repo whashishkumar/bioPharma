@@ -18,6 +18,7 @@ type SwipeSliderProps = {
   bottomSwipeBtn?: boolean;
   textQuort?: boolean;
   swipebtn?: boolean;
+  breakpoints?: any;
 };
 
 export default function SwipeSlider({
@@ -29,10 +30,9 @@ export default function SwipeSlider({
   bottomSwipeBtn = false,
   textQuort = false,
   swipebtn = false,
+  breakpoints = {},
 }: SwipeSliderProps) {
   const swiperRef = useRef<SwiperType | null>(null);
-
-  console.log(swiperRef?.current?.slides, "children");
 
   return (
     <div className="relative w-full ">
@@ -51,13 +51,17 @@ export default function SwipeSlider({
         spaceBetween={spaceBetween}
         autoplay={autoPlay ? { delay, disableOnInteraction: false } : false}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
-        className="w-full"
-        breakpoints={{
-          640: { slidesPerView: 1 },
-          768: { slidesPerView: 2 },
-          1024: { slidesPerView: 3 },
-          1280: { slidesPerView },
-        }}
+        className="w-full h-full"
+        breakpoints={
+          breakpoints && Object.keys(breakpoints).length > 0
+            ? breakpoints
+            : {
+                640: { slidesPerView: 1 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+                1280: { slidesPerView: 4 },
+              }
+        }
       >
         {Array.isArray(children)
           ? children.map((child, idx) => (

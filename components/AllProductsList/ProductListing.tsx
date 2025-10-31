@@ -1,6 +1,7 @@
 import ProductCard from "@/components/ProductCard";
 import SwipeSlider from "@/ui/SwipeSlider";
 import React from "react";
+import { useSearchParams } from "next/navigation";
 
 interface ProductType {
   id: string | number;
@@ -24,10 +25,14 @@ export default function ProductListing({
   activeProduct,
   handleGetProductDetail,
 }: ProductListingProps) {
-  console.log(productstTypes, "log");
+  const searchParams = useSearchParams();
+  const type = searchParams.get("type");
+
+  console.log("Slug:", type);
+
   return (
     <div className="relative">
-      <div className="sticky top-0 z-50 bg-white py-4">
+      <div className="sticky top-23 z-50 bg-white py-4">
         <div className="flex flex-wrap gap-3 ">
           <SwipeSlider
             slidesPerView={5}
@@ -42,7 +47,7 @@ export default function ProductListing({
                 onClick={() => handleProductType(product?.slug)}
                 className={`flex flex-col items-center px-5 py-2 border rounded-lg cursor-pointer hover:bg-[#00A859] hover:text-white hover:border-[#00A859]
             ${
-              activeProduct === (product.slug ?? product.title?.toLowerCase())
+              type === (product.slug ?? product.title?.toLowerCase())
                 ? "bg-[#00A859] text-white border-[#00A859]"
                 : "bg-white text-gray-800 border-gray-300"
             }

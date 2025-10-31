@@ -2,6 +2,7 @@
 import { useLandingPageContext } from "@/context/LandingPageContext";
 import PageTitle from "@/ui/PageTitle";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
 const categories = [
@@ -51,6 +52,11 @@ export default function PharmaCategories() {
   const { typesOfProducts, fetchProductTypes } = useLandingPageContext();
   const { section_name, section_heading, section_sub_heading, data }: any =
     typesOfProducts || {};
+  const router = useRouter();
+
+  const handleProductTypeClick = (slug: string) => {
+    router.push(`/our-products?type=${slug}`);
+  };
 
   useEffect(() => {
     fetchProductTypes();
@@ -77,22 +83,47 @@ export default function PharmaCategories() {
                 const imagePath = process.env.NEXT_PUBLIC_IMAGE_PATH;
                 const imageUrl = `${baseUrl}${imagePath}/${cat.image}`;
                 return (
+                  // <div
+                  //   key={cat.id}
+                  //   className="w-full sm:w-[calc(50%-12px)] md:w-[calc(33.33%-16px)] lg:w-[calc(25%-18px)] max-w-[299px]"
+                  // >
+                  //   {cat.image && (
+                  //     <Image
+                  //       src={cat.image}
+                  //       alt={cat.title}
+                  //       width={299}
+                  //       height={263}
+                  //       className="block rounded-t-lg object-cover"
+                  //     />
+                  //   )}
+                  //   <p className="h-[63px] bg-white flex justify-center items-center rounded-b-lg text-xl font-semibold text-[#172C45] red-hat leading-[32px]">
+                  //     {cat.title}
+                  //   </p>
+                  // </div>
                   <div
                     key={cat.id}
-                    className="w-full sm:w-[calc(50%-12px)] md:w-[calc(33.33%-16px)] lg:w-[calc(25%-18px)] max-w-[299px]"
+                    className="group relative w-full sm:w-[calc(50%-12px)] md:w-[calc(33.33%-16px)] lg:w-[calc(25%-18px)] max-w-[299px]  rounded-lg overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 ease-out hover:-translate-y-3"
                   >
-                    {cat.image && (
-                      <Image
-                        src={cat.image}
-                        alt={cat.title}
-                        width={299}
-                        height={263}
-                        className="block rounded-t-lg object-cover"
-                      />
-                    )}
-                    <p className="h-[63px] bg-white flex justify-center items-center rounded-b-lg text-xl font-semibold text-[#172C45] red-hat leading-[32px]">
+                    {/* Image Wrapper */}
+                    <div className="relative overflow-hidden">
+                      {cat.image && (
+                        <Image
+                          src={cat.image}
+                          alt={cat.title}
+                          width={299}
+                          height={263}
+                          className="block rounded-t-lg object-cover transition-transform duration-700 ease-out transform group-hover:scale-110 group-hover:brightness-75"
+                        />
+                      )}
+                    </div>
+
+                    {/* Base Title (visible when not hovered) */}
+                    <button
+                      className=" w-full h-[63px] bg-white flex justify-center items-center rounded-b-lg text-xl font-semibold text-[#172C45] red-hat leading-[32px] group-hover:bg-[#172C45]/95 group-hover:text-white transition-all duration-500 ease-out cursor-pointer"
+                      onClick={() => handleProductTypeClick(cat.slug)}
+                    >
                       {cat.title}
-                    </p>
+                    </button>
                   </div>
                 );
               })}

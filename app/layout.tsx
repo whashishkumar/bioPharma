@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 import { Providers } from "@/context/Provider";
+import Header from "@/components/Header";
 
 const sora = localFont({
   src: "../public/fonts/Sora-Regular.ttf",
@@ -54,7 +55,7 @@ const marope = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "bio Pharma",
+  title: "bioBox Pharma",
   description:
     "BioBox Pharma is a leading pharmaceutical manufacturing company dedicated to quality, innovation, and compliance",
   icons: {
@@ -72,7 +73,10 @@ export default function RootLayout({
       <body
         className={`${sora.variable} ${marope.variable} ${redHatDisplay.variable} ${sanchez.variable} ${poppins.variable} antialiased `}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <Header />
+          {children}
+        </Providers>
       </body>
     </html>
   );

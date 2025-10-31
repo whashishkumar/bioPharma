@@ -32,6 +32,13 @@ const testimonial = [
   },
 ];
 
+const breakpoints = {
+  640: { slidesPerView: 1 },
+  768: { slidesPerView: 2 },
+  1024: { slidesPerView: 2 },
+  1280: { slidesPerView: 2 },
+};
+
 export default function OurTestimonials() {
   const { testimonials, fetchTestimonials } = useLandingPageContext();
   const { section_heading, section_name, data }: any = testimonials;
@@ -60,6 +67,7 @@ export default function OurTestimonials() {
                   slidesPerView={2}
                   bottomSwipeBtn={false}
                   swipebtn={true}
+                  breakpoints={breakpoints}
                   spaceBetween={10}
                 >
                   {data?.map((product: any) => (

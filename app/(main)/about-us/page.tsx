@@ -8,7 +8,7 @@ export default function page() {
     <div>
       <AboutPharma />
       <PartnerBenifits />
-      <PremiumProducts />
+      {/* <PremiumProducts /> */}
     </div>
   );
 }

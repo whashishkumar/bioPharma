@@ -89,7 +89,7 @@ export default function AllProductsList({ category }: any) {
       ) : (
         <div className="sub-container">
           <div className="grid grid-cols-1 md:grid-cols-[20%_75%] gap-5 md:gap-[5%] ">
-            <div className="w-full md:w-auto md:sticky md:top-8 self-start order-1 md:order-none">
+            <div className="w-full md:w-auto md:sticky md:top-25 self-start order-1 md:order-none">
               <Sidebar
                 categories={data}
                 handleSelectCategory={handleSelectCategory}

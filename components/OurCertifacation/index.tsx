@@ -68,7 +68,7 @@ export default function OurCertification() {
         </div>
       </div>
       {/* <Image src={"/images/play.png"} alt={"play"} height={800} width={1820} /> */}
-      <div className="relative w-full  md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden">
+      {/* <div className="relative w-full  md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden">
         {image && (
           <div>
             <video
@@ -84,15 +84,15 @@ export default function OurCertification() {
               <source src="/videos/pharma.mp4" type="video/webm" />
               Your browser does not support this video.
             </video>
-            {/* <button
+            <button
               onClick={togglePlay}
               className="absolute inset-0 flex items-center justify-center text-white text-5xl opacity-80 hover:opacity-100 transition cursor-pointer"
             >
               {isPlaying ? <FaPause /> : <FaPlay />}
-            </button> */}
+            </button>
           </div>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }

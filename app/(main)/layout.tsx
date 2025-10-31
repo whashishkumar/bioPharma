@@ -17,7 +17,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 
   const defaultHeroData = {
     heading: "About Us",
-    image: "/images/bannerH.jpg",
+    image: "/images/header-image.jpg",
     section_name: firstSegment,
   };
 
