@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import Sidebar from "./Sidebar";
 import ProductListing from "./ProductListing";
 import { useAllProductsPageContext } from "@/context/AllProductsContext";
@@ -97,13 +97,15 @@ export default function AllProductsList({ category }: any) {
               />
             </div>
             <div className="w-full">
-              <ProductListing
-                filteredProducts={products}
-                productstTypes={productsTypes}
-                handleProductType={handleProductType}
-                activeProduct={activeProduct}
-                handleGetProductDetail={handleGetProductDetail}
-              />
+              <Suspense fallback={<Loader />}>
+                <ProductListing
+                  filteredProducts={products}
+                  productstTypes={productsTypes}
+                  handleProductType={handleProductType}
+                  activeProduct={activeProduct}
+                  handleGetProductDetail={handleGetProductDetail}
+                />
+              </Suspense>
               <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}

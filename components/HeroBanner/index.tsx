@@ -111,7 +111,7 @@ export default function HeroBanner({
               <div className="text-white sub-container">
                 <div className="-mt-25 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2  lg:gap-20  py-12 ">
                   {/* left side */}
-                  <div className="mb-30 mt-50">
+                  <div className="mb-28 mt-60">
                     <PageTitle
                       tag={heroData?.tag}
                       tagClass="text-white border rounded-full w-auto inline-block px-4 py-2 text-sm capitalize pb-3"

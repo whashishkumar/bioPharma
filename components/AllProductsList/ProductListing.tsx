@@ -1,4 +1,3 @@
-"use client";
 import ProductCard from "@/components/ProductCard";
 import SwipeSlider from "@/ui/SwipeSlider";
 import React from "react";
