@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useLandingPageContext } from "@/context/LandingPageContext";
-import Loader from "@/ui/Loader";
 
 export default function Header({
   innerHeader = false,
@@ -119,7 +118,7 @@ export default function Header({
 
               {/* Fullscreen Mobile Menu */}
               {menuOpen && (
-                <div className="fixed inset-0 z-100 bg-black text-white flex flex-col">
+                <div className="fixed inset-0 z-100 bg-[#172d45] text-white flex flex-col">
                   {/* Header inside menu */}
                   <div className="flex justify-between items-center px-6 py-4 border-b border-gray-700">
                     <div

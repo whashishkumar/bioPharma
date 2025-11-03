@@ -129,13 +129,13 @@ export default function ManufacturerSection() {
           subHeadingClass="text-[1rem] lg:text-[1.75rem] font-normal mt-2 text-[#45566A] mt-8 text-center"
           wrapperClass="flex items-center flex-col"
         />
-      </div>
 
-      <div className="grid md:grid-cols-2 py-10">
-        {/* LEFT SECTION */}
-        <div className="sub-container flex justify-end items-center !px-0">
-          <div className="relative flex items-center justify-center h-[350px] md:w-full md:h-full hidden md:flex">
-            <div className="absolute w-full h-full animate-rotate-slow rotate-slow-reverse flex items-center justify-center left-2/4">
+        <div className="grid md:grid-cols-2 py-10">
+          {/* LEFT SECTION */}
+          <div className="sub-container flex justify-end items-center !px-0">
+            <div className="relative flex items-center justify-center h-[350px] md:w-full md:h-full hidden md:flex">
+              {/* animate-rotate-slow rotate-slow-reverse */}
+              {/* <div className="absolute w-full h-full  flex items-center justify-center left-2/4">
               {logos?.map((logo: any, i: any) => {
                 const angle = (i / ((logos || logoss).length - 1)) * Math.PI;
                 return (
@@ -160,39 +160,68 @@ export default function ManufacturerSection() {
                   </div>
                 );
               })}
+            </div> */}
+              <div className="absolute w-full h-full flex items-center justify-center left-2/4 rotate-slow-reverse animate-rotate-slow ">
+                {logos?.map((logo: any, i: any) => {
+                  const total = (logos || logoss).length - 1;
+                  const spacingFactor = 1.2; // adjust spacing between logos
+                  const angle = (i / total) * 2 * Math.PI * spacingFactor;
+
+                  return (
+                    <div
+                      key={i}
+                      className="absolute"
+                      style={{
+                        // 🔁 Mirrored (opposite side) by adding 180°
+                        transform: `rotate(${
+                          (angle * 180) / Math.PI + 180
+                        }deg) translateX(${radius}px)`,
+                      }}
+                    >
+                      <Image
+                        src={logo?.image || logo.src}
+                        alt={logo.alt}
+                        width={80}
+                        height={80}
+                        className="rounded-md object-contain w-[45px] h-[45px] sm:w-[65px] sm:h-[65px] md:w-[80px] md:h-[80px] rotate-190"
+                      />
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* RIGHT SECTION */}
-        <div className="relative sub-container px-0">
-          <div className="bg-white rounded-r-2xl !px-0 mx-0">
-            <div className="absolute top-1/2 -left-15 lg:-left-3 transform -translate-x-1/2 -translate-y-1/2 z-100">
-              {image && (
-                <Image
-                  src={image}
-                  alt="BioBox Pharma"
-                  width={260}
-                  height={90}
-                  className="object-contain bg-[#1e344b]/95 w-[45px] h-[45px] rounded-sm md:w-[90px] md:h-[60px] lg:w-[250px] lg:h-[90px] hidden md:flex py-2"
-                />
-              )}
-            </div>
-            <div className="flex justify-center md:justify-end lg:justify-center">
-              <div className="lg:mt-12 text-gray-800 max-w-md space-y-8">
-                <div className="grid grid-cols-1 gap-6 lg:ml-16 lg:py-12">
-                  {custom_fields?.map((item: any, id: any) => (
-                    <div key={id} className="flex gap-6 items-start">
-                      <div className="flex-1 w-full max-w-[663px]">
-                        <p className="font-medium mb-2 text-[1.25rem] text-[#172C45]">
-                          {item.name}
-                        </p>
-                        <span className="text-base font-normal primary-font text-[#45566A]">
-                          {item.value}
-                        </span>
+          {/* RIGHT SECTION */}
+          <div className="relative sub-container px-0">
+            <div className="bg-white rounded-r-2xl !px-0 mx-0">
+              <div className="absolute top-1/2 -left-15 lg:-left-3 transform -translate-x-1/2 -translate-y-1/2 z-90">
+                {image && (
+                  <Image
+                    src={image}
+                    alt="BioBox Pharma"
+                    width={260}
+                    height={90}
+                    className="object-contain bg-[#1e344b]/95 w-[45px] h-[45px] rounded-sm md:w-[90px] md:h-[60px] lg:w-[250px] lg:h-[90px] hidden md:flex py-2"
+                  />
+                )}
+              </div>
+              <div className="flex justify-center md:justify-end lg:justify-center md:py-16 lg:py-0">
+                <div className="lg:mt-12 text-gray-800 max-w-md space-y-8">
+                  <div className="grid grid-cols-1 gap-6 lg:ml-16 lg:py-12">
+                    {custom_fields?.map((item: any, id: any) => (
+                      <div key={id} className="flex gap-6 items-start">
+                        <div className="flex-1 w-full max-w-[663px]">
+                          <p className="font-medium mb-2 text-[1.25rem] text-[#172C45]">
+                            {item.name}
+                          </p>
+                          <span className="text-base font-normal primary-font text-[#45566A]">
+                            {item.value}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

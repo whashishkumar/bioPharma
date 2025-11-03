@@ -28,8 +28,6 @@ export default function ProductListing({
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
 
-  console.log("Slug:", type);
-
   return (
     <div className="relative">
       <div className="sticky top-23 z-50 bg-white py-4">

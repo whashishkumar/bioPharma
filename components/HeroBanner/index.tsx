@@ -58,6 +58,7 @@ export default function HeroBanner({
   const baseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
   const imagePath = process.env.NEXT_PUBLIC_IMAGE_PATH;
   const imageUrl = `${baseUrl}${imagePath}/${heroData?.link_image}`;
+  const { banners } = heroData || [];
   const router = useRouter();
 
   const handleRedirect = (value: string) => {
@@ -79,7 +80,7 @@ export default function HeroBanner({
                   autoPlay={true}
                   breakpoints={breakpoints}
                 >
-                  {heroBackgrounds.map((bg) => (
+                  {banners?.map((bg: any) => (
                     <div
                       key={bg.id}
                       className="h-[52rem] w-full bg-center md:bg-cover lg:bg-cover bg-no-repeat "
