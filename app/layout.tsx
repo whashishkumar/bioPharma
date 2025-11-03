@@ -73,10 +73,7 @@ export default function RootLayout({
       <body
         className={`${sora.variable} ${marope.variable} ${redHatDisplay.variable} ${sanchez.variable} ${poppins.variable} antialiased `}
       >
-        <Providers>
-          <Header />
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

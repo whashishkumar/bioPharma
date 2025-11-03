@@ -1,5 +1,6 @@
 "use client";
 import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import HeroBanner from "@/components/HeroBanner";
 import ScrollToTop from "@/components/ScrollToTop";
 import { useAllProductsPageContext } from "@/context/AllProductsContext";
@@ -34,6 +35,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 
   return (
     <div className="relative">
+      <Header />
       <HeroBanner
         heroData={heroInfo}
         innerBanner={true}

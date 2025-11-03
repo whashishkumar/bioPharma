@@ -207,7 +207,7 @@ export default function ManufacturerSection() {
                   />
                 )}
               </div>
-              <div className="flex justify-center md:justify-end lg:justify-center md:py-16 lg:py-0">
+              <div className="flex lg:justify-center md:justify-end lg:justify-center md:py-16 lg:py-0 lg:ml-18">
                 <div className="lg:mt-12 text-gray-800 max-w-md space-y-8">
                   <div className="grid grid-cols-1 gap-6 lg:ml-16 lg:py-12">
                     {custom_fields?.map((item: any, id: any) => (

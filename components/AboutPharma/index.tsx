@@ -106,7 +106,7 @@ export default function AboutPharma() {
                 alt="welcome overlay"
                 width={200}
                 height={280}
-                className="absolute left-6 top-6 md:left-12 md:top-12   "
+                className="absolute left-6 top-6 md:left-12 md:top-12 hidden lg:flex"
               />
             )}
           </div>
@@ -181,7 +181,7 @@ export default function AboutPharma() {
                 alt="Unique overlay"
                 width={220}
                 height={300}
-                className="absolute -left-10 bottom-[-30] w-[32%] sm:w-[40%] md:w-[45%] lg:w-[50%] object-contain"
+                className="absolute -left-10 bottom-[-30] w-[32%] sm:w-[40%] md:w-[45%] lg:w-[50%] object-contain hidden lg:flex"
               />
             )}
           </div>

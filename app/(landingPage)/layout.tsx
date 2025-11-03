@@ -1,5 +1,6 @@
 "use client";
 import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import HeroBanner from "@/components/HeroBanner";
 import ScrollToTop from "@/components/ScrollToTop";
 import { useLandingPageContext } from "@/context/LandingPageContext";
@@ -50,11 +51,12 @@ export default function layout({ children }: { children: ReactNode }) {
       </div>
     );
   return (
-    <div>
+    <>
+      <Header />
       <HeroBanner heroData={heroSectionInfo} />
       {children}
       <ScrollToTop />
       <Footer />
-    </div>
+    </>
   );
 }
