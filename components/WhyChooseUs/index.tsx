@@ -163,7 +163,7 @@ export default function ManufacturerSection() {
             </div> */}
 
               <div className="absolute w-full h-full flex items-center justify-center left-2/4 rotate-slow-reverse animate-rotate-slow ">
-                {logos?.slice(0, 19).map((logo: any, i: any) => {
+                {logos?.slice(0, 18).map((logo: any, i: any) => {
                   const total = (logos || logoss).length - 1;
                   const spacingFactor = 1; // adjust spacing between logos
                   const angle = (i / total) * 2 * Math.PI * spacingFactor;
