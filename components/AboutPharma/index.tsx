@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useAboutUsPageContext } from "@/context/AboutUsPageContext";
 import { useEffect } from "react";
 import Loader from "@/ui/Loader";
+import CEOSectiion from "./MeetOurCeo";
+import Expertise from "./Expertise";
 
 export default function AboutPharma() {
   const {
@@ -52,7 +54,7 @@ export default function AboutPharma() {
               {data?.description}
             </p>
 
-            <div className="flex gap-4 items-start">
+            {/* <div className="flex gap-4 items-start">
               {data?.core_value_title && (
                 <PiEyeBold className="text-[#00A859] text-2xl md:text-3xl shrink-0" />
               )}
@@ -64,8 +66,8 @@ export default function AboutPharma() {
                   {data?.core_value_desc}
                 </p>
               </div>
-            </div>
-            <div className="flex gap-4 items-start">
+            </div> */}
+            {/* <div className="flex gap-4 items-start">
               {data?.core_value_title && (
                 <PiEyeBold className="text-[#00A859] text-2xl md:text-3xl shrink-0" />
               )}
@@ -77,18 +79,8 @@ export default function AboutPharma() {
                   {data?.about_mission_desc}
                 </p>
               </div>
-            </div>
-            {/* ))} */}
-            {/* <div className="flex justify-end">
-              {data?.about_button_text && (
-                <Link
-                  href={`${data?.about_button_link}`}
-                  className="inline-block mt-6 bg-[#00A859] text-white px-5 py-2 md:px-6 md:py-3 rounded-lg hover:bg-green-700 sanchez text-sm md:text-base"
-                >
-                  {data?.about_button_text}
-                </Link>
-              )}
             </div> */}
+            {/* ))} */}
           </div>
           <div className="relative flex justify-center md:justify-end">
             {data?.about_short_image && (
@@ -111,7 +103,10 @@ export default function AboutPharma() {
             )}
           </div>
         </div>
-        <div className=" grid grid-cols-1 md:grid-cols-2 items-center gap-12  py-16 px-4 sm:px-6 lg:px-8">
+        <div className="py-16">
+          <CEOSectiion ceoImage={ceoImage} ceodata={ceoSection} />
+        </div>
+        {/* <div className=" grid grid-cols-1 md:grid-cols-2 items-center gap-12  py-16 px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center md:justify-start">
             {ceoSection?.ceo_image && (
               <Image
@@ -134,8 +129,8 @@ export default function AboutPharma() {
               {ceoSection?.meet_desc}
             </p>
           </div>
-        </div>
-        <div className=" grid grid-cols-1 md:grid-cols-2 items-center gap-12 py-16 px-4 sm:px-6 lg:px-8 lg:gap-20">
+        </div> */}
+        {/* <div className=" grid grid-cols-1 md:grid-cols-2 items-center gap-12 py-16 px-4 sm:px-6 lg:px-8 lg:gap-20">
           <div className="space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold text-[#172C45] sanchez">
               {section_heading}
@@ -154,14 +149,6 @@ export default function AboutPharma() {
                   </div>
                 </div>
               )
-            )}
-            {data?.about_button_text && (
-              <Link
-                href={`${data?.about_button_link}`}
-                className="inline-block mt-6 bg-[#00A859] text-white px-5 py-2 md:px-6 md:py-3 rounded-lg hover:bg-green-700 sanchez text-sm md:text-base"
-              >
-                {data?.about_button_text}
-              </Link>
             )}
           </div>
 
@@ -185,7 +172,8 @@ export default function AboutPharma() {
               />
             )}
           </div>
-        </div>
+        </div> */}
+        <Expertise />
       </div>
       {/* )} */}
     </div>
