@@ -1,4 +1,5 @@
 "use client";
+import ByQuality from "@/components/DrivenByQuality";
 import FaqSection from "@/components/Faq";
 import InnovatingHealthcare from "@/components/InnovatingHealthcare";
 import Marquee from "@/components/Marquee";
@@ -27,8 +28,9 @@ const services = [
 export default function Home() {
   return (
     <>
-      <Marquee items={services} speed={30} />
-      <InnovatingHealthcare />
+      {/* <Marquee items={services} speed={30} /> */}
+      {/* <InnovatingHealthcare /> */}
+      <ByQuality />
       <ProductCategories />
       <WhyChooseUs />
       <PharmaCategories />

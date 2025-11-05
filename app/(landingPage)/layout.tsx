@@ -2,6 +2,7 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import HeroBanner from "@/components/HeroBanner";
+import Parallex from "@/components/Parallax";
 import ScrollToTop from "@/components/ScrollToTop";
 import { useLandingPageContext } from "@/context/LandingPageContext";
 import Loader from "@/ui/Loader";
@@ -53,7 +54,8 @@ export default function layout({ children }: { children: ReactNode }) {
   return (
     <>
       <Header />
-      <HeroBanner heroData={heroSectionInfo} />
+      <Parallex />
+      {/* <HeroBanner heroData={heroSectionInfo} /> */}
       {children}
       <ScrollToTop />
       <Footer />

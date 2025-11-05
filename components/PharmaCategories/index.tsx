@@ -1,9 +1,10 @@
 "use client";
 import { useLandingPageContext } from "@/context/LandingPageContext";
 import PageTitle from "@/ui/PageTitle";
+import SwipeSlider from "@/ui/SwipeSlider";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const categories = [
   {
@@ -53,6 +54,7 @@ export default function PharmaCategories() {
   const { section_name, section_heading, section_sub_heading, data }: any =
     typesOfProducts || {};
   const router = useRouter();
+  const [isVisible, setIsVisible] = useState(false);
 
   const handleProductTypeClick = (slug: string) => {
     router.push(`/our-products?type=${slug}`);
@@ -61,6 +63,14 @@ export default function PharmaCategories() {
   useEffect(() => {
     fetchProductTypes();
   });
+
+  useEffect(() => {
+    // Trigger animation after component mounts
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="hero-sub-container">
@@ -78,55 +88,61 @@ export default function PharmaCategories() {
               wrapperClass="grid lg:grid-cols-2 gap-10"
             />
             <div className="flex flex-wrap gap-6 justify-center mt-10">
-              {data?.slice(0, 8).map((cat: any) => {
-                const baseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
-                const imagePath = process.env.NEXT_PUBLIC_IMAGE_PATH;
-                const imageUrl = `${baseUrl}${imagePath}/${cat.image}`;
-                return (
-                  // <div
-                  //   key={cat.id}
-                  //   className="w-full sm:w-[calc(50%-12px)] md:w-[calc(33.33%-16px)] lg:w-[calc(25%-18px)] max-w-[299px]"
-                  // >
-                  //   {cat.image && (
-                  //     <Image
-                  //       src={cat.image}
-                  //       alt={cat.title}
-                  //       width={299}
-                  //       height={263}
-                  //       className="block rounded-t-lg object-cover"
-                  //     />
-                  //   )}
-                  //   <p className="h-[63px] bg-white flex justify-center items-center rounded-b-lg text-xl font-semibold text-[#172C45] red-hat leading-[32px]">
-                  //     {cat.title}
-                  //   </p>
-                  // </div>
-                  <div
-                    key={cat.id}
-                    className="group relative w-full sm:w-[calc(50%-12px)] md:w-[calc(33.33%-16px)] lg:w-[calc(25%-18px)] max-w-[299px]  rounded-lg overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 ease-out hover:-translate-y-3"
-                  >
-                    {/* Image Wrapper */}
-                    <div className="relative overflow-hidden">
-                      {cat.image && (
-                        <Image
-                          src={cat.image}
-                          alt={cat.title}
-                          width={299}
-                          height={263}
-                          className="block rounded-t-lg object-cover transition-transform duration-700 ease-out transform group-hover:scale-110 group-hover:brightness-75"
-                        />
-                      )}
-                    </div>
-
-                    {/* Base Title (visible when not hovered) */}
-                    <button
-                      className=" w-full h-[63px] bg-white flex justify-center items-center rounded-b-lg text-xl font-semibold text-[#172C45] red-hat leading-[32px] group-hover:bg-[#172C45]/95 group-hover:text-white transition-all duration-500 ease-out cursor-pointer"
-                      onClick={() => handleProductTypeClick(cat.slug)}
+              <SwipeSlider
+                slidesPerView={3}
+                bottomSwipeBtn={false}
+                swipebtn={true}
+                spaceBetween={10}
+                autoPlay={false}
+              >
+                {data?.map((cat: any, index: number) => {
+                  const baseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
+                  const imagePath = process.env.NEXT_PUBLIC_IMAGE_PATH;
+                  const imageUrl = `${baseUrl}${imagePath}/${cat.image}`;
+                  return (
+                    <div
+                      key={cat.id}
+                      className={`group relative w-full  rounded-lg overflow-hidden shadow-md  transition-all duration-500 ease-out hover:-translate-y-3 ${
+                        isVisible
+                          ? "opacity-100 translate-x-0"
+                          : "opacity-0 -translate-x-20"
+                      }`}
+                      style={{
+                        transitionDelay: `${index * 100}ms`,
+                        transitionProperty: "opacity, transform",
+                        transitionDuration: "700ms",
+                        transitionTimingFunction:
+                          "cubic-bezier(0.4, 0, 0.2, 1)",
+                      }}
                     >
-                      {cat.title}
-                    </button>
-                  </div>
-                );
-              })}
+                      {/* Image Wrapper */}
+                      <div className="relative overflow-hidden">
+                        {cat.image && cat.image ? (
+                          <Image
+                            src={cat.image}
+                            alt={cat.title}
+                            width={299}
+                            height={263}
+                            className="w-full block rounded-t-lg object-cover transition-transform duration-700 ease-out transform group-hover:scale-110 group-hover:brightness-75"
+                          />
+                        ) : (
+                          <span className="text-sm flex justify-center py-2">
+                            Image Not found
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Base Title (visible when not hovered) */}
+                      <button
+                        className=" w-full h-[63px] bg-white flex justify-center items-center rounded-b-lg text-xl font-semibold text-[#172C45] red-hat leading-[32px] group-hover:bg-[#172C45]/95 group-hover:text-white transition-all duration-500 ease-out cursor-pointer"
+                        onClick={() => handleProductTypeClick(cat.slug)}
+                      >
+                        {cat.title}
+                      </button>
+                    </div>
+                  );
+                })}
+              </SwipeSlider>
             </div>
           </div>
         </div>
