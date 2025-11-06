@@ -213,7 +213,7 @@ export default function ManufacturerSection() {
                     {custom_fields?.map((item: any, id: any) => (
                       <div key={id} className="flex gap-6 items-start">
                         <div className="flex-1 w-full max-w-[663px]">
-                          <p className="font-medium mb-2 text-[1.25rem] text-[#172C45]">
+                          <p className="font-semibold mb-2 text-[1.30rem] text-[#45566A]">
                             {item.name}
                           </p>
                           <span className="text-base font-normal primary-font text-[#45566A]">

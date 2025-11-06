@@ -1,12 +1,14 @@
 import React from "react";
 
-export default function Parallex() {
+export default function Parallex({ heroData }: any) {
+  const { section_name, image } = heroData || {};
+
   return (
     <div className="relative -mt-[5.24rem]">
       <div
         className="sticky top-0 h-[60vh] sm:h-[65vh] md:h-[75vh] lg:h-[51rem] bg-scroll lg:bg-fixed bg-cover bg-center bg-no-repeat -z-10 overflow-hidden"
         style={{
-          backgroundImage: "url('/images/parallexbanner.webp')",
+          backgroundImage: `url(${image})`,
         }}
       />
       <div className="absolute bottom-[0%] md:bottom-[0%] lg:-bottom-[4%] left-1/2 -translate-x-1/2 w-full flex items-end justify-center px-4 z-10">
@@ -23,7 +25,7 @@ export default function Parallex() {
 
           {/* Title text */}
           <h1 className="red-hat text-[1.5rem] sm:text-[2rem] md:text-[3rem] lg:text-[6.25rem] xl:text-[7rem] font-black uppercase text-white leading-tight px-2 break-words sm:whitespace-nowrap">
-            Quality that cares
+            {section_name}
           </h1>
         </div>
       </div>

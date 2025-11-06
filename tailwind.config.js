@@ -8,5 +8,13 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require("tailwind-scrollbar-hide")],
+  plugins: [
+    require("tailwind-scrollbar-hide"),
+    function ({ addVariant }) {
+      addVariant(
+        "hover-supported",
+        "@media (hover: hover) and (pointer: fine)"
+      );
+    },
+  ],
 };

@@ -1,4 +1,5 @@
 "use client";
+import { useLandingPageContext } from "@/context/LandingPageContext";
 import PageTitle from "@/ui/PageTitle";
 import React, { useEffect, useState, useRef } from "react";
 
@@ -18,7 +19,9 @@ const statsConfig = {
 };
 
 export default function ByQuality() {
-  const [counts, setCounts] = useState(statsConfig?.count?.map(() => 0));
+  const { fetchStatics, statistics } = useLandingPageContext();
+  const { custom_data, section_name }: any = statistics || {};
+  const [counts, setCounts] = useState(custom_data?.map(() => 0));
   const [hasAnimated, setHasAnimated] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -45,12 +48,16 @@ export default function ByQuality() {
     };
   }, [hasAnimated]);
 
+  useEffect(() => {
+    fetchStatics();
+  }, []);
+
   const animateNumbers = () => {
     const duration = 2000; // 2 seconds for smoother animation
     const frameRate = 1000 / 60; // 60fps
     const totalFrames = Math.round(duration / frameRate);
 
-    statsConfig?.count?.forEach((stat, index) => {
+    custom_data?.forEach((stat: any, index: any) => {
       let frame = 0;
       const interval = setInterval(() => {
         frame++;
@@ -59,7 +66,7 @@ export default function ByQuality() {
         const easeProgress = 1 - Math.pow(1 - progress, 4);
         const currentCount = Math.round(easeProgress * stat.number);
 
-        setCounts((prev) => {
+        setCounts((prev: any) => {
           const updated = [...prev];
           updated[index] = currentCount;
           return updated;
@@ -68,7 +75,7 @@ export default function ByQuality() {
         if (frame === totalFrames) {
           clearInterval(interval);
           // Ensure final value is exact
-          setCounts((prev) => {
+          setCounts((prev: any) => {
             const updated = [...prev];
             updated[index] = stat.number;
             return updated;
@@ -83,7 +90,7 @@ export default function ByQuality() {
       <div className="py-16">
         <div className="flex justify-center ">
           <PageTitle
-            heading={statsConfig?.heading_tag}
+            heading={section_name}
             headingClass="text-[2.875rem]  font-normal text-[#45566a] leading-[3.438rem] mb-9"
           />
         </div>
@@ -93,7 +100,7 @@ export default function ByQuality() {
         >
           <div className="hero-sub-container">
             <div className="relative z-10 mx-auto flex flex-wrap justify-center gap-y-10 gap-x-20 text-center poppins">
-              {statsConfig?.count?.map((stat, i) => (
+              {custom_data?.map((stat: any, i: any) => (
                 <div key={i} className="w-[45%] sm:w-[40%] md:w-[20%]">
                   <p className="text-base md:text-lg font-medium mt-2">
                     {stat.name}

@@ -37,8 +37,6 @@ export default function AboutPharma() {
     fetchAboutSectionWhyWeUnique();
   }, []);
 
-  console.log(points, "points");
-
   return (
     <div className="sub-container">
       {/* {loading ? (

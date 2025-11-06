@@ -18,6 +18,7 @@ interface LandingPageContextType {
   ourBlogs: any[];
   pharmaProducts: any;
   footerData: any[];
+  statistics: any[];
   pharmaProductsMenu: any[];
   fetchAboutSection: () => Promise<void>;
   fetchNaviagtionList: () => Promise<void>;
@@ -34,6 +35,7 @@ interface LandingPageContextType {
   fetchPharmaProducts: (slug?: string) => Promise<void>;
   fetchFooterList: () => Promise<void>;
   subScribeNewsLetter: (email: string) => Promise<void>;
+  fetchStatics: () => Promise<void>;
 }
 
 const LandingPageContext = createContext<LandingPageContextType | undefined>(
@@ -62,6 +64,7 @@ export function LandingPageProvider({ children }: LandingPageProviderProps) {
   const [pharmaProducts, setPharmaProducts] = useState<any>();
   const [footerData, setFooterData] = useState<any[]>([]);
   const [pharmaProductsMenu, setPharmaProductsMenu] = useState<any[]>([]);
+  const [statistics, setStatistics] = useState<any[]>([]);
 
   // Track which APIs are already fetched
   const fetched = useRef({
@@ -80,6 +83,7 @@ export function LandingPageProvider({ children }: LandingPageProviderProps) {
     footerData: false,
     pharmaProductsMenu: false,
     isSubscribed: false,
+    statistics: false,
   });
 
   // Helper to manage loading across multiple calls
@@ -297,6 +301,19 @@ export function LandingPageProvider({ children }: LandingPageProviderProps) {
     });
   };
 
+  const fetchStatics = async () => {
+    if (fetched.current.statistics || statistics.length > 0) return;
+    await withBannerLoading(async () => {
+      try {
+        const res = await api.get("/statistics");
+        setStatistics(res.data);
+        fetched.current.statistics = true;
+      } catch (error) {
+        console.error("Failed to fetch statistics", error);
+      }
+    });
+  };
+
   return (
     <LandingPageContext.Provider
       value={{
@@ -331,6 +348,8 @@ export function LandingPageProvider({ children }: LandingPageProviderProps) {
         pharmaProductsMenu,
         fetchPharmaProducts,
         subScribeNewsLetter,
+        fetchStatics,
+        statistics,
       }}
     >
       {children}

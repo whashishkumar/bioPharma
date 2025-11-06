@@ -111,7 +111,7 @@ export default function ExpertiseCard({ expertiesData }: any) {
                 }}
               >
                 <div className="flex items-start gap-4 ">
-                  <div className="border-l-2 border-[#C30000] pl-4">
+                  <div className="border-l-2 border-[#01a859] pl-4">
                     {item.icon}
                     <Image
                       src={`${item.image}`}

@@ -54,7 +54,7 @@ export default function layout({ children }: { children: ReactNode }) {
   return (
     <>
       <Header />
-      <Parallex />
+      <Parallex heroData={heroSectionInfo} />
       {/* <HeroBanner heroData={heroSectionInfo} /> */}
       {children}
       <ScrollToTop />
