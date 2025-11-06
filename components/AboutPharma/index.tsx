@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import Loader from "@/ui/Loader";
 import CEOSectiion from "./MeetOurCeo";
 import Expertise from "./Expertise";
+import ExpertiseCard from "@/ui/ExpertiseCard";
 
 export default function AboutPharma() {
   const {
@@ -35,6 +36,8 @@ export default function AboutPharma() {
     fetchAboutSectionCeo();
     fetchAboutSectionWhyWeUnique();
   }, []);
+
+  console.log(points, "points");
 
   return (
     <div className="sub-container">
@@ -173,7 +176,8 @@ export default function AboutPharma() {
             )}
           </div>
         </div> */}
-        <Expertise />
+        {/* <Expertise /> */}
+        <ExpertiseCard expertiesData={whyWeUniqueData} />
       </div>
       {/* )} */}
     </div>

@@ -1,8 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+
 import {
   FaTimes,
   FaChevronDown,
@@ -40,35 +40,7 @@ export default function MobileMenu({
   if (!menuOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] bg-[#172d45] text-white flex flex-col">
-      {/* Header */}
-      <div className="flex justify-between items-center px-6 py-4 border-b border-gray-700">
-        <div
-          onClick={() => {
-            setMenuOpen(false);
-            handleLogoClick?.();
-          }}
-          className="cursor-pointer"
-        >
-          {logo && (
-            <Image
-              src={logo}
-              alt="Logo"
-              width={150}
-              height={60}
-              className="object-contain"
-            />
-          )}
-        </div>
-        <button
-          className="text-2xl"
-          onClick={() => setMenuOpen(false)}
-          aria-label="Close menu"
-        >
-          <FaTimes color="#fff" />
-        </button>
-      </div>
-
+    <div className="">
       {/* Scrollable Menu */}
       <div className="flex-1 flex flex-col gap-4 p-6 overflow-y-auto">
         {menus?.map((link: any) => (

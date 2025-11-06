@@ -91,9 +91,9 @@ export default function PharmaCategories() {
               <SwipeSlider
                 slidesPerView={3}
                 bottomSwipeBtn={false}
-                swipebtn={true}
+                swipebtn={false}
                 spaceBetween={10}
-                autoPlay={false}
+                autoPlay={true}
               >
                 {data?.map((cat: any, index: number) => {
                   const baseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;

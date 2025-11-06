@@ -45,9 +45,9 @@ function DropdownMenu({ submenu }: { submenu: any[] }) {
       {submenu.map((sub) => (
         <li key={sub.id} className="relative group/submenu">
           <Link
-            href={`/${sub.url}`}
+            href={`${sub.url}`}
             className="block px-4 py-2 text-white hover:text-[#01A859]  transition-colors flex justify-between items-center"
-            target="_blank"
+            target={sub?.target}
           >
             {sub.title}
             {/* Arrow indicator */}
@@ -64,8 +64,10 @@ function DropdownMenu({ submenu }: { submenu: any[] }) {
               {sub.submenu.map((nested: any) => (
                 <li key={nested.id}>
                   <Link
-                    href={`/${nested.url}`}
+                    href={nested.url}
+                    // target={nested?.target}
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="block px-4 py-2 text-white hover:text-[#01A859]  transition-colors"
                   >
                     {nested.title}
@@ -157,43 +159,6 @@ export default function Header({
                   )}
                 </div>
 
-                {/* <ul className="hidden lg:flex gap-10 items-center">
-                  {menus?.map((link: any) => {
-                    const currentPath = pathname?.replace(/^\/?/, "");
-                    const linkPath = link.url?.replace(/^\/?/, "");
-                    const isHome = linkPath === "" || linkPath === "/";
-                    const isActive = isHome
-                      ? pathname === "/"
-                      : currentPath === linkPath ||
-                        currentPath.startsWith(`${linkPath}/`);
-
-                    return (
-                      <li
-                        key={link.id}
-                        className="relative group primary-font text-base"
-                      >
-                        <Link
-                          href={`/${linkPath}`}
-                          className={`${
-                            isActive ? "text-[#01A859]" : inactiveColor
-                          } hover:text-[#01A859] transition-colors`}
-                        >
-                          {link.title}
-                        </Link>
-                      </li>
-                    );
-                  })}
-
-                  {phone && (
-                    <li>
-                      <Link href={`tel:${phone}`}>
-                        <div className="flex items-center gap-2 bg-[#01A859] text-white px-6 py-2 rounded-full primary-font text-base">
-                          <FaPhoneAlt /> <span>{phone}</span>
-                        </div>
-                      </Link>
-                    </li>
-                  )}
-                </ul> */}
                 <ul className="hidden lg:flex gap-10 items-center">
                   {menus?.map((link: any) => {
                     const currentPath = pathname?.replace(/^\/?/, "");
@@ -241,7 +206,7 @@ export default function Header({
 
                 {/* Mobile menu toggle */}
                 <div
-                  className="lg:hidden text-2xl cursor-pointe"
+                  className="lg:hidden text-2xl cursor-pointer"
                   onClick={() => setMenuOpen(true)}
                 >
                   <FaBars color="#fff" />
@@ -249,7 +214,7 @@ export default function Header({
               </div>
 
               {/* Fullscreen Mobile Menu */}
-              {/* {menuOpen && (
+              {menuOpen && (
                 <div className="fixed inset-0 z-100 bg-[#172d45] text-white flex flex-col">
                   <div className="flex justify-between items-center px-6 py-4 border-b border-gray-700">
                     <div
@@ -278,7 +243,7 @@ export default function Header({
                   </div>
 
                   <div className="flex-1 flex flex-col gap-6 p-6 overflow-y-auto">
-                    {menus?.map((link: any) => {
+                    {/* {menus?.map((link: any) => {
                       const isActive = pathname === link.url;
                       return (
                         <button
@@ -302,22 +267,22 @@ export default function Header({
                           <FaPhoneAlt /> <span>{phone}</span>
                         </div>
                       </Link>
-                    )}
+                    )} */}
+                    <MobileMenu
+                      menuOpen={menuOpen}
+                      setMenuOpen={setMenuOpen}
+                      menus={menus}
+                      logo={logo}
+                      phone={phone}
+                      handleLogoClick={() => router.push("/")}
+                      handleLinkClick={(url: any) => {
+                        router.push(`/${url}`);
+                        setMenuOpen(false);
+                      }}
+                    />
                   </div>
                 </div>
-              )} */}
-              <MobileMenu
-                menuOpen={menuOpen}
-                setMenuOpen={setMenuOpen}
-                menus={menus}
-                logo={logo}
-                phone={phone}
-                handleLogoClick={() => router.push("/")}
-                handleLinkClick={(url: any) => {
-                  router.push(`/${url}`);
-                  setMenuOpen(false);
-                }}
-              />
+              )}
             </nav>
           </div>
         </div>

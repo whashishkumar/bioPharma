@@ -1,39 +1,3 @@
-// import Image from "next/image";
-// import React from "react";
-
-// export default function Parallex() {
-//   return (
-//     <>
-//       <div
-//         className="sticky h-[51rem] bg-fixed bg-cover bg-center -z-100 -mt-[5.24rem]"
-//         style={{
-//           backgroundImage: "url('/images/parallexbanner.webp')",
-//         }}
-//       />
-//       {/* <div className={`absolute inset-0 bg-black/40 z-[-1]`} /> */}
-//       <div className="absolute bottom-[4%] left-1/2 -translate-x-1/2 flex items-end justify-center">
-//         <div className="flex justify-center items-center flex-col gap-5">
-//           <div className="flex flex-col items-center justify-end h-[200px]">
-//             {/* Capsule outline */}
-//             <div className="relative w-[35px] h-[68px] border-2 border-white rounded-full flex !justify-center mb-4">
-//               <span className="absolute top-[12px] w-[6px] h-[6px] bg-white rounded-full animate-scroll-dot" />
-//               <span className="absolute top-[12px] w-[6px] h-[6px] bg-white rounded-full animate-scroll-dot" />
-//             </div>
-//             {/* Double chevron arrows */}
-//             <div className="flex flex-col items-center gap-[2px]">
-//               <span className="block w-[14px] h-[14px] border-b-[3px] border-r-[3px] border-white rotate-45 opacity-60 animate-arrow" />
-//               <span className="block w-[14px] h-[14px] border-b-[3px] border-r-[3px] border-white rotate-45 opacity-30 animate-arrow delay-[0.3s]" />
-//             </div>
-//           </div>
-//           <h1 className="text-[2rem] md:text-[2rem] lg:text-[6.25rem] font-extrabold text-center w-auto m-0 whitespace-nowrap uppercase text-white">
-//             Quality that cares
-//           </h1>
-//         </div>
-//       </div>
-//     </>
-//   );
-// }
-
 import React from "react";
 
 export default function Parallex() {
