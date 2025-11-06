@@ -29,8 +29,22 @@ export default function MobileMenu({
     );
   };
 
+  // const handleLinkClick = (url: string) => {
+  //   router.push(`${url}`);
+  //   setMenuOpen(false);
+  // };
+
   const handleLinkClick = (url: string) => {
-    router.push(`/${url}`);
+    // If URL is missing or empty, do nothing
+    if (!url || url.trim() === "") return;
+    if (url.startsWith("http")) {
+      // External link
+      window.open(url, "_blank", "noopener,noreferrer");
+    } else {
+      // Internal link
+      router.push(`${url.startsWith("/") ? url : `/${url}`}`);
+    }
+
     setMenuOpen(false);
   };
 

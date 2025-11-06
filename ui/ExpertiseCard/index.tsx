@@ -71,8 +71,6 @@ export default function ExpertiseCard({ expertiesData }: any) {
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
   const cardData = points ? points : data;
 
-  console.log(itemRefs, "itemRefs");
-
   return (
     <section className="mx-auto py-16">
       {/* Left Section */}
