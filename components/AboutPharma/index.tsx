@@ -90,10 +90,10 @@ export default function AboutPharma() {
                 alt="welcome"
                 width={500}
                 height={550}
-                className=" max-w-full h-auto"
+                className="max-w-full h-auto rounded-2xl shadow-md"
               />
             )}
-            {data?.about_large_image && (
+            {/* {data?.about_large_image && (
               <Image
                 src={bgImageUrl}
                 alt="welcome overlay"
@@ -101,12 +101,16 @@ export default function AboutPharma() {
                 height={280}
                 className="absolute left-6 top-6 md:left-12 md:top-12 hidden lg:flex"
               />
-            )}
+            )} */}
           </div>
         </div>
-        <div className="py-16">
-          <CEOSectiion ceoImage={ceoImage} ceodata={ceoSection} />
-        </div>
+
+        {ceoSection && (
+          <div className="py-16">
+            <CEOSectiion ceoImage={ceoImage} ceodata={ceoSection} />
+          </div>
+        )}
+
         {/* <div className=" grid grid-cols-1 md:grid-cols-2 items-center gap-12  py-16 px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center md:justify-start">
             {ceoSection?.ceo_image && (
@@ -175,7 +179,10 @@ export default function AboutPharma() {
           </div>
         </div> */}
         {/* <Expertise /> */}
-        <ExpertiseCard expertiesData={whyWeUniqueData} />
+        {whyWeUniqueData && <ExpertiseCard expertiesData={whyWeUniqueData} />}
+        {/* {Array.isArray(whyWeUniqueData) && whyWeUniqueData.length > 0 && (
+          <ExpertiseCard expertiesData={whyWeUniqueData} />
+        )} */}
       </div>
       {/* )} */}
     </div>

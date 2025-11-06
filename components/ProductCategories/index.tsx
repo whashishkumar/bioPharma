@@ -106,6 +106,8 @@ export default function ProductCategories() {
     router.push(`/our-products/${slug}`);
   };
 
+  console.log(productCategories, "productCategories");
+
   return (
     <div className="hero-sub-container">
       {/* <div className="bg-product-category rounded-[20px]"> */}

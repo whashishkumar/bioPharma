@@ -63,7 +63,8 @@ export default function ExpertiseCard({ expertiesData }: any) {
   //   },
   // ];
 
-  const { section_heading, points, images, data }: any = expertiesData || {};
+  const { section_heading, points, images, data, image }: any =
+    expertiesData || {};
   const baseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
   const imagePath = process.env.NEXT_PUBLIC_IMAGE_PATH;
   const uniqueImg1 = `${baseUrl}${imagePath}/${images?.image_1}`;
@@ -83,14 +84,16 @@ export default function ExpertiseCard({ expertiesData }: any) {
       <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12">
         <div className="relative flex-shrink-0 w-full lg:w-1/2 flex justify-center items-center lg:sticky lg:top-24 lg:self-start">
           <div className="relative w-[90%] max-w-[520px] aspect-square overflow-hidden lg:mt-25">
-            <Image
-              src="/images/leftbanner.webp"
-              // src={uniqueImg2}
-              alt="Researcher with microscope"
-              width={500}
-              height={500}
-              className="object-cover w-full h-full"
-            />
+            {image && (
+              <Image
+                // src="/images/leftbanner.webp"
+                src={image}
+                alt="Researcher with microscope"
+                width={550}
+                height={550}
+                className="object-cover w-full h-full"
+              />
+            )}
           </div>
         </div>
 
@@ -110,17 +113,20 @@ export default function ExpertiseCard({ expertiesData }: any) {
               >
                 <div className="flex items-start gap-4 ">
                   <div className="border-l-2 border-[#01a859] pl-4">
-                    {item.icon}
-                    <Image
-                      src={`${item.image}`}
-                      alt="Researcher with microscope"
-                      width={80}
-                      height={80}
-                      className="object-contain  rounded-full"
-                    />
+                    {(item.icon_image || item.image_icon) && (
+                      <div className="w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] lg:w-[80px] lg:h-[80px] flex items-center justify-center">
+                        <Image
+                          src={item.icon_image || item.image_icon}
+                          alt="Researcher with microscope"
+                          width={80}
+                          height={80}
+                          className="object-contain w-full h-full"
+                        />
+                      </div>
+                    )}
                   </div>
                   <div>
-                    <h3 className="font-bold text-3xl text-[#45566A] sanchez">
+                    <h3 className="font-bold text-2xl text-[#45566A] sanchez">
                       {item.title}
                     </h3>
                     <p className=" text-lg mt-2 leading-relaxed text-[#45566A] poppins">
