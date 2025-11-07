@@ -21,7 +21,7 @@ export default function OurProducts() {
     pharmaProductsMenu || {};
   const { product_categories, product }: any = pharmaProducts || {};
   const [activeProduct, setActiveProduct] = useState<string | undefined>(
-    product_categories?.[0]?.title || "critical-care"
+    "general"
   );
 
   const handleClickProduct = (slug: any) => {
