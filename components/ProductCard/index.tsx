@@ -37,7 +37,7 @@ export default function ProductCard({
     return (
       <div
         className="bg-white rounded-lg overflow-hidden flex flex-col border border-black/5 hover:shadow-md transition
-                   flex-1 max-w-[350px] min-w-[280px] sm:min-w-[240px]"
+                  w-full sm:w-[calc(50%-1.25rem)] md:w-[calc(50%-1.75rem)] lg:w-[314px]"
       >
         {/* Image Section */}
         <div className="w-full h-[150px] flex items-center justify-center">
@@ -93,7 +93,7 @@ export default function ProductCard({
   return (
     <div className={`w-full ${className}`}>
       {products?.length > 0 ? (
-        <div className="flex flex-wrap gap-10 justify-center md:justify-start">
+        <div className="flex flex-wrap gap-5 justify-center sm:justify-start">
           {products?.map((p: any, id: number) => (
             <Card
               key={id}
