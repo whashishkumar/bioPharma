@@ -163,9 +163,9 @@ export default function ManufacturerSection() {
             </div> */}
 
               <div className="absolute w-full h-full flex items-center justify-center left-2/4 rotate-slow-reverse animate-rotate-slow ">
-                {logos?.slice(0, 16).map((logo: any, i: any) => {
+                {logos?.slice(0, 15).map((logo: any, i: any) => {
                   const total = (logos || logoss).length - 1;
-                  const spacingFactor = 1.1; // adjust spacing between logos
+                  const spacingFactor = 1.2; // adjust spacing between logos
                   const angle = (i / total) * 2 * Math.PI * spacingFactor;
 
                   return (
@@ -183,7 +183,7 @@ export default function ManufacturerSection() {
                         alt={logo.alt}
                         width={80}
                         height={80}
-                        className="rounded-md object-contain w-[45px] h-[45px] sm:w-[65px] sm:h-[65px] md:w-[80px] md:h-[80px] lg:w-[130px] lg:h-[80px] rotate-190"
+                        className="rounded-md object-contain w-[45px] h-[45px] sm:w-[65px] sm:h-[65px] md:w-[80px] md:h-[80px] lg:w-[130px] lg:h-[70px] rotate-190"
                       />
                     </div>
                   );

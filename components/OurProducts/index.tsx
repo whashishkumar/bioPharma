@@ -9,9 +9,6 @@ import React from "react";
 
 export default function OurProducts() {
   const router = useRouter();
-  const [activeProduct, setActiveProduct] = useState<string | undefined>(
-    "critical-care"
-  );
 
   const {
     pharmaProducts,
@@ -23,6 +20,9 @@ export default function OurProducts() {
   const { section_name, section_heading, section_sub_heading }: any =
     pharmaProductsMenu || {};
   const { product_categories, product }: any = pharmaProducts || {};
+  const [activeProduct, setActiveProduct] = useState<string | undefined>(
+    product_categories?.[0]?.title || "critical-care"
+  );
 
   const handleClickProduct = (slug: any) => {
     router.push(`/product-detail/${slug}`);

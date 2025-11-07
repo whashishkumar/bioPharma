@@ -203,10 +203,31 @@ export default function SwipeSlider({
 
       {/* Left Arrow */}
       {swipebtn && (
+        // <button
+        //   onClick={() => swiperRef.current?.slidePrev()}
+        //   className={`arrow-btn-box absolute top-1/2 -translate-y-1/2 left-[-20px] flex justify-center items-center z-10
+        //      cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed
+        //         ${
+        //           (swiperRef?.current?.slides?.length ?? 0) <= 2
+        //             ? "opacity-50 cursor-not-allowed"
+        //             : "cursor-pointer"
+        //         }
+        //      `}
+        // >
+        //   <IoIosArrowBack className="arow-icon text-2xl" />
+        // </button>
         <button
+          type="button"
           onClick={() => swiperRef.current?.slidePrev()}
-          className="arrow-btn-box absolute top-1/2 -translate-y-1/2 left-[-20px] flex justify-center items-center z-10 
-             cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled={(swiperRef?.current?.slides?.length ?? 0) <= 2}
+          className={`arrow-btn-box absolute top-1/2 -translate-y-1/2 left-[-20px] flex justify-center items-center z-10
+    transition-opacity duration-300
+    ${
+      (swiperRef?.current?.slides?.length ?? 0) <= 2
+        ? "opacity-50 cursor-not-allowed"
+        : "opacity-100 hover:opacity-80 cursor-pointer"
+    }
+  `}
         >
           <IoIosArrowBack className="arow-icon text-2xl" />
         </button>

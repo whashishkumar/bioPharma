@@ -34,6 +34,7 @@ interface LandingPageContextType {
   fetchPharmaProductsMenu: () => Promise<void>;
   fetchPharmaProducts: (slug?: string) => Promise<void>;
   fetchFooterList: () => Promise<void>;
+
   subScribeNewsLetter: (email: string) => Promise<void>;
   fetchStatics: () => Promise<void>;
 }

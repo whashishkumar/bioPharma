@@ -30,9 +30,9 @@ export default function Home() {
     <>
       <Marquee items={services} speed={30} />
       {/* <InnovatingHealthcare /> */}
-      <ByQuality />
-      <ProductCategories />
       <WhyChooseUs />
+      <ProductCategories />
+      <ByQuality />
       <PharmaCategories />
       <OurCertifacation />
       <OurProducts />
