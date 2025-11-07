@@ -11,6 +11,7 @@ export default function Parallex({ heroData }: any) {
           backgroundImage: `url(${image})`,
         }}
       />
+      <div className="absolute inset-0 bg-black/40"></div>
       <div className="absolute bottom-[0%] md:bottom-[0%] lg:-bottom-[4%] left-1/2 -translate-x-1/2 w-full flex items-end justify-center px-4 z-10">
         <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 md:gap-6 text-center max-w-full">
           <div className="flex flex-col items-center justify-end h-[80px] sm:h-[100px] md:h-[120px] lg:h-[200px]">
