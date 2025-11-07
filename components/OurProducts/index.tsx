@@ -32,6 +32,7 @@ export default function OurProducts() {
     setActiveProduct(slug);
     fetchPharmaProducts(slug);
   };
+
   useEffect(() => {
     fetchPharmaProductsMenu();
     fetchPharmaProducts(activeProduct);
