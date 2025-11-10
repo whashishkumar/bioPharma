@@ -211,6 +211,15 @@ export default function ManufacturerSection() {
                   <div className="grid grid-cols-1 gap-6 lg:ml-16 lg:py-12">
                     {custom_fields?.map((item: any, id: any) => (
                       <div key={id} className="flex gap-6 items-start">
+                        {image && (
+                          <Image
+                            src={item?.image}
+                            alt="BioBox Pharma"
+                            width={40}
+                            height={40}
+                            className="object-contain h-15 w-15"
+                          />
+                        )}
                         <div className="flex-1 w-full max-w-[663px]">
                           <p className="font-semibold mb-2 text-[1.30rem] text-[#45566A]">
                             {item.name}
