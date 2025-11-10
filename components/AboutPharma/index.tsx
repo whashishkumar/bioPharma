@@ -9,6 +9,7 @@ import Loader from "@/ui/Loader";
 import CEOSectiion from "./MeetOurCeo";
 import Expertise from "./Expertise";
 import ExpertiseCard from "@/ui/ExpertiseCard";
+import Mission from "./Mission";
 
 export default function AboutPharma() {
   const {
@@ -85,7 +86,7 @@ export default function AboutPharma() {
             {/* ))} */}
           </div>
           <div className="relative flex justify-center md:justify-end flex-col gap-10">
-            {/* <Mission /> */}
+            <Mission />
             {/* {data?.about_short_image && (
               <Image
                 src={imageUrl}
@@ -105,40 +106,7 @@ export default function AboutPharma() {
               />
             )} */}
 
-            <div className="flex flex-col gap-8 mt-8">
-              {data?.core_value_title && (
-                <div className="flex items-start gap-4 bg-white/80 backdrop-blur-sm p-5 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 ease-out">
-                  <div className="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-[#E6F9F0]">
-                    <PiEyeBold className="text-[#00A859] text-2xl md:text-3xl" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg md:text-xl font-semibold text-[#172C45] sanchez mb-1">
-                      {data?.core_value_title}
-                    </h3>
-                    <p className="text-[#45566A] red-hat font-normal text-base md:text-lg leading-relaxed">
-                      {data?.core_value_desc}
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {/* Mission */}
-              {data?.mission_title && (
-                <div className="flex items-start gap-4 bg-white/80 backdrop-blur-sm p-5 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 ease-out">
-                  <div className="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-[#E6F9F0]">
-                    <PiEyeBold className="text-[#00A859] text-2xl md:text-3xl" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg md:text-xl font-semibold text-[#172C45] sanchez mb-1">
-                      {data?.mission_title}
-                    </h3>
-                    <p className="text-[#45566A] red-hat font-normal text-base md:text-lg leading-relaxed">
-                      {data?.about_mission_desc}
-                    </p>
-                  </div>
-                </div>
-              )}
-            </div>
+            <div className="flex flex-col gap-8 mt-8">{/* <Mission /> */}</div>
           </div>
         </div>
 
