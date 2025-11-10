@@ -118,14 +118,14 @@ export default function PcdOppurnity() {
                   </div>
 
                   <div className="flex -space-x-2">
-                    {images?.map((avatar: any, id: number) => (
+                    {/* {images?.map((avatar: any, id: number) => (
                       <img
                         key={id}
                         className="inline-block h-10 w-10 rounded-full ring-2 ring-white object-contain"
                         src={avatar}
                         alt={"acator"}
                       />
-                    ))}
+                    ))} */}
                   </div>
 
                   <div className="primary-font text-sm flex flex-col items-center md:items-start">

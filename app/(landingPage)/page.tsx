@@ -28,7 +28,7 @@ const services = [
 export default function Home() {
   return (
     <>
-      <Marquee items={services} speed={30} />
+      {/* <Marquee items={services} speed={30} /> */}
       {/* <InnovatingHealthcare /> */}
       <WhyChooseUs />
       <ProductCategories />

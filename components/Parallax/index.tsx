@@ -6,7 +6,7 @@ export default function Parallex({ heroData }: any) {
   return (
     <div className="relative -mt-[5.24rem]">
       <div
-        className="sticky top-0 h-[60vh] sm:h-[65vh] md:h-[75vh] lg:h-[51rem] bg-scroll lg:bg-fixed bg-cover bg-center bg-no-repeat -z-10 overflow-hidden"
+        className="sticky top-0 h-[60vh] sm:h-[65vh] md:h-[75vh] lg:h-[53rem] bg-scroll lg:bg-fixed bg-cover bg-center bg-no-repeat -z-10 overflow-hidden"
         style={{
           backgroundImage: `url(${image})`,
         }}

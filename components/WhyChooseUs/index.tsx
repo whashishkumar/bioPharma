@@ -76,6 +76,7 @@ import Image from "next/image";
 import { useLandingPageContext } from "@/context/LandingPageContext";
 import React, { useEffect, useState } from "react";
 import PageTitle from "@/ui/PageTitle";
+import RotatingCircle from "./rotation";
 
 const logoss = [
   { src: "/images/ino.png", alt: "Akums" },
