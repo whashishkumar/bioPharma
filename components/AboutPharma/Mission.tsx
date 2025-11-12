@@ -7,40 +7,41 @@ import {
   FaProjectDiagram,
   FaExpandArrowsAlt,
 } from "react-icons/fa";
+import Image from "next/image";
 
-const features = [
-  {
-    icon: <FaBrain className="w-8 h-8 text-[#01a859]/80" />,
-    title: "Our Mission",
-    description:
-      "To deliver advanced pharmaceutical solutions with a focus on global healthcare improvement.",
-  },
-  {
-    icon: <FaStethoscope className="w-8 h-8 text-[#01a859]/80" />,
-    title: "Our Core Value",
-    description:
-      "Integrity, Innovation, Quality, and Commitment to Healthcare Excellence",
-  },
-  {
-    icon: <FaProjectDiagram className="w-8 h-8 text-[#01a859]/80" />,
-    title: "Interoperable",
-    description:
-      "Seamless integration with existing healthcare systems and platforms, ensuring smooth data exchange and collaboration across the ecosystem.",
-  },
-  {
-    icon: <FaExpandArrowsAlt className="w-8 h-8 text-[#01a859]/80" />,
-    title: "Scalable",
-    description:
-      "Flexible solutions designed to grow with your needs, from startups to enterprise-level pharmaceutical organizations worldwide.",
-  },
-];
+// const features = [
+//   {
+//     icon: <FaBrain className="w-8 h-8 text-[#01a859]/80" />,
+//     title: "Our Mission",
+//     description:
+//       "To deliver advanced pharmaceutical solutions with a focus on global healthcare improvement.",
+//   },
+//   {
+//     icon: <FaStethoscope className="w-8 h-8 text-[#01a859]/80" />,
+//     title: "Our Core Value",
+//     description:
+//       "Integrity, Innovation, Quality, and Commitment to Healthcare Excellence",
+//   },
+//   {
+//     icon: <FaProjectDiagram className="w-8 h-8 text-[#01a859]/80" />,
+//     title: "Interoperable",
+//     description:
+//       "Seamless integration with existing healthcare systems and platforms, ensuring smooth data exchange and collaboration across the ecosystem.",
+//   },
+//   {
+//     icon: <FaExpandArrowsAlt className="w-8 h-8 text-[#01a859]/80" />,
+//     title: "Scalable",
+//     description:
+//       "Flexible solutions designed to grow with your needs, from startups to enterprise-level pharmaceutical organizations worldwide.",
+//   },
+// ];
 
-export default function Mission() {
+export default function Mission({ features }: any) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <div className="w-full flex flex-wrap items-center justify-center gap-10 py-12 bg-white">
-      {features.map((item, i) => (
+    <div className="w-full flex  flex-wrap justify-center items-center   gap-10 lg:py-12 bg-white">
+      {features?.map((item: any, i: any) => (
         <div
           key={i}
           className="flex flex-col items-center justify-center space-y-3 relative"
@@ -69,7 +70,9 @@ export default function Mission() {
               }}
             />
             {/* Icon */}
-            <div className="z-10">{item.icon}</div>
+            <div className="z-10">
+              <Image src={item.icon} alt="icon" height={40} width={40} />
+            </div>
           </div>
           <span className="text-[#01a859] font-semibold text-sm">
             {item.title}

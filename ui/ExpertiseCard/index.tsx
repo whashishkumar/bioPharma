@@ -73,7 +73,7 @@ export default function ExpertiseCard({ expertiesData }: any) {
   const cardData = points ? points : data;
 
   return (
-    <section className="mx-auto py-16">
+    <section className="mx-auto ">
       {/* Left Section */}
       {points && (
         <h2 className="text-3xl sm:text-4xl font-semibold text-[#172C45] mb-8 text-center lg:text-left flex justify-center py-10 sanchez ">

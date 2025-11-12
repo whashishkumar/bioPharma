@@ -21,7 +21,7 @@ export default function AboutPharma() {
     fetchAboutSectionWhyWeUnique,
     whyWeUniqueData,
   } = useAboutUsPageContext();
-  const { data }: any = sectionOne || {};
+  const { data, features }: any = sectionOne || {};
   const { data: ceoSection }: any = ceoSectionData || {};
   const { section_heading, points, images }: any = whyWeUniqueData || {};
   const baseUrl = process.env.NEXT_PUBLIC_IMAGE_URL;
@@ -44,7 +44,7 @@ export default function AboutPharma() {
         <Loader />
       ) : ( */}
       <div>
-        <div className=" grid grid-cols-1 md:grid-cols-2 items-center gap-12 py-16 px-4 sm:px-6 lg:px-8">
+        <div className=" grid grid-cols-1 md:grid-cols-2 items-center gap-12 pt-16 px-4 sm:px-6 lg:px-8">
           <div className="space-y-6">
             <p className="text-[#172C45] uppercase font-bold sanchez">
               {data?.first_title}
@@ -86,7 +86,7 @@ export default function AboutPharma() {
             {/* ))} */}
           </div>
           <div className="relative flex justify-center md:justify-end flex-col gap-10">
-            <Mission />
+            <Mission features={features} />
             {/* {data?.about_short_image && (
               <Image
                 src={imageUrl}

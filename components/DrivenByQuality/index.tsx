@@ -86,30 +86,63 @@ export default function ByQuality() {
   };
 
   return (
+    // <div className="bg-white">
+    //   <div className="py-16">
+    //     <div className="flex justify-center ">
+    //       <PageTitle
+    //         heading={section_name}
+    //         headingClass="text-[2.875rem]  font-normal text-[#45566a] leading-[3.438rem] mb-9"
+    //       />
+    //     </div>
+    //     <section
+    //       ref={sectionRef}
+    //       className="relative bg-cover bg-center text-[#45566a]  md:px-10"
+    //     >
+    //       <div className="hero-sub-container">
+    //         <div className="relative z-10 mx-auto flex flex-wrap justify-center gap-y-10 gap-x-20 text-center poppins">
+    //           {custom_data?.map((stat: any, i: any) => (
+    //             <div key={i} className="w-[45%] sm:w-[40%] md:w-[20%]">
+    //               <p className="text-base md:text-lg font-medium mt-2">
+    //                 {stat.name}
+    //               </p>
+    //               <h2 className="text-[2rem] md:text-[4rem] font-extrabold leading-none py-2 text-[#01a859]">
+    //                 {counts[i].toLocaleString()}
+    //                 {stat.suffix}
+    //               </h2>
+    //               <p className="text-base md:text-lg font-medium mt-2">
+    //                 {stat.label}
+    //               </p>
+    //             </div>
+    //           ))}
+    //         </div>
+    //       </div>
+    //     </section>
+    //   </div>
+    // </div>
     <div className="bg-white">
-      <div className="py-16">
-        <div className="flex justify-center ">
+      <div className="py-10 md:py-16">
+        <div className="flex justify-center px-4 sm:px-6">
           <PageTitle
             heading={section_name}
-            headingClass="text-[2.875rem]  font-normal text-[#45566a] leading-[3.438rem] mb-9"
+            headingClass="text-2xl sm:text-3xl md:text-[2.875rem] font-normal text-[#45566a] leading-tight md:leading-[3.438rem] mb-6 md:mb-9 text-center"
           />
         </div>
         <section
           ref={sectionRef}
-          className="relative bg-cover bg-center text-[#45566a]  md:px-10"
+          className="relative bg-cover bg-center text-[#45566a] px-4 sm:px-6 md:px-10"
         >
-          <div className="hero-sub-container">
-            <div className="relative z-10 mx-auto flex flex-wrap justify-center gap-y-10 gap-x-20 text-center poppins">
+          <div className="hero-sub-container flex justify-center">
+            <div className="relative z-10 w-full grid grid-cols-2 lg:grid-cols-4 gap-y-6 sm:gap-y-8 md:gap-y-10 gap-x-6 sm:gap-x-10 md:gap-x-20 text-center poppins">
               {custom_data?.map((stat: any, i: any) => (
-                <div key={i} className="w-[45%] sm:w-[40%] md:w-[20%]">
-                  <p className="text-base md:text-lg font-medium mt-2">
+                <div key={i} className=" flex flex-col items-center">
+                  <p className="text-sm sm:text-base md:text-lg font-medium mt-2">
                     {stat.name}
                   </p>
-                  <h2 className="text-[2rem] md:text-[4rem] font-extrabold leading-none py-2 text-[#01a859]">
+                  <h2 className="text-[2rem] sm:text-[2.5rem] md:text-[4rem] font-extrabold leading-none py-2 text-[#01a859]">
                     {counts[i].toLocaleString()}
                     {stat.suffix}
                   </h2>
-                  <p className="text-base md:text-lg font-medium mt-2">
+                  <p className="text-sm sm:text-base md:text-lg font-medium mt-2">
                     {stat.label}
                   </p>
                 </div>
