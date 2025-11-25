@@ -1,80 +1,85 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import localFont from "next/font/local";
-import { Providers } from "@/context/Provider";
-import Header from "@/components/Header";
+/** @format */
+
+import type { Metadata } from 'next';
+import './globals.css';
+import localFont from 'next/font/local';
+import { Providers } from '@/context/Provider';
+import Header from '@/components/Header';
 
 const sora = localFont({
-  src: "../public/fonts/Sora-Regular.ttf",
-  weight: "400",
-  variable: "--font-sora",
+	src: '../public/fonts/Sora-Regular.ttf',
+	weight: '400',
+	variable: '--font-sora',
 });
 
 const redHatDisplay = localFont({
-  src: [
-    {
-      path: "../public/fonts/RedHatDisplay-SemiBold.ttf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/RedHatDisplay-SemiBold.ttf",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/RedHatDisplay-SemiBold.ttf",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/RedHatDisplay-SemiBold.ttf",
-      weight: "700",
-      style: "normal",
-    },
-  ],
-  variable: "--font-red-hat-display",
+	src: [
+		{
+			path: '../public/fonts/RedHatDisplay-SemiBold.ttf',
+			weight: '400',
+			style: 'normal',
+		},
+		{
+			path: '../public/fonts/RedHatDisplay-SemiBold.ttf',
+			weight: '500',
+			style: 'normal',
+		},
+		{
+			path: '../public/fonts/RedHatDisplay-SemiBold.ttf',
+			weight: '600',
+			style: 'normal',
+		},
+		{
+			path: '../public/fonts/RedHatDisplay-SemiBold.ttf',
+			weight: '700',
+			style: 'normal',
+		},
+	],
+	variable: '--font-red-hat-display',
 });
 
 const sanchez = localFont({
-  src: "../public/fonts/Sanchez-Regular.ttf",
-  weight: "400",
-  variable: "--font-sanchez",
+	src: '../public/fonts/Sanchez-Regular.ttf',
+	weight: '400',
+	variable: '--font-sanchez',
 });
 
 const poppins = localFont({
-  src: "../public/fonts/Poppins-Regular.ttf",
-  weight: "400",
-  variable: "--font-poppins",
+	src: '../public/fonts/Poppins-Regular.ttf',
+	weight: '400',
+	variable: '--font-poppins',
 });
 
 const marope = localFont({
-  src: "../public/fonts/Manrope-Medium.ttf",
-  weight: "400",
-  variable: "--font-marope",
+	src: '../public/fonts/Manrope-Medium.ttf',
+	weight: '400',
+	variable: '--font-marope',
 });
 
 export const metadata: Metadata = {
-  title: "bioBox Pharma",
-  description:
-    "BioBox Pharma is a leading pharmaceutical manufacturing company dedicated to quality, innovation, and compliance",
-  icons: {
-    icon: `/images/bioLogo.png`,
-  },
+	title: 'bioBox Pharma',
+	description:
+		'BioBox Pharma is a leading pharmaceutical manufacturing company dedicated to quality, innovation, and compliance',
+	icons: {
+		icon: `/images/bioLogo.png`,
+	},
+	robots: {
+		index: true,
+	},
 };
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body
-        className={`${sora.variable} ${marope.variable} ${redHatDisplay.variable} ${sanchez.variable} ${poppins.variable} antialiased `}
-      >
-        <Providers>{children}</Providers>
-      </body>
-    </html>
-  );
+	return (
+		<html lang='en'>
+			<body
+				className={`${sora.variable} ${marope.variable} ${redHatDisplay.variable} ${sanchez.variable} ${poppins.variable} antialiased `}
+			>
+				<Providers>{children}</Providers>
+			</body>
+		</html>
+	);
 }
