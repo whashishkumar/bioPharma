@@ -1,8 +1,10 @@
-import BlogDescription from "@/components/BlogDescription";
-import React from "react";
+/** @format */
+
+import BlogDescription from '@/components/BlogDescription';
+import React from 'react';
 
 export default async function page({ params }: any) {
-  const { slug } = await params;
+	const { slug } = await params;
 
-  return <BlogDescription slug={slug} />;
+	return <BlogDescription slug={slug} />;
 }
