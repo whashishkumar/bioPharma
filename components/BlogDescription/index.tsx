@@ -47,7 +47,6 @@ export default function BlogDescription({ slug }: any) {
 		fetchSingleBlog(slug);
 	}, []);
 
-	console.log(data?.content, '1234567890');
 	return (
 		<div className='hero-child-container'>
 			<div className='py-10'>

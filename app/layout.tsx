@@ -63,9 +63,12 @@ export const metadata: Metadata = {
 	icons: {
 		icon: `/images/bioLogo.png`,
 	},
+	verification: {
+		google: 'ctZ9WxAjBF5WztUtYLZgas9cSDug5Jd3dgVlkIbdIaU',
+	},
 	robots: {
 		index: true,
-       follow: true,
+		follow: true,
 	},
 };
 
@@ -76,6 +79,18 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en'>
+			<head>
+				<script
+					async
+					src='https://www.googletagmanager.com/gtag/js?id=G-TTTFXCJ5RR'
+				></script>
+				<script>
+					{`window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-TTTFXCJ5RR');`}
+				</script>
+			</head>
 			<body
 				className={`${sora.variable} ${marope.variable} ${redHatDisplay.variable} ${sanchez.variable} ${poppins.variable} antialiased `}
 			>
