@@ -162,9 +162,9 @@ export default function SwipeSlider({
 		<div
 			className='relative w-full'
 			// 🛑 Pause autoplay when mouse enters
-			onMouseEnter={() => swiperRef.current?.autoplay?.stop()}
+			// onMouseEnter={() => swiperRef.current?.autoplay?.stop()}
 			// ▶️ Resume autoplay when mouse leaves
-			onMouseLeave={() => swiperRef.current?.autoplay?.start()}
+			// onMouseLeave={() => swiperRef.current?.autoplay?.start()}
 		>
 			{textQuort && (
 				<Image
@@ -178,11 +178,7 @@ export default function SwipeSlider({
 			<Swiper
 				modules={[Navigation, Autoplay]}
 				spaceBetween={spaceBetween}
-				autoplay={
-					autoPlay
-						? { delay, disableOnInteraction: false, pauseOnMouseEnter: false }
-						: false
-				}
+				autoplay={autoPlay}
 				onSwiper={(swiper) => (swiperRef.current = swiper)}
 				className='w-full h-full'
 				breakpoints={
